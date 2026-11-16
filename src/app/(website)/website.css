@@ -1,0 +1,619 @@
+
+/* =========================================
+   MEPPEPLIN — STUDIO THEMES
+========================================= */
+
+.studio-theme-root {
+  --studio-paper: #f2f0eb;
+  --studio-ink: #252522;
+  --studio-muted: #77756e;
+  --studio-line: rgba(37, 37, 34, 0.18);
+  --studio-accent: #70409c;
+  --studio-surface: #e7e4dc;
+  --studio-panel: #f9f7f3;
+  --studio-contact-bg: #272624;
+  --studio-contact-ink: #f2f0eb;
+
+  background: var(--studio-paper);
+  color: var(--studio-ink);
+}
+
+.studio-theme-root[data-studio-theme="stone"] {
+  --studio-paper: #d8d0c3;
+  --studio-ink: #302b27;
+  --studio-muted: #655e55;
+  --studio-line: rgba(48, 43, 39, 0.23);
+  --studio-accent: #775842;
+  --studio-surface: #c9beae;
+  --studio-panel: #e5ded3;
+  --studio-contact-bg: #302b27;
+  --studio-contact-ink: #f1eae0;
+}
+
+.studio-theme-root[data-studio-theme="night"] {
+  --studio-paper: #141518;
+  --studio-ink: #f1eee8;
+  --studio-muted: #b0aba4;
+  --studio-line: rgba(241, 238, 232, 0.2);
+  --studio-accent: #b69ad1;
+  --studio-surface: #202126;
+  --studio-panel: #292a30;
+  --studio-contact-bg: #0d0e10;
+  --studio-contact-ink: #f1eee8;
+}
+
+.studio-theme-root .studio-site {
+  --studio-paper: inherit;
+  --studio-ink: inherit;
+  --studio-muted: inherit;
+  --studio-line: inherit;
+  --studio-accent: inherit;
+
+  background: var(--studio-paper);
+  color: var(--studio-ink);
+  transition: background 450ms ease, color 450ms ease;
+}
+
+.studio-theme-root .studio-header {
+  background: var(--studio-paper);
+  border-bottom-color: var(--studio-line);
+  transition:
+    background 450ms ease,
+    color 450ms ease,
+    height 350ms ease;
+}
+
+.studio-theme-root .studio-header-left,
+.studio-theme-root .studio-menu-trigger {
+  color: var(--studio-ink);
+}
+
+.studio-theme-root .studio-header-scrolled {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.studio-theme-root .studio-menu-overlay {
+  background: var(--studio-surface);
+  color: var(--studio-ink);
+}
+
+.studio-theme-root .studio-menu-links a,
+.studio-theme-root .studio-menu-top button {
+  color: var(--studio-ink);
+}
+
+.studio-theme-root .studio-menu-links a:hover,
+.studio-theme-root .studio-menu-links a[aria-current="page"] {
+  color: var(--studio-accent);
+}
+
+.studio-theme-root .studio-projects,
+.studio-theme-root .studio-stories {
+  background: var(--studio-surface);
+}
+
+.studio-theme-root .studio-empty-portfolio {
+  background: var(--studio-panel);
+}
+
+.studio-theme-root .studio-intro-details p,
+.studio-theme-root .studio-service-content small {
+  color: var(--studio-muted);
+}
+
+.studio-theme-root .studio-service-item,
+.studio-theme-root .studio-text-link {
+  color: var(--studio-ink);
+}
+
+.studio-theme-root .studio-contact,
+.studio-theme-root .studio-footer {
+  background: var(--studio-contact-bg);
+  color: var(--studio-contact-ink);
+}
+
+.studio-theme-root .studio-contact-button {
+  color: var(--studio-contact-ink);
+  border-color: currentColor;
+}
+
+.studio-theme-root .studio-contact-button:hover {
+  color: var(--studio-contact-bg);
+  background: var(--studio-contact-ink);
+}
+
+/* =========================================
+   NAVIGATION ACTIONS AND THEME SELECTOR
+========================================= */
+
+.studio-header-actions {
+  display: flex;
+  justify-self: end;
+  align-items: center;
+  gap: clamp(15px, 2.5vw, 36px);
+}
+
+.studio-theme-switcher {
+  position: relative;
+}
+
+.studio-theme-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  padding: 10px 0;
+  background: transparent;
+  color: var(--studio-ink);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.studio-theme-trigger svg {
+  transition: transform 350ms ease;
+}
+
+.studio-theme-trigger:hover svg {
+  transform: rotate(35deg);
+}
+
+.studio-theme-popover {
+  position: absolute;
+  top: calc(100% + 16px);
+  right: 0;
+  z-index: 1200;
+  width: 275px;
+  padding: 22px;
+  background: var(--studio-panel);
+  color: var(--studio-ink);
+  border: 1px solid var(--studio-line);
+  box-shadow: 0 20px 60px rgba(0,0,0,.14);
+  animation: studio-popover-in 300ms ease both;
+}
+
+@keyframes studio-popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.studio-theme-popover > p {
+  margin: 0 0 18px;
+  font-size: 9px;
+  letter-spacing: .14em;
+  color: var(--studio-muted);
+}
+
+.studio-theme-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--studio-line);
+  color: var(--studio-ink);
+  text-align: left;
+  font-size: 12px;
+}
+
+.studio-theme-option:hover {
+  color: var(--studio-accent);
+}
+
+.studio-theme-option > svg {
+  margin-left: auto;
+  color: var(--studio-accent);
+}
+
+.studio-theme-swatches {
+  display: flex;
+  align-items: center;
+}
+
+.studio-theme-swatches i {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(128,128,128,.25);
+  border-radius: 50%;
+}
+
+.studio-theme-swatches i + i {
+  margin-left: -4px;
+}
+
+/* =========================================
+   THREE-SCENE CINEMATIC HERO
+========================================= */
+
+.studio-rotating-hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 660px;
+  overflow: hidden;
+  background: #242320;
+  color: #fff;
+  isolation: isolate;
+}
+
+.studio-hero-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.studio-rotating-media,
+.studio-rotating-shade {
+  position: absolute;
+  inset: 0;
+}
+
+.studio-rotating-media {
+  overflow: hidden;
+}
+
+.studio-rotating-image,
+.studio-rotating-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.studio-rotating-shade {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.53) 0%,
+      rgba(0,0,0,.20) 65%,
+      rgba(0,0,0,.15) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0,0,0,.60) 0%,
+      transparent 45%
+    );
+}
+
+.studio-scene-project .studio-rotating-shade {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.16) 0%,
+      rgba(0,0,0,.22) 45%,
+      rgba(0,0,0,.62) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0,0,0,.55),
+      transparent 50%
+    );
+}
+
+.studio-scene-service .studio-rotating-shade {
+  background: rgba(16, 15, 14, .50);
+}
+
+.studio-rotating-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding:
+    120px
+    clamp(25px, 7vw, 120px)
+    110px;
+}
+
+.studio-rotating-eyebrow {
+  margin: 0 0 30px;
+  color: rgba(255,255,255,.85);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .17em;
+}
+
+.studio-rotating-title {
+  max-width: 1250px;
+  margin: 0;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(76px, 11.2vw, 190px);
+  font-weight: 400;
+  line-height: .82;
+  letter-spacing: -.06em;
+}
+
+.studio-rotating-title-mask {
+  display: block;
+  overflow: hidden;
+  padding: 0 0 .12em;
+  margin: 0 0 -.12em;
+}
+
+.studio-rotating-title-mask > span,
+.studio-rotating-title-mask > em {
+  display: block;
+}
+
+.studio-rotating-title em {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.studio-rotating-description {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 35px;
+  margin-top: 45px;
+}
+
+.studio-rotating-description p {
+  max-width: 370px;
+  margin: 0;
+  font-size: clamp(13px, 1.15vw, 17px);
+  line-height: 1.75;
+  color: rgba(255,255,255,.92);
+}
+
+.studio-rotating-description a {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,.8);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+.studio-rotating-description a svg {
+  transition: transform 300ms ease;
+}
+
+.studio-rotating-description a:hover svg {
+  transform: translate(4px, -4px);
+}
+
+/* Alternate compositions */
+
+.studio-scene-project .studio-rotating-content {
+  text-align: right;
+  margin-left: auto;
+}
+
+.studio-scene-project .studio-rotating-title {
+  margin-left: auto;
+}
+
+.studio-scene-project .studio-rotating-description {
+  flex-direction: row-reverse;
+}
+
+.studio-scene-service .studio-rotating-content {
+  text-align: center;
+}
+
+.studio-scene-service .studio-rotating-title {
+  margin: 0 auto;
+}
+
+.studio-scene-service .studio-rotating-description {
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.studio-scene-service .studio-rotating-description p {
+  text-align: center;
+}
+
+/* Controls */
+
+.studio-hero-controls {
+  position: absolute;
+  z-index: 5;
+  bottom: 34px;
+  left: clamp(25px, 7vw, 120px);
+  right: clamp(25px, 7vw, 120px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.studio-hero-progress {
+  display: flex;
+  gap: 12px;
+}
+
+.studio-hero-progress-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: clamp(65px, 7vw, 115px);
+  padding: 8px 0;
+  background: transparent;
+  border: 0;
+  color: rgba(255,255,255,.65);
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.studio-hero-progress-item.is-active {
+  color: #fff;
+}
+
+.studio-hero-progress-track {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,.32);
+  overflow: hidden;
+}
+
+.studio-hero-progress-fill {
+  display: block;
+  height: 100%;
+  background: #fff;
+}
+
+.studio-hero-control-buttons {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.studio-hero-control-buttons button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 50%;
+  background: rgba(0,0,0,.12);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background 300ms ease,
+    color 300ms ease,
+    transform 300ms ease;
+}
+
+.studio-hero-control-buttons button:hover {
+  background: #fff;
+  color: #242320;
+  transform: translateY(-3px);
+}
+
+.studio-rotating-scroll {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 46px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .studio-rotating-title {
+    font-size: clamp(75px, 12vw, 125px);
+  }
+
+  .studio-rotating-scroll {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .studio-header-actions {
+    gap: 14px;
+  }
+
+  .studio-theme-trigger span {
+    display: none;
+  }
+
+  .studio-theme-trigger svg {
+    width: 17px;
+  }
+
+  .studio-theme-popover {
+    right: -65px;
+    width: min(275px, calc(100vw - 30px));
+  }
+
+  .studio-rotating-hero {
+    min-height: 610px;
+    height: 100svh;
+  }
+
+  .studio-rotating-content {
+    padding: 105px 24px 125px;
+  }
+
+  .studio-rotating-eyebrow {
+    font-size: 8px;
+    margin-bottom: 24px;
+  }
+
+  .studio-rotating-title {
+    font-size: clamp(64px, 13.5vw, 95px);
+    line-height: .88;
+  }
+
+  .studio-rotating-description {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 23px;
+    margin-top: 30px;
+  }
+
+  .studio-rotating-description p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .studio-scene-project .studio-rotating-description {
+    align-items: flex-end;
+    flex-direction: column;
+  }
+
+  .studio-scene-service .studio-rotating-description {
+    align-items: center;
+  }
+
+  .studio-hero-controls {
+    bottom: 25px;
+    left: 24px;
+    right: 24px;
+    gap: 15px;
+  }
+
+  .studio-hero-progress {
+    gap: 7px;
+  }
+
+  .studio-hero-progress-item {
+    width: 46px;
+  }
+
+  .studio-hero-control-buttons {
+    gap: 5px;
+  }
+
+  .studio-hero-control-buttons button {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-hero-control-buttons button,
+  .studio-rotating-description a svg,
+  .studio-theme-trigger svg {
+    transition: none;
+  }
+}

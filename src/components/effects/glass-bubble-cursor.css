@@ -1,0 +1,224 @@
+
+/* =========================================
+   MEPPEPLIN DECOR HUB
+   MAGNETIC LIQUID GLASS CURSOR
+========================================= */
+
+.mdh-glass-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 90px;
+  height: 90px;
+
+  z-index: 99999;
+
+  pointer-events: none;
+  user-select: none;
+
+  opacity: 0;
+  visibility: hidden;
+
+  will-change: transform, opacity;
+  isolation: isolate;
+}
+
+.mdh-glass-cursor-surface {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  /* Almost completely transparent center */
+  background:
+    radial-gradient(
+      circle at 23% 17%,
+      rgba(255, 255, 255, 0.11) 0%,
+      rgba(255, 255, 255, 0.025) 24%,
+      transparent 57%
+    ),
+    radial-gradient(
+      circle at 78% 85%,
+      rgba(190, 215, 230, 0.055),
+      transparent 48%
+    );
+
+  border: 1px solid rgba(
+    210, 220, 230, 0.48
+  );
+
+  box-shadow:
+    inset 1px 1px 2px rgba(
+      255, 255, 255, 0.55
+    ),
+    inset -2px -2px 4px rgba(
+      130, 150, 165, 0.055
+    ),
+    0 3px 13px rgba(
+      0, 0, 0, 0.025
+    );
+
+  -webkit-backdrop-filter: blur(0.6px);
+  backdrop-filter: blur(0.6px);
+
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* Delicate upper reflection */
+
+.mdh-glass-cursor-highlight {
+  position: absolute;
+
+  top: 13px;
+  left: 14px;
+
+  width: 30px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: rgba(
+    255, 255, 255, 0.24
+  );
+
+  filter: blur(3px);
+
+  transform: rotate(-40deg);
+}
+
+/* Secondary reflection */
+
+.mdh-glass-cursor-reflection {
+  position: absolute;
+
+  top: 12px;
+  right: 13px;
+
+  width: 10px;
+  height: 22px;
+
+  border-radius: 50%;
+
+  border-right: 1px solid rgba(
+    255, 255, 255, 0.32
+  );
+
+  transform: rotate(-30deg);
+}
+
+/* Lower curved light reflection */
+
+.mdh-glass-cursor-bottom-light {
+  position: absolute;
+
+  right: 15px;
+  bottom: 11px;
+
+  width: 27px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  border-bottom: 1.5px solid rgba(
+    255, 255, 255, 0.3
+  );
+
+  transform: rotate(-35deg);
+}
+
+/* Magnetic hover appearance */
+
+.mdh-glass-cursor.is-interactive
+.mdh-glass-cursor-surface {
+  border-color: rgba(
+    190, 205, 218, 0.62
+  );
+
+  box-shadow:
+    inset 1px 1px 4px rgba(
+      255, 255, 255, 0.55
+    ),
+    inset -2px -2px 6px rgba(
+      140, 160, 175, 0.08
+    ),
+    0 5px 20px rgba(
+      0, 0, 0, 0.035
+    );
+}
+
+/* Light themes */
+
+[data-theme="ivory"] .mdh-glass-cursor-surface,
+[data-theme="stone"] .mdh-glass-cursor-surface {
+  border-color: rgba(
+    95, 112, 125, 0.28
+  );
+
+  box-shadow:
+    inset 1px 1px 3px rgba(
+      255, 255, 255, 0.7
+    ),
+    inset -2px -2px 5px rgba(
+      80, 100, 115, 0.055
+    ),
+    0 3px 12px rgba(
+      0, 0, 0, 0.025
+    );
+}
+
+/* Night theme */
+
+[data-theme="night"] .mdh-glass-cursor-surface {
+  border-color: rgba(
+    255, 255, 255, 0.38
+  );
+}
+
+/* Touch devices */
+
+@media (hover: none), (pointer: coarse) {
+  .mdh-glass-cursor {
+    display: none !important;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .mdh-glass-cursor {
+    display: none !important;
+  }
+}
+
+
+/* =========================================
+   ELASTIC LIQUID GLASS ENHANCEMENTS
+========================================= */
+
+.mdh-glass-cursor-surface {
+  will-change: transform;
+  transform-origin: center center;
+}
+
+/* Reflections stretch together with the bubble */
+
+.mdh-glass-cursor-highlight,
+.mdh-glass-cursor-reflection,
+.mdh-glass-cursor-bottom-light {
+  pointer-events: none;
+}
+
+/* Keep deformation smooth without CSS
+   transitions fighting GSAP transforms */
+
+.mdh-glass-cursor-surface {
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}

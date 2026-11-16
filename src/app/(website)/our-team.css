@@ -1,0 +1,757 @@
+
+/* ==========================================
+   MEPPEPLIN DECOR HUB
+   OUR TEAM — EDITORIAL DIRECTORY
+========================================== */
+
+.mdh-people {
+  --people-paper: var(--studio-paper, #f5f2ec);
+  --people-ink: var(--studio-ink, #252723);
+  --people-muted: var(--studio-muted, #77786f);
+  --people-accent: var(--studio-accent, #a48b68);
+  --people-line: color-mix(
+    in srgb,
+    var(--people-ink) 17%,
+    transparent
+  );
+
+  background: var(--people-paper);
+  color: var(--people-ink);
+  padding: clamp(85px, 10vw, 150px) 0 45px;
+  overflow: hidden;
+}
+
+.mdh-people-shell {
+  width: min(calc(100% - 64px), 1500px);
+  margin: 0 auto;
+}
+
+.mdh-people-top,
+.mdh-people-leader-top,
+.mdh-people-leader-bottom,
+.mdh-people-feature-top,
+.mdh-people-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.mdh-people-top {
+  border-top: 1px solid var(--people-line);
+  padding-top: 20px;
+}
+
+.mdh-people-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.mdh-people-line {
+  width: 34px;
+  height: 1px;
+  background: currentColor;
+}
+
+.mdh-people-top-right,
+.mdh-people-overline {
+  color: var(--people-muted);
+}
+
+.mdh-people-overline {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.mdh-people-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 55px;
+  padding: clamp(85px, 10vw, 145px) 0;
+}
+
+.mdh-people-heading h2,
+.mdh-people-directory-intro h3,
+.mdh-people-workforce h3,
+.mdh-people-closing h3 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+}
+
+.mdh-people-heading h2 {
+  font-size: clamp(85px, 12vw, 190px);
+  line-height: 0.8;
+  margin: 35px 0 0;
+}
+
+.mdh-people-heading h2 em,
+.mdh-people-directory-intro h3 em,
+.mdh-people-closing h3 em {
+  color: var(--people-accent);
+  font-weight: 400;
+}
+
+.mdh-people-heading > p {
+  max-width: 320px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--people-muted);
+}
+
+/* LEADERSHIP */
+
+.mdh-people-leadership {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 650px;
+  background: #20231f;
+  color: #f4f0e8;
+}
+
+.mdh-people-leader-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(28px, 4vw, 65px);
+}
+
+.mdh-people-leader-top,
+.mdh-people-leader-bottom {
+  color: #a8aaa1;
+}
+
+.mdh-people-small {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #c9b99b;
+}
+
+.mdh-people-leader-main h3 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(85px, 9vw, 145px);
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.82;
+  margin: 32px 0;
+}
+
+.mdh-people-leader-main h3 em {
+  font-weight: 400;
+  color: #c9b99b;
+}
+
+.mdh-people-leader-role {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.mdh-people-leader-role span {
+  width: 35px;
+  height: 1px;
+  background: #c9b99b;
+}
+
+.mdh-people-leader-role p {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.mdh-people-leader-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background: #d9d0c2;
+  overflow: hidden;
+}
+
+.mdh-people-visual-index {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  font-family: Georgia, serif;
+  font-size: clamp(160px, 25vw, 350px);
+  line-height: 1;
+  opacity: 0.12;
+  color: #252723;
+}
+
+.mdh-people-leader-portrait {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  flex: 1;
+  min-height: 0;
+}
+
+.mdh-people-leader-portrait img {
+  display: block;
+  max-width: 100%;
+  max-height: 620px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.mdh-people-visual-caption {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 30px;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #252723;
+}
+
+/* DIRECTORY */
+
+.mdh-people-directory-intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 45px;
+  padding: clamp(100px, 12vw, 170px) 0 55px;
+}
+
+.mdh-people-directory-intro h3 {
+  font-size: clamp(65px, 7vw, 115px);
+  line-height: 0.9;
+  margin: 25px 0 0;
+}
+
+.mdh-people-directory-intro p {
+  max-width: 300px;
+  color: var(--people-muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.mdh-people-directory {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  min-height: 650px;
+  border-top: 1px solid var(--people-line);
+  border-bottom: 1px solid var(--people-line);
+}
+
+.mdh-people-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--people-line);
+}
+
+.mdh-people-list-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 29px 25px 29px 0;
+  background: transparent;
+  color: var(--people-ink);
+  border: 0;
+  border-bottom: 1px solid var(--people-line);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    padding 0.3s,
+    background 0.3s,
+    color 0.3s;
+}
+
+.mdh-people-list-item:last-child {
+  border-bottom: 0;
+}
+
+.mdh-people-list-item:hover,
+.mdh-people-list-item.is-active {
+  padding-left: 18px;
+  background: color-mix(
+    in srgb,
+    var(--people-accent) 10%,
+    transparent
+  );
+}
+
+.mdh-people-list-number {
+  font-size: 11px;
+  color: var(--people-muted);
+}
+
+.mdh-people-list-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.mdh-people-list-content strong {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(32px, 3.5vw, 55px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.mdh-people-list-content small {
+  font-size: 11px;
+  color: var(--people-muted);
+}
+
+.mdh-people-list-item svg {
+  transition: transform 0.3s;
+}
+
+.mdh-people-list-item:hover svg,
+.mdh-people-list-item.is-active svg {
+  transform: translate(4px, -4px);
+  color: var(--people-accent);
+}
+
+/* FEATURED TEAM MEMBER */
+
+.mdh-people-feature {
+  display: flex;
+  flex-direction: column;
+  background: color-mix(
+    in srgb,
+    var(--people-ink) 5%,
+    var(--people-paper)
+  );
+  min-width: 0;
+}
+
+.mdh-people-feature-inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 570px;
+  padding: 28px clamp(25px, 4vw, 60px);
+}
+
+.mdh-people-feature-top {
+  color: var(--people-muted);
+}
+
+.mdh-people-feature-portrait {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  flex: 1;
+  min-height: 260px;
+  margin: 25px 0 0;
+}
+
+.mdh-people-feature-portrait img {
+  display: block;
+  max-width: 100%;
+  max-height: 370px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.mdh-people-feature-info {
+  padding: 20px 0;
+}
+
+.mdh-people-feature-info > span {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--people-muted);
+}
+
+.mdh-people-feature-info h4 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(55px, 6vw, 95px);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+  margin: 15px 0;
+}
+
+.mdh-people-feature-info p {
+  font-size: 13px;
+  color: var(--people-muted);
+}
+
+.mdh-people-feature-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--people-line);
+  padding: 15px 30px;
+}
+
+.mdh-people-feature-controls button {
+  display: grid;
+  place-items: center;
+  width: 45px;
+  height: 45px;
+  border: 1px solid var(--people-line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--people-ink);
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+
+.mdh-people-feature-controls button:hover {
+  background: var(--people-ink);
+  color: var(--people-paper);
+}
+
+.mdh-people-feature-controls > span {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+
+/* WORKFORCE */
+
+.mdh-people-workforce {
+  margin-top: clamp(100px, 12vw, 170px);
+  background: #20231f;
+  color: #f4f0e8;
+  padding: clamp(35px, 6vw, 90px);
+}
+
+.mdh-people-workforce-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 35px;
+  padding-bottom: 65px;
+}
+
+.mdh-people-workforce .mdh-people-overline {
+  color: #c9b99b;
+}
+
+.mdh-people-workforce h3 {
+  font-size: clamp(75px, 9vw, 145px);
+  line-height: 0.82;
+  margin: 30px 0 0;
+}
+
+.mdh-people-workforce h3 em {
+  color: #c9b99b;
+  font-weight: 400;
+}
+
+.mdh-people-workforce-intro > p {
+  max-width: 290px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #b6b7ae;
+}
+
+.mdh-people-workforce-grid {
+  display: grid;
+  grid-template-columns: 0.65fr 1.35fr;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.mdh-people-workforce-aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 35px;
+  padding: 35px 35px 35px 0;
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.mdh-people-workforce-aside > span:not(
+  .mdh-people-workforce-symbol
+) {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #b6b7ae;
+}
+
+.mdh-people-workforce-symbol {
+  font-size: clamp(110px, 15vw, 230px);
+  line-height: 1;
+  color: #c9b99b;
+  font-weight: 300;
+}
+
+.mdh-people-workforce-list {
+  margin: 0;
+  padding: 0 0 0 45px;
+  list-style: none;
+}
+
+.mdh-people-workforce-list li {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 27px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+
+.mdh-people-workforce-list li:last-child {
+  border-bottom: 0;
+}
+
+.mdh-people-workforce-list li > span {
+  font-size: 11px;
+  color: #c9b99b;
+}
+
+.mdh-people-workforce-list strong {
+  flex: 1;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(28px, 3vw, 48px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.mdh-people-workforce-list svg {
+  color: #c9b99b;
+}
+
+.mdh-people-workforce-statement {
+  display: grid;
+  grid-template-columns: 0.65fr 1.35fr;
+  gap: 45px;
+  padding-top: 45px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.mdh-people-workforce-statement > span {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: #c9b99b;
+}
+
+.mdh-people-workforce-statement p {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(30px, 3.6vw, 57px);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+
+.mdh-people-workforce-statement em {
+  font-weight: 400;
+  color: #c9b99b;
+}
+
+/* CLOSING */
+
+.mdh-people-closing {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 45px;
+  padding: clamp(100px, 12vw, 175px) 0;
+}
+
+.mdh-people-closing h3 {
+  font-size: clamp(65px, 8vw, 130px);
+  line-height: 0.9;
+  margin: 28px 0 0;
+}
+
+.mdh-people-contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 35px;
+  min-width: 245px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--people-ink);
+  color: var(--people-ink);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.mdh-people-contact:hover {
+  color: var(--people-accent);
+}
+
+.mdh-people-bottom {
+  border-top: 1px solid var(--people-line);
+  padding-top: 20px;
+  color: var(--people-muted);
+}
+
+.mdh-people-bottom a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* IMAGE FALLBACK */
+
+.mdh-people-image-fallback {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 250px;
+  width: 100%;
+  text-align: center;
+  color: #555;
+}
+
+.mdh-people-image-fallback span {
+  font-family: Georgia, serif;
+  font-size: 35px;
+}
+
+.mdh-people-image-fallback small {
+  font-size: 12px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .mdh-people-heading,
+  .mdh-people-directory-intro,
+  .mdh-people-closing {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mdh-people-leadership {
+    min-height: 550px;
+  }
+
+  .mdh-people-leader-main h3 {
+    font-size: clamp(65px, 8vw, 100px);
+  }
+
+  .mdh-people-directory {
+    grid-template-columns: 1fr;
+  }
+
+  .mdh-people-list {
+    border-right: 0;
+  }
+
+  .mdh-people-feature-inner {
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 700px) {
+  .mdh-people-shell {
+    width: calc(100% - 36px);
+  }
+
+  .mdh-people-top-right {
+    display: none;
+  }
+
+  .mdh-people-heading h2 {
+    font-size: clamp(75px, 15vw, 120px);
+  }
+
+  .mdh-people-leadership {
+    grid-template-columns: 1fr;
+  }
+
+  .mdh-people-leader-copy {
+    min-height: 390px;
+  }
+
+  .mdh-people-leader-main h3 {
+    font-size: 90px;
+  }
+
+  .mdh-people-leader-visual {
+    min-height: 400px;
+  }
+
+  .mdh-people-directory-intro h3 {
+    font-size: 70px;
+  }
+
+  .mdh-people-list-item {
+    padding: 23px 12px 23px 0;
+  }
+
+  .mdh-people-list-content strong {
+    font-size: 38px;
+  }
+
+  .mdh-people-feature-info h4 {
+    font-size: 65px;
+  }
+
+  .mdh-people-workforce {
+    padding: 30px 22px;
+  }
+
+  .mdh-people-workforce-intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mdh-people-workforce h3 {
+    font-size: 80px;
+  }
+
+  .mdh-people-workforce-grid,
+  .mdh-people-workforce-statement {
+    grid-template-columns: 1fr;
+  }
+
+  .mdh-people-workforce-aside {
+    display: none;
+  }
+
+  .mdh-people-workforce-list {
+    padding-left: 0;
+  }
+
+  .mdh-people-workforce-list strong {
+    font-size: 31px;
+  }
+
+  .mdh-people-workforce-statement {
+    gap: 20px;
+  }
+
+  .mdh-people-closing h3 {
+    font-size: 68px;
+  }
+
+  .mdh-people-contact {
+    width: 100%;
+  }
+}
+
+.mdh-people button:focus-visible,
+.mdh-people a:focus-visible {
+  outline: 2px solid var(--people-accent);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mdh-people *,
+  .mdh-people *::before,
+  .mdh-people *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

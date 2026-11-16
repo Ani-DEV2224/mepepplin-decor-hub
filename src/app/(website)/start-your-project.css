@@ -1,0 +1,51 @@
+
+/* 07 — Start Your Project: self-contained layout */
+.mdh-contact{background:#191c19;color:#f4f0e7;padding:clamp(76px,9vw,136px) 0 28px;overflow:hidden}
+.mdh-contact *{box-sizing:border-box}
+.mdh-contact-container{width:min(1460px,calc(100% - 72px));margin-inline:auto}
+.mdh-contact-overline,.mdh-contact-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid rgba(255,255,255,.17);padding-top:18px;color:#aeb1a8;font:500 10px/1.5 Arial,sans-serif;letter-spacing:.18em}
+.mdh-contact-overline span:first-child{color:#d5c4a5}
+.mdh-contact-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(35px,6vw,110px);align-items:start;padding:clamp(65px,8vw,120px) 0 100px}
+.mdh-contact-intro{position:sticky;top:105px;min-width:0}
+.mdh-contact-eyebrow{color:#c9b99b;font:600 10px/1.5 Arial,sans-serif;letter-spacing:.18em;margin:0 0 30px}
+.mdh-contact-intro h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(76px,8.4vw,145px);letter-spacing:-.075em;line-height:.9;margin:0 0 36px;max-width:670px}
+.mdh-contact-intro h2 em{display:block;font-weight:400;color:#c9b99b}
+.mdh-contact-description{max-width:390px;color:#afb1a8;font:400 clamp(14px,1.1vw,16px)/1.9 Arial,sans-serif}
+.mdh-contact-intro-bottom{display:flex;align-items:end;justify-content:space-between;border-top:1px solid rgba(255,255,255,.17);margin-top:clamp(90px,12vw,190px);padding-top:22px}
+.mdh-contact-asterisk{color:#c9b99b;font:400 clamp(80px,11vw,160px)/.8 Georgia,serif}
+.mdh-contact-intro-bottom p{text-align:right;color:#afb1a8;font:500 10px/1.8 Arial,sans-serif;letter-spacing:.15em}
+.mdh-contact-panel{min-width:0;background:#262b26;border:1px solid rgba(255,255,255,.09);padding:clamp(24px,3.3vw,52px)}
+.mdh-contact-panel-heading{display:flex;justify-content:space-between;gap:16px;align-items:start;border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:32px;margin-bottom:30px}
+.mdh-contact-panel-heading>div>p{font:600 10px/1.5 Arial,sans-serif;letter-spacing:.18em;color:#c9b99b;margin:0 0 15px}
+.mdh-contact-panel-heading h3{font:400 clamp(35px,3.6vw,56px)/1.05 Georgia,serif;letter-spacing:-.045em;margin:0}
+.mdh-contact-panel-heading>svg{flex-shrink:0;color:#c9b99b}
+.mdh-contact-form{display:block}
+.mdh-contact-fieldset{min-width:0;border:0;margin:0 0 32px;padding:0}
+.mdh-contact-fieldset legend{width:100%;float:left;font:500 13px/1.5 Arial,sans-serif;color:#f4f0e7;margin:0 0 19px;padding:0}
+.mdh-contact-fieldset legend span{color:#c9b99b;margin-right:14px;font-size:11px;letter-spacing:.1em}
+.mdh-contact-fieldset b,.mdh-contact-grid b{color:#c9b99b;font-weight:500}
+.mdh-contact-service-list{clear:both;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.mdh-contact-service{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:78px;padding:15px 16px;border:1px solid #4b524a;background:#313831;color:#f4f0e7;text-align:left;font:400 12px/1.5 Arial,sans-serif;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.mdh-contact-service:hover{border-color:#c9b99b}.mdh-contact-service.selected{background:#c9b99b;border-color:#c9b99b;color:#1b211b}
+.mdh-contact-service-icon{flex-shrink:0;display:flex;align-items:center}
+.mdh-contact-grid{clear:both;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 15px}
+.mdh-contact-grid label{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-width:0;font:400 12px/1.4 Arial,sans-serif;color:#f4f0e7}
+.mdh-contact-grid label b,.mdh-contact-grid label small{display:inline}
+.mdh-contact-grid label small{color:#aeb1a8;font:500 9px/1.4 Arial,sans-serif;letter-spacing:.08em}
+.mdh-contact-grid input,.mdh-contact-grid select,.mdh-contact-grid textarea{width:100%;min-width:0;min-height:51px;border:1px solid #4b524a;border-radius:0;background:#1d231e;color:#f4f0e7;padding:14px 15px;font:400 13px/1.5 Arial,sans-serif;outline:0;transition:border-color .2s}
+.mdh-contact-grid input::placeholder,.mdh-contact-grid textarea::placeholder{color:#9ca49b;opacity:1}
+.mdh-contact-grid input:focus,.mdh-contact-grid select:focus,.mdh-contact-grid textarea:focus{border-color:#c9b99b}
+.mdh-contact-grid select{color-scheme:dark}
+.mdh-contact-grid textarea{min-height:140px;resize:vertical}
+.mdh-contact-grid .mdh-contact-wide{grid-column:1/-1}
+.mdh-contact-consent{color:#aeb1a8;font:400 11px/1.7 Arial,sans-serif;margin:0 0 18px}
+.mdh-contact-submit{width:100%;min-height:65px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:19px 23px;background:#c9b99b;color:#1b211b;border:1px solid #c9b99b;font:700 11px/1.4 Arial,sans-serif;letter-spacing:.14em;cursor:pointer;transition:background .2s}
+.mdh-contact-submit:hover:not(:disabled){background:#e2d5bf}.mdh-contact-submit:disabled{opacity:.6;cursor:wait}
+.mdh-contact-error{clear:both;color:#ffd1ca;font:400 12px/1.5 Arial,sans-serif;margin:12px 0 0}
+.mdh-contact-feedback{font:400 12px/1.6 Arial,sans-serif;padding:12px 15px;margin:0 0 16px;border:1px solid}.mdh-contact-feedback.error{color:#ffd1ca;border-color:#b87770}.mdh-contact-feedback.success{color:#d6ead4;border-color:#8fa98a}
+.mdh-contact-trap{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%)!important}
+.mdh-contact-spinner{animation:mdh-contact-rotate 1s linear infinite}@keyframes mdh-contact-rotate{to{transform:rotate(360deg)}}
+.mdh-contact button:focus-visible{outline:2px solid #e4d4b6;outline-offset:3px}
+@media(max-width:1050px){.mdh-contact-layout{grid-template-columns:1fr;gap:50px}.mdh-contact-intro{position:static}.mdh-contact-intro h2{font-size:clamp(78px,12vw,130px)}.mdh-contact-intro-bottom{margin-top:48px}.mdh-contact-panel{max-width:850px;width:100%}}
+@media(max-width:640px){.mdh-contact-container{width:calc(100% - 32px)}.mdh-contact-overline span:last-child,.mdh-contact-footer span:last-child{display:none}.mdh-contact-layout{padding:70px 0}.mdh-contact-intro h2{font-size:clamp(65px,14vw,96px)}.mdh-contact-panel{padding:24px 17px}.mdh-contact-service-list,.mdh-contact-grid{grid-template-columns:1fr}.mdh-contact-service{min-height:59px}.mdh-contact-panel-heading h3{font-size:38px}}
+@media(prefers-reduced-motion:reduce){.mdh-contact *, .mdh-contact *::before,.mdh-contact *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

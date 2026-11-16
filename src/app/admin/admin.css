@@ -1,0 +1,860 @@
+
+/* ==========================================
+   MEPPEPLIN DECOR HUB
+   ADMIN WORKSPACE
+========================================== */
+
+.mdh-admin-root {
+  --admin-bg: #f7f7f5;
+  --admin-surface: #ffffff;
+  --admin-ink: #181818;
+  --admin-muted: #858585;
+  --admin-border: #e9e9e6;
+  --admin-sidebar: #111111;
+
+  min-height: 100vh;
+  background: var(--admin-bg);
+  color: var(--admin-ink);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.mdh-admin-root *,
+.mdh-admin-root *::before,
+.mdh-admin-root *::after {
+  box-sizing: border-box;
+}
+
+.mdh-admin-root a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mdh-admin-root button,
+.mdh-admin-root input {
+  font: inherit;
+}
+
+.mdh-admin-root button {
+  cursor: pointer;
+}
+
+.mdh-admin-root button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* Layout */
+
+.mdh-admin-shell {
+  min-height: 100vh;
+  display: flex;
+}
+
+.mdh-admin-sidebar {
+  width: 262px;
+  flex-shrink: 0;
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: var(--admin-sidebar);
+  color: #fff;
+  padding: 29px 17px 20px;
+  transition: width 0.3s ease;
+}
+
+.mdh-admin-main-area {
+  margin-left: 262px;
+  min-width: 0;
+  width: calc(100% - 262px);
+  transition:
+    margin-left 0.3s ease,
+    width 0.3s ease;
+}
+
+.mdh-admin-shell.is-collapsed
+.mdh-admin-sidebar {
+  width: 82px;
+}
+
+.mdh-admin-shell.is-collapsed
+.mdh-admin-main-area {
+  margin-left: 82px;
+  width: calc(100% - 82px);
+}
+
+.mdh-admin-shell.is-collapsed
+.mdh-admin-logo-copy,
+.mdh-admin-shell.is-collapsed
+.mdh-admin-nav-caption,
+.mdh-admin-shell.is-collapsed
+.mdh-admin-nav-link span,
+.mdh-admin-shell.is-collapsed
+.mdh-admin-view-site span,
+.mdh-admin-shell.is-collapsed
+.mdh-admin-account-copy,
+.mdh-admin-shell.is-collapsed
+.mdh-admin-logout span {
+  display: none;
+}
+
+/* Sidebar */
+
+.mdh-admin-sidebar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 65px;
+  padding: 0 9px;
+}
+
+.mdh-admin-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mdh-admin-logo-symbol {
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #5d5d5d;
+  font-family: Georgia, serif;
+  font-size: 24px;
+}
+
+.mdh-admin-logo-copy {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  font-size: 13px;
+}
+
+.mdh-admin-logo-copy small {
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  margin-top: 3px;
+}
+
+.mdh-admin-nav-caption {
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 0.17em;
+  padding: 0 17px;
+  margin-bottom: 16px;
+}
+
+.mdh-admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mdh-admin-nav-link,
+.mdh-admin-view-site,
+.mdh-admin-logout {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-radius: 7px;
+  padding: 0 16px;
+  color: #a5a5a5 !important;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.mdh-admin-nav-link:hover,
+.mdh-admin-view-site:hover,
+.mdh-admin-logout:hover {
+  background: #222;
+  color: #fff !important;
+}
+
+.mdh-admin-nav-link.is-active {
+  background: #f2f2f0;
+  color: #151515 !important;
+}
+
+.mdh-admin-sidebar-bottom {
+  margin-top: auto;
+}
+
+.mdh-admin-view-site {
+  margin-bottom: 20px;
+}
+
+.mdh-admin-account {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 19px 10px;
+  border-top: 1px solid #303030;
+}
+
+.mdh-admin-avatar {
+  width: 37px;
+  height: 37px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e6e6e3;
+  color: #151515;
+  font-weight: 700;
+}
+
+.mdh-admin-account-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mdh-admin-account-copy strong {
+  font-size: 12px;
+}
+
+.mdh-admin-account-copy small {
+  color: #8d8d8d;
+  font-size: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mdh-admin-logout {
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+}
+
+.mdh-admin-mobile-close {
+  display: none;
+}
+
+/* Topbar */
+
+.mdh-admin-topbar {
+  height: 82px;
+  padding: 0 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.mdh-admin-topbar-left,
+.mdh-admin-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.mdh-admin-menu-toggle {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border: none;
+  background: transparent;
+  color: #333;
+}
+
+.mdh-admin-topbar-divider {
+  width: 1px;
+  height: 23px;
+  background: #e3e3e3;
+}
+
+.mdh-admin-topbar-title {
+  font-size: 13px;
+  color: #777;
+}
+
+.mdh-admin-topbar-right {
+  gap: 9px;
+  color: #666;
+  font-size: 12px;
+}
+
+.mdh-admin-status-dot {
+  width: 7px;
+  height: 7px;
+  background: #639b76;
+  border-radius: 50%;
+}
+
+/* Main content */
+
+.mdh-admin-content {
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 48px 44px 80px;
+}
+
+.mdh-admin-page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  margin-bottom: 39px;
+}
+
+.mdh-admin-kicker {
+  margin: 0 0 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #999;
+}
+
+.mdh-admin-page-heading h1 {
+  margin: 0 0 9px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: clamp(35px, 4vw, 52px);
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.mdh-admin-page-heading p:not(.mdh-admin-kicker) {
+  margin: 0;
+  color: #888;
+  font-size: 13px;
+}
+
+.mdh-admin-primary-action {
+  min-height: 46px;
+  padding: 0 19px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  background: #161616;
+  color: #fff !important;
+  font-size: 12px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.mdh-admin-primary-action:hover {
+  background: #393939;
+}
+
+/* Statistics */
+
+.mdh-admin-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 17px;
+  margin-bottom: 27px;
+}
+
+.mdh-admin-stat-card {
+  background: #fff;
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  padding: 24px;
+  min-width: 0;
+}
+
+.mdh-admin-stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: #888;
+  font-size: 12px;
+}
+
+.mdh-admin-stat-top svg {
+  color: #9b9b9b;
+}
+
+.mdh-admin-stat-card strong {
+  display: block;
+  margin: 26px 0 8px;
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+
+.mdh-admin-stat-card p {
+  color: #999;
+  font-size: 11px;
+  margin: 0;
+}
+
+/* Dashboard panels */
+
+.mdh-admin-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.mdh-admin-panel {
+  background: #fff;
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  padding: 26px;
+  min-width: 0;
+  margin-bottom: 20px;
+}
+
+.mdh-admin-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.mdh-admin-panel-heading h2,
+.mdh-admin-bottom-card h2 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: 23px;
+  letter-spacing: -0.025em;
+}
+
+.mdh-admin-panel-heading a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #666;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.mdh-admin-records {
+  display: flex;
+  flex-direction: column;
+}
+
+.mdh-admin-record {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 17px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.mdh-admin-record:last-child {
+  border-bottom: none;
+}
+
+.mdh-admin-record > div {
+  min-width: 0;
+}
+
+.mdh-admin-record strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.mdh-admin-record small {
+  display: block;
+  margin-top: 5px;
+  color: #999;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.mdh-admin-record-status {
+  flex-shrink: 0;
+  padding: 5px 10px;
+  border-radius: 30px;
+  background: #f3f3f1;
+  color: #555;
+  font-size: 10px;
+  text-transform: capitalize;
+}
+
+.mdh-admin-empty {
+  min-height: 225px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.mdh-admin-empty svg {
+  color: #b5b5b5;
+  margin-bottom: 16px;
+}
+
+.mdh-admin-empty h3 {
+  margin: 0 0 7px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mdh-admin-empty p {
+  max-width: 310px;
+  color: #999;
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.mdh-admin-bottom-card {
+  padding: 33px;
+  border-radius: 8px;
+  background: #eaeae6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.mdh-admin-bottom-card p:not(.mdh-admin-kicker) {
+  color: #777;
+  margin: 10px 0 0;
+  font-size: 12px;
+}
+
+.mdh-admin-bottom-card a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.mdh-admin-alert {
+  padding: 16px 20px;
+  margin-bottom: 22px;
+  border: 1px solid #e6b6b6;
+  background: #fff6f6;
+  color: #8d3434;
+  border-radius: 6px;
+}
+
+.mdh-admin-settings-item {
+  padding: 18px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.mdh-admin-settings-item:last-child {
+  border-bottom: none;
+}
+
+.mdh-admin-settings-item span {
+  color: #888;
+}
+
+.mdh-admin-settings-item strong {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+/* Login */
+
+.mdh-admin-login {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 48% 52%;
+  background: #fff;
+}
+
+.mdh-login-panel {
+  padding: 48px clamp(28px, 6vw, 110px);
+  display: flex;
+  flex-direction: column;
+}
+
+.mdh-login-brand {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  font-size: 16px;
+}
+
+.mdh-login-brand span {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  font-weight: 400;
+}
+
+.mdh-login-heading {
+  margin-top: auto;
+  padding-top: 65px;
+}
+
+.mdh-login-icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e5e5e5;
+  border-radius: 50%;
+  margin-bottom: 29px;
+}
+
+.mdh-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #999;
+}
+
+.mdh-login-heading h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(39px, 4vw, 59px);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  margin: 13px 0;
+}
+
+.mdh-login-heading > p:last-child {
+  color: #888;
+  line-height: 1.7;
+  font-size: 13px;
+  max-width: 330px;
+}
+
+.mdh-login-form {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mdh-login-form label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.mdh-login-form > input,
+.mdh-password-field input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  outline: none;
+  background: #fff;
+  color: #111;
+}
+
+.mdh-login-form > input {
+  margin-bottom: 23px;
+}
+
+.mdh-login-form input:focus {
+  border-color: #333;
+}
+
+.mdh-password-field {
+  position: relative;
+}
+
+.mdh-password-field input {
+  padding-right: 52px;
+}
+
+.mdh-password-field button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border: none;
+  background: transparent;
+  color: #777;
+}
+
+.mdh-login-error {
+  color: #a73535;
+  font-size: 12px;
+  margin: 15px 0 0;
+}
+
+.mdh-login-submit {
+  height: 53px;
+  margin-top: 27px;
+  padding: 0 19px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  border-radius: 5px;
+  background: #151515;
+  color: #fff;
+  font-size: 12px;
+}
+
+.mdh-login-submit:hover {
+  background: #353535;
+}
+
+.mdh-login-footnote {
+  margin-top: auto;
+  padding-top: 45px;
+  color: #aaa;
+  font-size: 11px;
+}
+
+.mdh-login-visual {
+  min-height: 100vh;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05),
+      rgba(0, 0, 0, 0.68)
+    ),
+    url("/images/admin-login.jpg")
+      center / cover no-repeat,
+    #333;
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(35px, 6vw, 90px);
+  color: #fff;
+}
+
+.mdh-login-visual-content span {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+
+.mdh-login-visual-content h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(32px, 4vw, 60px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.13;
+  margin: 22px 0;
+}
+
+.mdh-login-visual-content p {
+  color: #ddd;
+  font-size: 12px;
+  max-width: 320px;
+}
+
+/* Responsive */
+
+.mdh-admin-overlay {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .mdh-admin-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .mdh-admin-sidebar {
+    width: 262px !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .mdh-admin-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .mdh-admin-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: rgba(0, 0, 0, 0.45);
+    border: none;
+  }
+
+  .mdh-admin-mobile-close {
+    display: grid;
+    place-items: center;
+    border: none;
+    background: transparent;
+    color: #fff;
+  }
+
+  .mdh-admin-main-area,
+  .mdh-admin-shell.is-collapsed
+  .mdh-admin-main-area {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .mdh-admin-content {
+    padding: 32px 24px 60px;
+  }
+
+  .mdh-admin-topbar {
+    padding: 0 24px;
+  }
+
+  .mdh-admin-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .mdh-admin-login {
+    grid-template-columns: 1fr;
+  }
+
+  .mdh-login-panel {
+    min-height: 100vh;
+  }
+
+  .mdh-login-visual {
+    display: none;
+  }
+}
+
+@media (max-width: 580px) {
+  .mdh-admin-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .mdh-admin-page-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mdh-admin-topbar-title {
+    display: none;
+  }
+
+  .mdh-admin-topbar-divider {
+    display: none;
+  }
+
+  .mdh-admin-content {
+    padding: 27px 17px 50px;
+  }
+
+  .mdh-admin-panel {
+    padding: 20px;
+  }
+
+  .mdh-admin-bottom-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

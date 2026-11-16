@@ -1,0 +1,1039 @@
+
+/* ========================================
+   MEPPEPLIN DECOR HUB — ABOUT PAGE
+======================================== */
+
+.mdh-about {
+  --about-bg: var(--studio-paper, #f4f0e8);
+  --about-ink: var(--studio-ink, #332b27);
+  --about-muted: var(--studio-muted, #786e64);
+  --about-line: var(
+    --studio-line,
+    rgba(51, 43, 39, .18)
+  );
+  --about-accent: var(--studio-accent, #a78c69);
+  --about-panel: var(--studio-surface, #eae3d8);
+
+  background: var(--about-bg);
+  color: var(--about-ink);
+  overflow: hidden;
+}
+
+.mdh-about *,
+.mdh-about *::before,
+.mdh-about *::after {
+  box-sizing: border-box;
+}
+
+.mdh-about-container {
+  width: min(
+    1440px,
+    calc(100% - clamp(40px, 9vw, 144px))
+  );
+  margin-inline: auto;
+}
+
+.mdh-about h1,
+.mdh-about h2,
+.mdh-about h3,
+.mdh-about p {
+  margin: 0;
+}
+
+.mdh-about h1,
+.mdh-about h2,
+.mdh-about h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -.055em;
+}
+
+.mdh-about h1 em,
+.mdh-about h2 em {
+  font-weight: 400;
+}
+
+.mdh-about-eyebrow,
+.mdh-about-section-label,
+.mdh-about-hero-top,
+.mdh-about-hero-bottom,
+.mdh-about-ceo-role,
+.mdh-about-ceo-quote > span,
+.mdh-about-who-footer,
+.mdh-about-service-number {
+  font: 600 10px/1.5 Arial, Helvetica, sans-serif;
+  letter-spacing: .16em;
+}
+
+.mdh-about-eyebrow {
+  display: block;
+  color: var(--about-accent);
+  margin-bottom: 24px;
+}
+
+.mdh-about-section {
+  position: relative;
+  padding: clamp(88px, 10vw, 165px) 0;
+}
+
+.mdh-about-section-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--about-line);
+  color: var(--about-muted);
+  margin-bottom: clamp(42px, 6vw, 90px);
+}
+
+.mdh-about-section h2 {
+  font-size: clamp(49px, 6.5vw, 108px);
+  line-height: 1.04;
+}
+
+.mdh-about-section p {
+  font: 400 clamp(14px, 1.15vw, 17px)/1.9
+    Arial, Helvetica, sans-serif;
+  color: var(--about-muted);
+}
+
+.mdh-about-section .mdh-about-lead {
+  font-size: clamp(18px, 1.6vw, 24px);
+  line-height: 1.6;
+  color: var(--about-ink);
+}
+
+/* ========================================
+   01 — HERO
+======================================== */
+
+.mdh-about-hero {
+  min-height: min(850px, 100svh);
+  height: max(660px, 100svh);
+  position: relative;
+  color: #fff;
+  isolation: isolate;
+}
+
+.mdh-about-hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    url("/images/about/about-hero.jpg")
+    center / cover no-repeat;
+}
+
+.mdh-about-hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, .28),
+    rgba(0, 0, 0, .12) 35%,
+    rgba(0, 0, 0, .57)
+  );
+}
+
+.mdh-about-hero-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 130px;
+  padding-bottom: 38px;
+}
+
+.mdh-about-hero-top,
+.mdh-about-hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  color: rgba(255, 255, 255, .82);
+}
+
+.mdh-about-hero-main {
+  max-width: 1100px;
+  padding: 45px 0;
+}
+
+.mdh-about-hero-eyebrow {
+  color: #eee1ce;
+}
+
+.mdh-about-hero h1 {
+  font-size: clamp(65px, 9.1vw, 155px);
+  line-height: .99;
+}
+
+.mdh-about-hero-main p {
+  max-width: 470px;
+  margin-top: 30px;
+  font: 400 clamp(15px, 1.4vw, 19px)/1.7
+    Arial, Helvetica, sans-serif;
+  color: rgba(255, 255, 255, .85);
+}
+
+.mdh-about-hero-bottom a {
+  display: inline-flex;
+  gap: 14px;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ========================================
+   02 — WHO WE ARE / LOGO WATERMARK
+======================================== */
+
+.mdh-about-who {
+  isolation: isolate;
+  background: var(--about-bg);
+}
+
+.mdh-about-who-watermark {
+  position: absolute;
+  inset: 8% 4%;
+  z-index: -1;
+  opacity: .12;
+  filter: blur(8px) grayscale(1);
+  pointer-events: none;
+}
+
+.mdh-about-watermark-image {
+  object-fit: contain;
+}
+
+.mdh-about-who-inner {
+  position: relative;
+}
+
+.mdh-about-who-copy {
+  width: min(790px, 100%);
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px 0 80px;
+}
+
+.mdh-about-who-copy h2 {
+  margin-bottom: 35px;
+}
+
+.mdh-about-who-copy p + p {
+  margin-top: 20px;
+}
+
+.mdh-about-who-copy .mdh-about-editorial-note {
+  font-size: 12px;
+  opacity: .8;
+  font-style: italic;
+}
+
+.mdh-about-who-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--about-muted);
+  padding-top: 20px;
+  border-top: 1px solid var(--about-line);
+}
+
+/* ========================================
+   03 — OUR PHILOSOPHY
+======================================== */
+
+.mdh-about-philosophy {
+  background: var(--about-panel);
+}
+
+.mdh-about-philosophy-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: clamp(36px, 7vw, 110px);
+  align-items: center;
+}
+
+.mdh-about-philosophy-heading h2 {
+  margin-bottom: 30px;
+}
+
+.mdh-about-philosophy-heading p {
+  max-width: 500px;
+}
+
+.mdh-about-philosophy-visual {
+  min-height: 520px;
+  height: 45vw;
+  max-height: 660px;
+  overflow: hidden;
+}
+
+.mdh-about-philosophy-visual img,
+.mdh-about-ceo-portrait img,
+.mdh-about-expertise-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.mdh-about-principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: clamp(70px, 8vw, 120px);
+}
+
+.mdh-about-principle {
+  padding-top: 22px;
+  border-top: 1px solid var(--about-line);
+}
+
+.mdh-about-principle > span {
+  font: 600 11px Arial, sans-serif;
+  color: var(--about-accent);
+}
+
+.mdh-about-principle h3 {
+  font-size: clamp(24px, 2.3vw, 36px);
+  margin: 25px 0 12px;
+}
+
+/* ========================================
+   04 — MEET OUR CEO
+======================================== */
+
+.mdh-about-ceo {
+  background: var(--about-bg);
+}
+
+.mdh-about-ceo-grid {
+  display: grid;
+  grid-template-columns: 1fr .9fr;
+  gap: clamp(42px, 8vw, 130px);
+  align-items: center;
+}
+
+.mdh-about-ceo-portrait {
+  position: relative;
+  height: clamp(520px, 55vw, 780px);
+  background: var(--about-panel);
+  overflow: hidden;
+}
+
+.mdh-about-ceo-portrait img {
+  object-position: center top;
+}
+
+.mdh-about-ceo-photo-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 15px 22px;
+  color: #fff;
+  background: rgba(0, 0, 0, .5);
+  font: 600 10px Arial, sans-serif;
+  letter-spacing: .15em;
+}
+
+.mdh-about-ceo-copy h2 {
+  font-size: clamp(76px, 9vw, 148px);
+  line-height: .93;
+  margin-bottom: 24px;
+}
+
+.mdh-about-ceo-role {
+  color: var(--about-accent);
+}
+
+.mdh-about-ceo-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--about-line);
+  margin: 36px 0;
+}
+
+.mdh-about-ceo-copy p + p {
+  margin-top: 20px;
+}
+
+.mdh-about-ceo-quote {
+  border-left: 2px solid var(--about-accent);
+  margin-top: 44px;
+  padding: 8px 0 8px 24px;
+}
+
+.mdh-about-ceo-quote > span {
+  color: var(--about-accent);
+}
+
+.mdh-about-ceo-quote p {
+  margin-top: 12px;
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+/* ========================================
+   05 — OUR EXPERTISE
+======================================== */
+
+.mdh-about-expertise {
+  background: var(--about-panel);
+}
+
+.mdh-about-expertise-heading {
+  max-width: 920px;
+  margin-bottom: 70px;
+}
+
+.mdh-about-expertise-heading h2 {
+  margin-bottom: 25px;
+}
+
+.mdh-about-expertise-grid {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: clamp(30px, 6vw, 100px);
+  align-items: stretch;
+}
+
+.mdh-about-expertise-image {
+  min-height: 500px;
+}
+
+.mdh-about-service-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mdh-about-service {
+  display: grid;
+  grid-template-columns: 35px 1fr 22px;
+  gap: 15px;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--about-line);
+  color: var(--about-ink);
+  text-decoration: none;
+  font: 400 clamp(19px, 2.15vw, 32px)/1.3
+    Georgia, serif;
+  transition:
+    color .2s,
+    padding-left .2s;
+}
+
+.mdh-about-service:first-child {
+  border-top: 1px solid var(--about-line);
+}
+
+.mdh-about-service:hover {
+  color: var(--about-accent);
+  padding-left: 10px;
+}
+
+.mdh-about-service-number {
+  color: var(--about-muted);
+}
+
+/* ========================================
+   06 — LET'S CREATE TOGETHER
+======================================== */
+
+.mdh-about-cta {
+  background: var(--about-bg);
+  padding: clamp(85px, 10vw, 160px) 0;
+}
+
+.mdh-about-cta-content {
+  max-width: 1150px;
+  padding: 40px 0 20px;
+}
+
+.mdh-about-cta h2 {
+  font-size: clamp(55px, 8vw, 130px);
+  line-height: 1.03;
+}
+
+.mdh-about-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+  margin-top: 45px;
+  padding: 18px 25px;
+  background: var(--about-accent);
+  color: #fff;
+  text-decoration: none;
+  font: 600 11px Arial, sans-serif;
+  letter-spacing: .13em;
+  transition: transform .2s;
+}
+
+.mdh-about-cta-link:hover {
+  transform: translateY(-3px);
+}
+
+.mdh-about-cta-content > p {
+  margin-top: 22px;
+  color: var(--about-muted);
+  font: 14px/1.6 Arial, sans-serif;
+}
+
+/* ========================================
+   RESPONSIVE — TABLET
+======================================== */
+
+@media (max-width: 900px) {
+  .mdh-about-philosophy-grid,
+  .mdh-about-ceo-grid,
+  .mdh-about-expertise-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mdh-about-philosophy-visual {
+    height: 480px;
+    min-height: 0;
+  }
+
+  .mdh-about-ceo-portrait {
+    height: 660px;
+    max-width: 640px;
+  }
+
+  .mdh-about-expertise-image {
+    height: 460px;
+    min-height: 0;
+  }
+
+  .mdh-about-principles {
+    gap: 18px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE — MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+  .mdh-about-container {
+    width: calc(100% - 36px);
+  }
+
+  .mdh-about-hero {
+    height: 100svh;
+    min-height: 610px;
+  }
+
+  .mdh-about-hero-content {
+    padding-top: 105px;
+    padding-bottom: 28px;
+  }
+
+  .mdh-about-hero-top,
+  .mdh-about-hero-bottom,
+  .mdh-about-section-label {
+    font-size: 9px;
+  }
+
+  .mdh-about-hero h1 {
+    font-size: clamp(52px, 13vw, 78px);
+  }
+
+  .mdh-about-hero-main p {
+    margin-top: 20px;
+  }
+
+  .mdh-about-section {
+    padding: 78px 0;
+  }
+
+  .mdh-about-section-label {
+    margin-bottom: 45px;
+  }
+
+  .mdh-about-section h2 {
+    font-size: clamp(45px, 11vw, 70px);
+  }
+
+  .mdh-about-who-watermark {
+    inset: 12% -22%;
+    opacity: .09;
+  }
+
+  .mdh-about-who-copy {
+    padding: 12px 0 55px;
+  }
+
+  .mdh-about-philosophy-visual {
+    height: 370px;
+  }
+
+  .mdh-about-principles {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 55px;
+  }
+
+  .mdh-about-ceo-portrait {
+    height: 500px;
+  }
+
+  .mdh-about-ceo-copy h2 {
+    font-size: 80px;
+  }
+
+  .mdh-about-expertise-heading {
+    margin-bottom: 45px;
+  }
+
+  .mdh-about-expertise-image {
+    height: 320px;
+  }
+
+  .mdh-about-service {
+    padding: 20px 0;
+    font-size: 21px;
+  }
+
+  .mdh-about-cta {
+    padding: 85px 0;
+  }
+
+  .mdh-about-cta h2 {
+    font-size: clamp(48px, 11vw, 70px);
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .mdh-about * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+
+
+/* ========================================
+   MEPPEPLIN ABOUT — MISSION & VISION
+======================================== */
+
+.mdh-about-mission {
+  background: var(--about-panel);
+}
+
+.mdh-about-mission-heading {
+  max-width: 900px;
+  margin-bottom: clamp(42px, 6vw, 85px);
+}
+
+.mdh-about-mission-heading h2 {
+  margin-bottom: 26px;
+}
+
+.mdh-about-mission-heading > p {
+  max-width: 560px;
+}
+
+.mdh-about-mission-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.mdh-about-mission-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 90px;
+  min-height: 440px;
+  padding: clamp(30px, 4vw, 62px);
+  background: var(--about-bg);
+  border: 1px solid var(--about-line);
+  transition:
+    background-color .3s ease,
+    transform .3s ease;
+}
+
+.mdh-about-mission-card:hover {
+  transform: translateY(-5px);
+}
+
+.mdh-about-mission-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--about-accent);
+}
+
+.mdh-about-mission-card-top span {
+  font: 600 10px/1.5 Arial, sans-serif;
+  letter-spacing: .16em;
+}
+
+.mdh-about-mission-card h3 {
+  margin-bottom: 20px;
+  font-size: clamp(35px, 4vw, 58px);
+}
+
+.mdh-about-mission-card p {
+  max-width: 500px;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.9;
+}
+
+.mdh-about-mission-corner {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  color: var(--about-accent);
+}
+
+/* ========================================
+   COMPANY PORTFOLIO SECTION
+======================================== */
+
+.mdh-about-portfolio {
+  background: var(--about-bg);
+}
+
+.mdh-about-portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr .85fr;
+  align-items: center;
+  gap: clamp(35px, 7vw, 110px);
+}
+
+.mdh-about-portfolio-copy h2 {
+  margin-bottom: 30px;
+}
+
+.mdh-about-portfolio-copy > p {
+  max-width: 520px;
+}
+
+.mdh-about-portfolio-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 42px;
+}
+
+.mdh-about-portfolio-primary,
+.mdh-about-portfolio-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 18px 23px;
+  text-decoration: none;
+  font: 600 11px/1.4 Arial, sans-serif;
+  letter-spacing: .1em;
+  transition:
+    background-color .2s,
+    transform .2s;
+}
+
+.mdh-about-portfolio-primary {
+  background: var(--about-accent);
+  color: #fff;
+}
+
+.mdh-about-portfolio-secondary {
+  color: var(--about-ink);
+  border: 1px solid var(--about-line);
+}
+
+.mdh-about-portfolio-primary:hover,
+.mdh-about-portfolio-secondary:hover {
+  transform: translateY(-3px);
+}
+
+.mdh-about-portfolio-meta {
+  display: block;
+  margin-top: 25px;
+  color: var(--about-muted);
+  font: 600 10px/1.5 Arial, sans-serif;
+  letter-spacing: .12em;
+}
+
+.mdh-about-portfolio-preview {
+  padding: 22px;
+  background: var(--about-panel);
+  border: 1px solid var(--about-line);
+  box-shadow: 0 24px 65px rgba(0, 0, 0, .07);
+}
+
+.mdh-about-portfolio-preview-top,
+.mdh-about-portfolio-preview-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: var(--about-muted);
+  font: 600 10px/1.4 Arial, sans-serif;
+  letter-spacing: .12em;
+}
+
+.mdh-about-portfolio-preview-top {
+  margin-bottom: 18px;
+}
+
+.mdh-about-portfolio-preview-bottom {
+  margin-top: 18px;
+}
+
+.mdh-about-portfolio-document {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 500px;
+  padding: clamp(24px, 4vw, 55px);
+  background:
+    linear-gradient(
+      140deg,
+      #fff 0%,
+      #f5f3ed 60%,
+      #ded9d0 100%
+    );
+  color: #1e3d71;
+  overflow: hidden;
+}
+
+.mdh-about-portfolio-document::before {
+  content: "";
+  position: absolute;
+  right: -60px;
+  bottom: -100px;
+  width: 350px;
+  height: 350px;
+  background: #1e3d71;
+  transform: rotate(45deg);
+}
+
+.mdh-about-portfolio-document::after {
+  content: "";
+  position: absolute;
+  top: 34px;
+  right: 30px;
+  width: 100px;
+  height: 5px;
+  background: #e9b65e;
+}
+
+.mdh-about-portfolio-document-brand {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+  font-family: Arial, sans-serif;
+  letter-spacing: -.05em;
+}
+
+.mdh-about-portfolio-document-brand span,
+.mdh-about-portfolio-document-brand strong {
+  font-size: clamp(32px, 4vw, 60px);
+  line-height: .95;
+  font-weight: 800;
+}
+
+.mdh-about-portfolio-document-brand small {
+  margin-top: 10px;
+  font-size: 12px;
+  letter-spacing: .4em;
+}
+
+.mdh-about-portfolio-document-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font: 600 10px Arial, sans-serif;
+  letter-spacing: .13em;
+}
+
+/* ========================================
+   DEDICATED PDF VIEWER PAGE
+======================================== */
+
+.mdh-portfolio-page {
+  min-height: 100vh;
+  padding: 135px 0 90px;
+}
+
+.mdh-portfolio-page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--about-line);
+  color: var(--about-muted);
+  font: 600 10px/1.5 Arial, sans-serif;
+  letter-spacing: .13em;
+}
+
+.mdh-portfolio-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--about-ink);
+  text-decoration: none;
+}
+
+.mdh-portfolio-page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 35px;
+  padding: 60px 0 45px;
+}
+
+.mdh-portfolio-page-heading h1 {
+  font-size: clamp(52px, 7vw, 110px);
+  line-height: 1.05;
+}
+
+.mdh-portfolio-page-heading p {
+  max-width: 540px;
+  margin-top: 20px;
+  color: var(--about-muted);
+  font: 15px/1.8 Arial, sans-serif;
+}
+
+.mdh-portfolio-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mdh-portfolio-open,
+.mdh-portfolio-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 16px 20px;
+  font: 600 10px Arial, sans-serif;
+  letter-spacing: .1em;
+  text-decoration: none;
+}
+
+.mdh-portfolio-open {
+  color: var(--about-ink);
+  border: 1px solid var(--about-line);
+}
+
+.mdh-portfolio-download {
+  background: var(--about-accent);
+  color: #fff;
+}
+
+.mdh-portfolio-viewer {
+  height: min(900px, 85vh);
+  min-height: 550px;
+  overflow: hidden;
+  border: 1px solid var(--about-line);
+  background: #e5e5e5;
+}
+
+.mdh-portfolio-viewer iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.mdh-portfolio-viewer-note {
+  padding-top: 15px;
+  color: var(--about-muted);
+  font: 12px/1.6 Arial, sans-serif;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+  .mdh-about-portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mdh-about-portfolio-preview {
+    max-width: 620px;
+  }
+
+  .mdh-portfolio-page-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .mdh-about-mission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mdh-about-mission-card {
+    min-height: 330px;
+    gap: 55px;
+    padding: 30px;
+  }
+
+  .mdh-about-portfolio-document {
+    min-height: 380px;
+  }
+
+  .mdh-about-portfolio-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .mdh-about-portfolio-primary,
+  .mdh-about-portfolio-secondary {
+    width: 100%;
+  }
+
+  .mdh-portfolio-page {
+    padding-top: 100px;
+  }
+
+  .mdh-portfolio-page-top > span {
+    display: none;
+  }
+
+  .mdh-portfolio-page-heading {
+    padding: 40px 0 30px;
+  }
+
+  .mdh-portfolio-page-actions {
+    width: 100%;
+  }
+
+  .mdh-portfolio-open,
+  .mdh-portfolio-download {
+    flex: 1;
+  }
+
+  .mdh-portfolio-viewer {
+    height: 70vh;
+    min-height: 420px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mdh-about-mission-card,
+  .mdh-about-portfolio-primary,
+  .mdh-about-portfolio-secondary {
+    transition: none;
+  }
+}

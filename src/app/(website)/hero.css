@@ -1,0 +1,1000 @@
+
+/* ============================================
+   MEPPEPLIN / THREE-SCENE ARCHITECTURAL HERO
+============================================ */
+
+.mh-hero {
+  --mh-paper: #f2f0eb;
+  --mh-ink: #252522;
+  --mh-muted: #77756e;
+  --mh-line: rgba(37, 37, 34, .2);
+  --mh-accent: #70409c;
+
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 680px;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--mh-paper);
+  color: var(--mh-ink);
+}
+
+[data-studio-theme="stone"] .mh-hero {
+  --mh-paper: #d8d0c3;
+  --mh-ink: #302b27;
+  --mh-muted: #655e55;
+  --mh-line: rgba(48, 43, 39, .23);
+  --mh-accent: #775842;
+}
+
+[data-studio-theme="night"] .mh-hero {
+  --mh-paper: #141518;
+  --mh-ink: #f1eee8;
+  --mh-muted: #b0aba4;
+  --mh-line: rgba(241, 238, 232, .22);
+  --mh-accent: #b69ad1;
+}
+
+.mh-stage,
+.mh-stage-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mh-stage-slide {
+  overflow: hidden;
+}
+
+.mh-hero a {
+  text-decoration: none;
+}
+
+.mh-hero button {
+  cursor: pointer;
+}
+
+.mh-line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: .13em;
+  margin-bottom: -.13em;
+}
+
+.mh-line-mask > span,
+.mh-line-mask > em {
+  display: block;
+}
+
+.mh-eyebrow,
+.mh-dark-eyebrow {
+  display: block;
+  font-family: var(--font-manrope), Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  line-height: 1.5;
+}
+
+.mh-dark-eyebrow {
+  color: var(--mh-muted);
+}
+
+.mh-dark-link,
+.mh-light-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  width: fit-content;
+  padding: 0 0 12px;
+  border-bottom: 1px solid currentColor;
+  font-family: var(--font-manrope), Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  line-height: 1.5;
+}
+
+.mh-dark-link {
+  color: var(--mh-ink);
+}
+
+.mh-light-link {
+  color: #fff;
+}
+
+.mh-dark-link svg,
+.mh-light-link svg {
+  flex-shrink: 0;
+  transition: transform .3s ease;
+}
+
+.mh-dark-link:hover svg,
+.mh-light-link:hover svg {
+  transform: translate(4px, -4px);
+}
+
+/* ============================================
+   SCENE 01 / CINEMATIC INTRODUCTION
+============================================ */
+
+.mh-cinematic {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #292723;
+  color: #fff;
+}
+
+.mh-cinematic-media,
+.mh-cinematic-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.mh-cinematic-media {
+  overflow: hidden;
+}
+
+.mh-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mh-cinematic-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, .62) 0%,
+      rgba(0, 0, 0, .25) 65%,
+      rgba(0, 0, 0, .14) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, .48),
+      transparent 45%
+    );
+}
+
+.mh-cinematic-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding:
+    110px
+    clamp(24px, 7vw, 120px)
+    120px;
+}
+
+.mh-cinematic-heading {
+  margin: 30px 0 0;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(76px, 11.5vw, 190px);
+  font-weight: 400;
+  line-height: .81;
+  letter-spacing: -.065em;
+}
+
+.mh-cinematic-heading em {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.mh-cinematic-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 45px;
+}
+
+.mh-cinematic-bottom p {
+  max-width: 385px;
+  margin: 0;
+  font-size: clamp(13px, 1.1vw, 17px);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, .92);
+}
+
+/* ============================================
+   SCENE 02 / ASYMMETRIC PROJECT GALLERY
+============================================ */
+
+.mh-projects {
+  display: grid;
+  grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr);
+  align-items: center;
+  gap: clamp(25px, 4vw, 80px);
+  width: 100%;
+  height: 100%;
+  padding:
+    115px
+    clamp(24px, 5.5vw, 100px)
+    110px;
+  background: var(--mh-paper);
+  color: var(--mh-ink);
+}
+
+.mh-projects-heading h2 {
+  margin: 30px 0 35px;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(55px, 6vw, 112px);
+  font-weight: 400;
+  line-height: .88;
+  letter-spacing: -.055em;
+}
+
+.mh-projects-heading h2 em {
+  font-weight: 400;
+}
+
+.mh-projects-gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, .75fr);
+  gap: 13px;
+  width: 100%;
+  height: min(59vh, 590px);
+  min-height: 310px;
+}
+
+.mh-project-primary,
+.mh-project-secondary,
+.mh-project-secondary-item {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+
+.mh-project-secondary {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.mh-project-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--mh-line);
+  color: #fff;
+}
+
+.mh-project-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(.22, 1, .36, 1);
+}
+
+.mh-project-card:hover .mh-project-media {
+  transform: scale(1.06);
+}
+
+.mh-project-card-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 15px;
+  align-items: end;
+  padding: clamp(12px, 1.5vw, 24px);
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, .75)
+  );
+}
+
+.mh-project-card-overlay span {
+  grid-column: 1 / -1;
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.mh-project-card-overlay strong {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(20px, 2vw, 37px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.mh-projects-empty {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 22px;
+  height: 100%;
+  padding: clamp(25px, 4vw, 65px);
+  border: 1px solid var(--mh-line);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent calc(25% - 1px),
+      var(--mh-line) 25%
+    );
+}
+
+.mh-empty-line {
+  display: block;
+  width: 65px;
+  height: 1px;
+  background: var(--mh-accent);
+}
+
+.mh-projects-empty > span:not(.mh-empty-line) {
+  font-size: 10px;
+  letter-spacing: .15em;
+}
+
+.mh-projects-empty p {
+  max-width: 420px;
+  margin: 0;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(27px, 3.1vw, 48px);
+  line-height: 1.1;
+}
+
+.mh-projects-empty a {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--mh-ink);
+  font-size: 10px;
+  letter-spacing: .1em;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 10px;
+}
+
+.mh-project-gallery-note {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--mh-line);
+  color: var(--mh-muted);
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-align: center;
+  padding: 15px;
+}
+
+/* ============================================
+   SCENE 03 / EDITORIAL SERVICES
+============================================ */
+
+.mh-services {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  width: 100%;
+  height: 100%;
+  background: var(--mh-paper);
+  color: var(--mh-ink);
+}
+
+.mh-services-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 0;
+  padding:
+    115px
+    clamp(24px, 5.5vw, 100px)
+    110px;
+}
+
+.mh-services-left h2 {
+  margin: 24px 0 30px;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(62px, 6.8vw, 112px);
+  font-weight: 400;
+  line-height: .78;
+  letter-spacing: -.055em;
+}
+
+.mh-services-left h2 em {
+  font-weight: 400;
+}
+
+.mh-services-list {
+  width: 100%;
+  margin-bottom: 27px;
+  border-top: 1px solid var(--mh-line);
+}
+
+.mh-services-list > div {
+  border-bottom: 1px solid var(--mh-line);
+}
+
+.mh-services-list a {
+  display: grid;
+  grid-template-columns: 28px 1fr 18px;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  color: var(--mh-ink);
+  transition: padding-left .3s ease, color .3s ease;
+}
+
+.mh-services-list a:hover {
+  padding-left: 9px;
+  color: var(--mh-accent);
+}
+
+.mh-services-list a span {
+  color: var(--mh-muted);
+  font-size: 9px;
+}
+
+.mh-services-list a strong {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(21px, 2vw, 32px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.mh-services-right {
+  position: relative;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: #8d857b;
+}
+
+.mh-services-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mh-services-image-caption {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 30px;
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, .58)
+  );
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: .1em;
+}
+
+/* ============================================
+   SHARED HERO CONTROLS
+============================================ */
+
+.mh-controls {
+  position: absolute;
+  z-index: 30;
+  left: clamp(24px, 5.5vw, 100px);
+  right: clamp(24px, 5.5vw, 100px);
+  bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  pointer-events: none;
+}
+
+.mh-controls button {
+  pointer-events: auto;
+}
+
+.mh-progress-list {
+  display: flex;
+  gap: 13px;
+}
+
+.mh-progress-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 9px;
+  width: clamp(72px, 10vw, 145px);
+  border: 0;
+  padding: 8px 0;
+  background: transparent;
+  color: var(--mh-ink);
+  opacity: .55;
+  text-align: left;
+}
+
+.mh-progress-item.is-active {
+  opacity: 1;
+}
+
+.mh-progress-track {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--mh-line);
+  overflow: hidden;
+}
+
+.mh-progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--mh-accent);
+}
+
+.mh-progress-label {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  font-size: 10px;
+}
+
+.mh-progress-name {
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.mh-control-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.mh-control-actions button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--mh-line);
+  border-radius: 50%;
+  background: var(--mh-paper);
+  color: var(--mh-ink);
+  transition:
+    background .3s ease,
+    color .3s ease,
+    transform .3s ease;
+}
+
+.mh-control-actions button:hover {
+  background: var(--mh-ink);
+  color: var(--mh-paper);
+  transform: translateY(-2px);
+}
+
+/* White controls on cinematic scene */
+
+.mh-hero-1 .mh-progress-item {
+  color: #fff;
+}
+
+.mh-hero-1 .mh-progress-track {
+  background: rgba(255, 255, 255, .35);
+}
+
+.mh-hero-1 .mh-progress-fill {
+  background: #fff;
+}
+
+.mh-hero-1 .mh-control-actions button {
+  color: #fff;
+  background: rgba(0, 0, 0, .16);
+  border-color: rgba(255, 255, 255, .55);
+}
+
+.mh-hero-1 .mh-control-actions button:hover {
+  color: #252522;
+  background: #fff;
+}
+
+/* ============================================
+   TABLET
+============================================ */
+
+@media (max-width: 1100px) {
+  .mh-projects {
+    grid-template-columns: .8fr 1.2fr;
+    gap: 25px;
+  }
+
+  .mh-projects-heading h2 {
+    font-size: clamp(50px, 6vw, 75px);
+  }
+
+  .mh-projects-gallery {
+    height: min(55vh, 480px);
+  }
+
+  .mh-services-left h2 {
+    font-size: clamp(55px, 6.5vw, 85px);
+  }
+
+  .mh-services-list a strong {
+    font-size: 24px;
+  }
+}
+
+/* ============================================
+   MOBILE
+============================================ */
+
+@media (max-width: 800px) {
+  .mh-hero {
+    height: 100svh;
+    min-height: 610px;
+  }
+
+  .mh-cinematic-content {
+    padding: 105px 24px 125px;
+  }
+
+  .mh-cinematic-heading {
+    font-size: clamp(67px, 13vw, 115px);
+  }
+
+  .mh-cinematic-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    margin-top: 30px;
+  }
+
+  .mh-projects {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 22px;
+    padding: 95px 24px 115px;
+  }
+
+  .mh-projects-heading h2 {
+    margin: 10px 0 16px;
+    font-size: clamp(46px, 9vw, 76px);
+  }
+
+  .mh-projects-gallery {
+    min-height: 0;
+    height: 100%;
+    max-height: 48vh;
+  }
+
+  .mh-services {
+    grid-template-columns: 1fr 0.7fr;
+  }
+
+  .mh-services-left {
+    padding: 105px 24px 115px;
+  }
+
+  .mh-services-left h2 {
+    font-size: clamp(47px, 7vw, 70px);
+  }
+
+  .mh-services-list a {
+    grid-template-columns: 22px 1fr 16px;
+    gap: 7px;
+    padding: 11px 0;
+  }
+
+  .mh-services-list a strong {
+    font-size: 20px;
+  }
+
+  .mh-services-image-caption {
+    flex-direction: column;
+    font-size: 8px;
+  }
+
+  .mh-controls {
+    left: 24px;
+    right: 24px;
+    bottom: 18px;
+  }
+
+  .mh-progress-name {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .mh-hero {
+    min-height: 620px;
+  }
+
+  .mh-cinematic-heading {
+    font-size: clamp(62px, 13.2vw, 90px);
+  }
+
+  .mh-cinematic-bottom p {
+    font-size: 13px;
+  }
+
+  .mh-projects {
+    padding-top: 92px;
+    padding-bottom: 105px;
+  }
+
+  .mh-projects-heading h2 {
+    font-size: clamp(45px, 10.5vw, 65px);
+  }
+
+  .mh-projects-gallery {
+    gap: 7px;
+    max-height: 43vh;
+  }
+
+  .mh-project-secondary {
+    gap: 7px;
+  }
+
+  .mh-project-card-overlay {
+    padding: 10px;
+  }
+
+  .mh-project-card-overlay strong {
+    font-size: 19px;
+  }
+
+  .mh-project-card-overlay span {
+    font-size: 7px;
+  }
+
+  .mh-projects-empty {
+    padding: 24px;
+  }
+
+  .mh-projects-empty p {
+    font-size: 30px;
+  }
+
+  .mh-services {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1.2fr) minmax(0, .8fr);
+  }
+
+  .mh-services-left {
+    padding: 88px 24px 12px;
+    justify-content: flex-start;
+  }
+
+  .mh-services-left h2 {
+    margin: 10px 0 14px;
+    font-size: clamp(46px, 10vw, 65px);
+    line-height: .77;
+  }
+
+  .mh-services-list {
+    margin-bottom: 12px;
+  }
+
+  .mh-services-list a {
+    padding: 8px 0;
+  }
+
+  .mh-services-list a strong {
+    font-size: 19px;
+  }
+
+  .mh-services-right {
+    min-height: 0;
+  }
+
+  .mh-services-image-caption {
+    display: none;
+  }
+
+  .mh-services-left > .mh-dark-link {
+    font-size: 9px;
+    padding-bottom: 7px;
+  }
+
+  .mh-controls {
+    bottom: 15px;
+  }
+
+  .mh-progress-list {
+    gap: 7px;
+  }
+
+  .mh-progress-item {
+    width: 48px;
+  }
+
+  .mh-control-actions {
+    gap: 5px;
+  }
+
+  .mh-control-actions button {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* Short displays */
+
+@media (max-height: 650px) and (min-width: 801px) {
+  .mh-projects {
+    padding-top: 85px;
+    padding-bottom: 75px;
+  }
+
+  .mh-projects-gallery {
+    height: 48vh;
+  }
+
+  .mh-services-left {
+    padding-top: 80px;
+    padding-bottom: 70px;
+  }
+
+  .mh-services-left h2 {
+    margin: 10px 0;
+    font-size: 60px;
+  }
+
+  .mh-services-list a {
+    padding: 8px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-hero *,
+  .mh-hero *::before,
+  .mh-hero *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* LUXURY MOVING MEDIA COLLAGE */
+
+.mh-collage-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #28231f;
+  color: #f7f2e9;
+  isolation: isolate;
+}
+
+.mh-collage-background,
+.mh-collage-shade {
+  position: absolute;
+  inset: 0;
+}
+
+.mh-collage-bg-image {
+  object-fit: cover;
+}
+
+.mh-collage-shade {
+  z-index: 1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(18, 15, 13, .72),
+      rgba(18, 15, 13, .18) 65%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(18, 15, 13, .4),
+      transparent 55%
+    );
+}
+
+.mh-collage-heading {
+  position: absolute;
+  z-index: 20;
+  top: 36%;
+  left: clamp(25px, 7vw, 120px);
+  max-width: 680px;
+  pointer-events: none;
+  text-shadow: 0 2px 24px rgba(0,0,0,.35);
+}
+
+.mh-collage-heading > span {
+  font-size: 10px;
+  letter-spacing: .18em;
+}
+
+.mh-collage-heading h2 {
+  margin: 20px 0 30px;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(55px, 7vw, 120px);
+  font-weight: 400;
+  line-height: .87;
+  letter-spacing: -.055em;
+}
+
+.mh-collage-heading h2 em {
+  font-weight: 400;
+}
+
+.mh-collage-heading a {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid currentColor;
+  color: #f7f2e9;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.mh-collage-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.mh-collage-tile {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.35);
+  background: #322d29;
+  box-shadow: 0 16px 45px rgba(0,0,0,.28);
+  will-change: left, top, width, height, transform;
+}
+
+.mh-collage-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mh-collage-pause {
+  position: absolute;
+  z-index: 25;
+  right: clamp(24px, 6vw, 100px);
+  bottom: 90px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255,255,255,.45);
+  background: rgba(15,15,15,.3);
+  backdrop-filter: blur(12px);
+  color: white;
+  font-size: 9px;
+  letter-spacing: .12em;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .mh-collage-heading {
+    top: 32%;
+    left: 24px;
+    right: 24px;
+  }
+
+  .mh-collage-heading h2 {
+    font-size: clamp(48px, 10vw, 75px);
+  }
+
+  .mh-collage-tile {
+    opacity: .85;
+  }
+
+  .mh-collage-pause {
+    right: 24px;
+    bottom: 85px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mh-collage-tile {
+    will-change: auto;
+  }
+}
