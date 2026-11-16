@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -23,7 +22,6 @@ import {
   Save,
   Send,
   Trash2,
-  GripVertical,
   MapPin,
   CalendarDays,
   FolderOpen,
@@ -133,10 +131,11 @@ export default function ProjectEditor({
   storageBase,
 }: Props) {
   const router = useRouter();
-
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const [form, setForm] = useState<ProjectInput>(initial ?? blank);
+  const [form, setForm] = useState<ProjectInput>(
+    initial ?? blank
+  );
 
   const [categoryText, setCategoryText] = useState(
     (initial?.categories ?? []).join(", ")
@@ -151,7 +150,8 @@ export default function ProjectEditor({
   );
 
   const [coverId, setCoverId] = useState<string | null>(
-    initialMedia.find((item) => item.media_type === "image")?.id ?? null
+    initialMedia.find((item) => item.media_type === "image")?.id ??
+      null
   );
 
   const [busy, setBusy] = useState(false);
@@ -161,7 +161,10 @@ export default function ProjectEditor({
   const [dragging, setDragging] = useState(false);
 
   const mediaRef = useRef(media);
-  mediaRef.current = media;
+
+  useEffect(() => {
+    mediaRef.current = media;
+  }, [media]);
 
   useEffect(() => {
     return () => {
@@ -235,7 +238,9 @@ export default function ProjectEditor({
     setSuccess("");
   }
 
-  function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleFileChange(
+    event: ChangeEvent<HTMLInputElement>
+  ) {
     if (event.target.files) {
       addFiles(event.target.files);
     }
@@ -261,7 +266,10 @@ export default function ProjectEditor({
         return current;
       }
 
-      [next[index], next[target]] = [next[target], next[index]];
+      [next[index], next[target]] = [
+        next[target],
+        next[index],
+      ];
 
       return next;
     });
@@ -331,7 +339,9 @@ export default function ProjectEditor({
     const registeredIds = new Map<string, string>();
 
     const pending = items.filter(
-      (item): item is Extract<EditorMedia, { kind: "local" }> =>
+      (
+        item
+      ): item is Extract<EditorMedia, { kind: "local" }> =>
         item.kind === "local"
     );
 
@@ -442,7 +452,9 @@ export default function ProjectEditor({
         ? registeredIds.get(coverId) ?? coverId
         : null;
 
-      setProgress("Saving media arrangement and cover image...");
+      setProgress(
+        "Saving media arrangement and cover image..."
+      );
 
       await requestJson(
         `/api/admin/projects/${savedProjectId}/media`,
@@ -459,6 +471,7 @@ export default function ProjectEditor({
       );
 
       setProgress("Project saved successfully.");
+
       setSuccess(
         status === "published"
           ? "Project published successfully."
@@ -526,7 +539,10 @@ export default function ProjectEditor({
 
   return (
     <section className="atelier-page atelier-editor-page">
-      <Link href="/admin/projects" className="atelier-back">
+      <Link
+        href="/admin/projects"
+        className="atelier-back"
+      >
         <ArrowLeft size={16} />
         Back to Projects
       </Link>
@@ -538,12 +554,14 @@ export default function ProjectEditor({
           </span>
 
           <h1>
-            {projectId ? "Edit Project" : "Create New Project"}
+            {projectId
+              ? "Edit Project"
+              : "Create New Project"}
           </h1>
 
           <p>
-            Curate your architectural work with thoughtful details,
-            imagery and video.
+            Curate your architectural work with thoughtful
+            details, imagery and video.
           </p>
         </div>
       </div>
@@ -551,7 +569,8 @@ export default function ProjectEditor({
       <form
         className="atelier-editor-grid"
         onSubmit={(event) => {
-          const nativeEvent = event.nativeEvent as SubmitEvent;
+          const nativeEvent =
+            event.nativeEvent as SubmitEvent;
 
           const submitter =
             nativeEvent.submitter as HTMLButtonElement | null;
@@ -567,7 +586,9 @@ export default function ProjectEditor({
         <div className="atelier-editor-left">
           <section className="atelier-panel atelier-form-panel">
             <div className="atelier-section-heading">
-              <span className="atelier-section-number">01</span>
+              <span className="atelier-section-number">
+                01
+              </span>
 
               <div>
                 <h2>Project Details</h2>
@@ -588,7 +609,10 @@ export default function ProjectEditor({
                   value={form.title}
                   placeholder="Enter the project title"
                   onChange={(event) => {
-                    updateField("title", event.target.value);
+                    updateField(
+                      "title",
+                      event.target.value
+                    );
 
                     if (!projectId) {
                       updateField(
@@ -632,7 +656,9 @@ export default function ProjectEditor({
                   }
                 />
 
-                <small>{form.summary.length}/600 characters</small>
+                <small>
+                  {form.summary.length}/600 characters
+                </small>
               </label>
 
               <label className="atelier-field">
@@ -702,7 +728,8 @@ export default function ProjectEditor({
                 />
 
                 <small>
-                  Enter category IDs defined by the public website.
+                  Enter category IDs defined by the
+                  public website.
                 </small>
               </label>
             </div>
@@ -710,12 +737,15 @@ export default function ProjectEditor({
 
           <section className="atelier-panel atelier-form-panel">
             <div className="atelier-section-heading">
-              <span className="atelier-section-number">03</span>
+              <span className="atelier-section-number">
+                03
+              </span>
 
               <div>
                 <h2>Publishing Settings</h2>
                 <p>
-                  Decide how your project appears on the website.
+                  Decide how your project appears on
+                  the website.
                 </p>
               </div>
             </div>
@@ -729,12 +759,18 @@ export default function ProjectEditor({
                   onChange={(event) =>
                     updateField(
                       "status",
-                      event.target.value as "draft" | "published"
+                      event.target.value as
+                        | "draft"
+                        | "published"
                     )
                   }
                 >
-                  <option value="draft">Draft</option>
-                  <option value="published">Published</option>
+                  <option value="draft">
+                    Draft
+                  </option>
+                  <option value="published">
+                    Published
+                  </option>
                 </select>
               </label>
 
@@ -772,7 +808,8 @@ export default function ProjectEditor({
                 <strong>Featured Project</strong>
 
                 <small>
-                  Highlight this project in featured portfolio sections.
+                  Highlight this project in featured
+                  portfolio sections.
                 </small>
               </span>
             </label>
@@ -782,12 +819,15 @@ export default function ProjectEditor({
         <div className="atelier-editor-right">
           <section className="atelier-panel atelier-form-panel">
             <div className="atelier-section-heading">
-              <span className="atelier-section-number">02</span>
+              <span className="atelier-section-number">
+                02
+              </span>
 
               <div>
                 <h2>Project Media</h2>
                 <p>
-                  Upload photographs and videos before saving.
+                  Upload photographs and videos
+                  before saving.
                 </p>
               </div>
             </div>
@@ -804,18 +844,23 @@ export default function ProjectEditor({
 
             <div
               className={`atelier-dropzone ${
-                dragging ? "atelier-dropzone-active" : ""
+                dragging
+                  ? "atelier-dropzone-active"
+                  : ""
               }`}
               role="button"
               tabIndex={busy ? -1 : 0}
               aria-disabled={busy}
               onClick={() => {
-                if (!busy) fileInputRef.current?.click();
+                if (!busy) {
+                  fileInputRef.current?.click();
+                }
               }}
               onKeyDown={(event) => {
                 if (
                   !busy &&
-                  (event.key === "Enter" || event.key === " ")
+                  (event.key === "Enter" ||
+                    event.key === " ")
                 ) {
                   event.preventDefault();
                   fileInputRef.current?.click();
@@ -823,14 +868,24 @@ export default function ProjectEditor({
               }}
               onDragOver={(event) => {
                 event.preventDefault();
-                if (!busy) setDragging(true);
+
+                if (!busy) {
+                  setDragging(true);
+                }
               }}
-              onDragLeave={() => setDragging(false)}
+              onDragLeave={() =>
+                setDragging(false)
+              }
               onDrop={handleDrop}
             >
-              <UploadCloud size={38} strokeWidth={1.3} />
+              <UploadCloud
+                size={38}
+                strokeWidth={1.3}
+              />
 
-              <strong>Drop your images & videos here</strong>
+              <strong>
+                Drop your images & videos here
+              </strong>
 
               <span>
                 or <u>browse files</u>
@@ -847,11 +902,15 @@ export default function ProjectEditor({
               <div>
                 <strong>
                   {media.length}{" "}
-                  {media.length === 1 ? "file" : "files"} selected
+                  {media.length === 1
+                    ? "file"
+                    : "files"}{" "}
+                  selected
                 </strong>
 
                 <span>
-                  {imageCount} images · {videoCount} videos
+                  {imageCount} images ·{" "}
+                  {videoCount} videos
                 </span>
               </div>
 
@@ -859,7 +918,9 @@ export default function ProjectEditor({
                 type="button"
                 disabled={busy}
                 className="atelier-add-media"
-                onClick={() => fileInputRef.current?.click()}
+                onClick={() =>
+                  fileInputRef.current?.click()
+                }
               >
                 <ImagePlus size={16} />
                 Add Media
@@ -868,15 +929,24 @@ export default function ProjectEditor({
 
             {media.length === 0 ? (
               <div className="atelier-media-empty">
-                <ImagePlus size={30} strokeWidth={1.2} />
+                <ImagePlus
+                  size={30}
+                  strokeWidth={1.2}
+                />
                 <p>No media selected yet.</p>
               </div>
             ) : (
               <div className="atelier-media-grid">
                 {media.map((item, index) => {
-                  const type = getMediaType(item);
-                  const url = getMediaUrl(item, storageBase);
-                  const isCover = coverId === item.id;
+                  const type =
+                    getMediaType(item);
+                  const url =
+                    getMediaUrl(
+                      item,
+                      storageBase
+                    );
+                  const isCover =
+                    coverId === item.id;
 
                   return (
                     <div
@@ -894,9 +964,12 @@ export default function ProjectEditor({
                           <img
                             src={url}
                             alt={
-                              item.kind === "local"
-                                ? item.media.file.name
-                                : item.media.alt_text ??
+                              item.kind ===
+                              "local"
+                                ? item.media
+                                    .file.name
+                                : item.media
+                                    .alt_text ??
                                   "Project image"
                             }
                           />
@@ -921,7 +994,11 @@ export default function ProjectEditor({
                           <button
                             type="button"
                             disabled={busy}
-                            onClick={() => setCoverId(item.id)}
+                            onClick={() =>
+                              setCoverId(
+                                item.id
+                              )
+                            }
                             title="Set as cover image"
                           >
                             Cover
@@ -930,30 +1007,54 @@ export default function ProjectEditor({
 
                         <button
                           type="button"
-                          disabled={busy || index === 0}
-                          onClick={() => moveMedia(index, -1)}
+                          disabled={
+                            busy ||
+                            index === 0
+                          }
+                          onClick={() =>
+                            moveMedia(
+                              index,
+                              -1
+                            )
+                          }
                           title="Move earlier"
                           aria-label="Move media earlier"
                         >
-                          <ArrowUp size={14} />
+                          <ArrowUp
+                            size={14}
+                          />
                         </button>
 
                         <button
                           type="button"
                           disabled={
-                            busy || index === media.length - 1
+                            busy ||
+                            index ===
+                              media.length -
+                                1
                           }
-                          onClick={() => moveMedia(index, 1)}
+                          onClick={() =>
+                            moveMedia(
+                              index,
+                              1
+                            )
+                          }
                           title="Move later"
                           aria-label="Move media later"
                         >
-                          <ArrowDown size={14} />
+                          <ArrowDown
+                            size={14}
+                          />
                         </button>
 
                         <button
                           type="button"
                           disabled={busy}
-                          onClick={() => void removeMedia(item)}
+                          onClick={() =>
+                            void removeMedia(
+                              item
+                            )
+                          }
                           title="Remove file"
                           aria-label="Remove media"
                         >
@@ -970,9 +1071,10 @@ export default function ProjectEditor({
               <Check size={16} />
 
               <span>
-                Select multiple images and videos, arrange their
-                order, and choose a cover image. All changes are
-                saved when you save the project.
+                Select multiple images and videos,
+                arrange their order, and choose a
+                cover image. All changes are saved
+                when you save the project.
               </span>
             </div>
           </section>
@@ -985,8 +1087,8 @@ export default function ProjectEditor({
             <h2>Ready to save?</h2>
 
             <p>
-              Save your project privately as a draft or publish
-              it to your portfolio.
+              Save your project privately as a draft
+              or publish it to your portfolio.
             </p>
 
             <div className="atelier-save-actions">
@@ -1014,19 +1116,28 @@ export default function ProjectEditor({
             </div>
 
             {busy && (
-              <p className="atelier-progress" role="status">
+              <p
+                className="atelier-progress"
+                role="status"
+              >
                 {progress || "Processing..."}
               </p>
             )}
 
             {error && (
-              <p className="atelier-form-error" role="alert">
+              <p
+                className="atelier-form-error"
+                role="alert"
+              >
                 {error}
               </p>
             )}
 
             {success && (
-              <p className="atelier-media-note" role="status">
+              <p
+                className="atelier-media-note"
+                role="status"
+              >
                 <Check size={16} />
                 {success}
               </p>
@@ -1037,7 +1148,9 @@ export default function ProjectEditor({
             <button
               type="button"
               disabled={busy}
-              onClick={() => void deleteProject()}
+              onClick={() =>
+                void deleteProject()
+              }
               className="atelier-delete-project"
             >
               <Trash2 size={16} />

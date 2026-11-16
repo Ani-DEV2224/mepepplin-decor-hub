@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -170,7 +169,9 @@ export default function AdminNotifications() {
   }, []);
 
   useEffect(() => {
-    void refresh();
+    const initialRefresh = window.setTimeout(() => {
+      void refresh();
+    }, 0);
 
     const interval = window.setInterval(() => {
       if (document.visibilityState === "visible") {
@@ -190,6 +191,7 @@ export default function AdminNotifications() {
     );
 
     return () => {
+      window.clearTimeout(initialRefresh);
       window.clearInterval(interval);
       document.removeEventListener(
         "visibilitychange",
