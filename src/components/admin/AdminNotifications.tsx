@@ -78,8 +78,19 @@ export default function AdminNotifications() {
     items: [],
   });
   const [soundEnabled, setSoundEnabled] = useState(false);
-  const [readIds, setReadIds] = useState<string[]>([]);
-  const [readStateLoaded, setReadStateLoaded] = useState(false);
+  const [readIds, setReadIds] = useState<string[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const saved: unknown = JSON.parse(
+        window.localStorage.getItem(READ_IDS_KEY) || "[]"
+      );
+      return Array.isArray(saved)
+        ? saved.filter((id): id is string => typeof id === "string")
+        : [];
+    } catch {
+      return [];
+    }
+  });
   const [error, setError] = useState("");
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -88,21 +99,9 @@ export default function AdminNotifications() {
   const soundRef = useRef(false);
   const openRef = useRef(false);
 
-  useEffect(() => {
-    try {
-      const saved = JSON.parse(window.localStorage.getItem(READ_IDS_KEY) || "[]");
-      if (Array.isArray(saved)) {
-        setReadIds(saved.filter((id): id is string => typeof id === "string"));
-      }
-    } catch {
-      // Invalid local data should not prevent notifications from loading.
-    }
-    setReadStateLoaded(true);
-  }, []);
-
-  const unreadItems = readStateLoaded
-    ? data.items.filter((item) => !readIds.includes(item.id))
-    : [];
+  const unreadItems = data.items.filter(
+    (item) => !readIds.includes(item.id)
+  );
   const unreadCount = unreadItems.length;
 
   function markNotificationsRead() {
