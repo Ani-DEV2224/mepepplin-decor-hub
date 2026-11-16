@@ -25,6 +25,7 @@ type NotificationResponse = {
 
 const POLL_INTERVAL = 15000;
 const LAST_SEEN_KEY = "meppeplin-admin-last-enquiry-time";
+const READ_IDS_KEY = "meppeplin-admin-read-notification-ids";
 
 function formatDate(value: string) {
   return new Date(value).toLocaleString("en-NG", {
@@ -77,12 +78,47 @@ export default function AdminNotifications() {
     items: [],
   });
   const [soundEnabled, setSoundEnabled] = useState(false);
+  const [readIds, setReadIds] = useState<string[]>([]);
+  const [readStateLoaded, setReadStateLoaded] = useState(false);
   const [error, setError] = useState("");
 
   const containerRef = useRef<HTMLDivElement>(null);
   const initialized = useRef(false);
   const latestSeen = useRef<number>(0);
   const soundRef = useRef(false);
+  const openRef = useRef(false);
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(window.localStorage.getItem(READ_IDS_KEY) || "[]");
+      if (Array.isArray(saved)) {
+        setReadIds(saved.filter((id): id is string => typeof id === "string"));
+      }
+    } catch {
+      // Invalid local data should not prevent notifications from loading.
+    }
+    setReadStateLoaded(true);
+  }, []);
+
+  const unreadItems = readStateLoaded
+    ? data.items.filter((item) => !readIds.includes(item.id))
+    : [];
+  const unreadCount = unreadItems.length;
+
+  function markNotificationsRead() {
+    const next = [...new Set([...readIds, ...data.items.map((item) => item.id)])];
+    setReadIds(next);
+    window.localStorage.setItem(READ_IDS_KEY, JSON.stringify(next));
+  }
+
+  function toggleNotifications() {
+    openRef.current = !open;
+    if (!open) {
+      markNotificationsRead();
+      void refresh();
+    }
+    setOpen((value) => !value);
+  }
 
   useEffect(() => {
     soundRef.current = soundEnabled;
@@ -103,6 +139,13 @@ export default function AdminNotifications() {
 
       setData(result);
       setError("");
+      if (openRef.current) {
+        setReadIds((current) => {
+          const next = [...new Set([...current, ...result.items.map((item) => item.id)])];
+          window.localStorage.setItem(READ_IDS_KEY, JSON.stringify(next));
+          return next;
+        });
+      }
 
       const newestTimestamp = result.items.length
         ? Math.max(
@@ -208,12 +251,16 @@ export default function AdminNotifications() {
           event.target as Node
         )
       ) {
+        openRef.current = false;
         setOpen(false);
       }
     }
 
     function handleEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        openRef.current = false;
+        setOpen(false);
+      }
     }
 
     document.addEventListener(
@@ -258,20 +305,20 @@ export default function AdminNotifications() {
       <button
         type="button"
         className="atelier-icon-button atelier-bell-button"
-        aria-label={`Notifications: ${data.count} new enquiries`}
+        aria-label={`Notifications: ${unreadCount} unread enquiries`}
         aria-expanded={open}
         aria-haspopup="dialog"
-        onClick={() => setOpen((value) => !value)}
+        onClick={toggleNotifications}
       >
-        {data.count > 0 ? (
+        {unreadCount > 0 ? (
           <BellRing size={20} />
         ) : (
           <Bell size={20} />
         )}
 
-        {data.count > 0 && (
+        {unreadCount > 0 && (
           <span className="atelier-notification-count">
-            {data.count > 99 ? "99+" : data.count}
+            {unreadCount > 99 ? "99+" : unreadCount}
           </span>
         )}
       </button>
@@ -286,8 +333,8 @@ export default function AdminNotifications() {
             <div>
               <strong>Notifications</strong>
               <span>
-                {data.count} new{" "}
-                {data.count === 1 ? "enquiry" : "enquiries"}
+                {unreadCount} unread{" "}
+                {unreadCount === 1 ? "notification" : "notifications"}
               </span>
             </div>
 
@@ -295,7 +342,7 @@ export default function AdminNotifications() {
               type="button"
               className="atelier-notification-close"
               aria-label="Close notifications"
-              onClick={() => setOpen(false)}
+              onClick={() => { openRef.current = false; setOpen(false); }}
             >
               <X size={18} />
             </button>
