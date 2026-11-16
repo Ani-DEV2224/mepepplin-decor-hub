@@ -34,12 +34,12 @@ const socialLinks = [
 ];
 
 const navigation = [
-  { label: "Home", href: "#home" },
-  { label: "Our Services", href: "#services" },
-  { label: "Selected Work", href: "#selected-work" },
-  { label: "Our Team", href: "#our-team" },
-  { label: "Our Clients", href: "#our-clients" },
-  { label: "Our Process", href: "#our-process" },
+  { label: "Home", href: "/#home" },
+  { label: "Our Services", href: "/#services-explorer" },
+  { label: "Selected Work", href: "/#selected-work" },
+  { label: "Our Team", href: "/#our-team" },
+  { label: "Our Clients", href: "/#our-clients" },
+  { label: "Our Process", href: "/#our-process" },
 ];
 
 const address =
@@ -102,7 +102,7 @@ export default function SiteFooter() {
             </p>
 
             <Link
-              href="#start-your-project"
+              href="/#start-your-project"
               className="mdh-footer-cta"
             >
               <span>START YOUR PROJECT</span>
@@ -140,6 +140,25 @@ export default function SiteFooter() {
               <MapPin size={15} strokeWidth={1.5} />
               PORT HARCOURT, NIGERIA
             </span>
+
+            <div className="mt-7">
+              <h4 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.19em] text-[#927e5e]">
+                OUR STORE LOCATIONS
+              </h4>
+              <p className="mb-3 text-sm leading-relaxed text-[#514b43]">
+                Stores at
+              </p>
+              <ul className="flex flex-wrap gap-x-3 gap-y-2 text-sm leading-relaxed text-[#514b43]">
+                {["Lagos", "Port Harcourt", "Abia State", "Akwa Ibom", "Abuja"].map(
+                  (location, index) => (
+                    <li key={location} className="inline-flex items-center gap-3">
+                      {index > 0 && <span className="text-[#b09a78]" aria-hidden="true">·</span>}
+                      <span>{location}</span>
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
           </div>
 
           <nav className="mdh-footer-nav" aria-label="Footer navigation">
