@@ -27,6 +27,7 @@ import {
   FolderOpen,
 } from "lucide-react";
 import type { ProjectInput } from "@/lib/admin/project";
+import ProjectCategorySelect from "./ProjectCategorySelect";
 
 type StoredMedia = {
   id: string;
@@ -137,9 +138,7 @@ export default function ProjectEditor({
     initial ?? blank
   );
 
-  const [categoryText, setCategoryText] = useState(
-    (initial?.categories ?? []).join(", ")
-  );
+
 
   const [media, setMedia] = useState<EditorMedia[]>(() =>
     initialMedia.map((item) => ({
@@ -400,14 +399,7 @@ export default function ProjectEditor({
       const payload = {
         ...form,
         status,
-        categories: [
-          ...new Set(
-            categoryText
-              .split(",")
-              .map((category) => category.trim())
-              .filter(Boolean)
-          ),
-        ],
+        categories: form.categories,
       };
 
       const projectResult = await requestJson(
@@ -714,24 +706,23 @@ export default function ProjectEditor({
                 </label>
               </div>
 
-              <label className="atelier-field">
-                <span>
+              <div className="atelier-field">
+                <span className="flex items-center gap-2">
                   <FolderOpen size={14} /> Project Categories
                 </span>
 
-                <input
-                  value={categoryText}
-                  placeholder="Category IDs separated by commas"
-                  onChange={(event) =>
-                    setCategoryText(event.target.value)
+                <ProjectCategorySelect
+                  value={form.categories}
+                  onChange={(categories) =>
+                    updateField("categories", categories)
                   }
+                  disabled={busy}
                 />
 
                 <small>
-                  Enter category IDs defined by the
-                  public website.
+                  Select one or more categories that describe this project.
                 </small>
-              </label>
+              </div>
             </div>
           </section>
 
