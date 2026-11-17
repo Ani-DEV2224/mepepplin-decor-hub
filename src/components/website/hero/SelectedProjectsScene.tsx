@@ -35,7 +35,7 @@ const media: MediaItem[] = [
   })),
   ...Array.from({ length: 4 }, (_, i) => ({
     id: `video-${i + 1}`,
-    src: `/videos/home/hero-section-video-${i + 1}.mp4`,
+    src: `https://media.githubusercontent.com/media/Ani-DEV2224/mepepplin-decor-hub/main/public/videos/home/hero-section-video-${i + 1}.mp4`,
     type: "video" as const,
   })),
 ];
