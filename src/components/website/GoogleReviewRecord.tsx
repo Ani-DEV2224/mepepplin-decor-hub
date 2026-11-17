@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Play, X } from "lucide-react";
 
-const VIDEO_SRC = "/videos/Mepepplin-review-record.mp4";
+const VIDEO_SRC = "https://media.githubusercontent.com/media/Ani-DEV2224/mepepplin-decor-hub/main/public/videos/Mepepplin-review-record.mp4";
 
 export default function GoogleReviewRecord() {
   const [open, setOpen] = useState(false);
@@ -71,8 +71,7 @@ export default function GoogleReviewRecord() {
           />
           {videoError && (
             <p className="mdh-review-video-error" role="status">
-              Review video is unavailable. Check that Mepepplin-review-record.mp4
-              is saved in the public/videos folder.
+              Review video is temporarily unavailable. Please try again later.
             </p>
           )}
         </div>
