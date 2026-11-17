@@ -1,4 +1,6 @@
 
+import { BUCKET } from "@/lib/admin/project";
+
 export const PROJECT_CATEGORIES = [
   {
     id: "property-maintenance",
@@ -179,6 +181,6 @@ export function getProjectMediaUrl(
 
   return (
     `${url}/storage/v1/object/public/` +
-    `project-media/${path.split("/").map(encodeURIComponent).join("/")}`
+    `${BUCKET}/${path.split("/").map(encodeURIComponent).join("/")}`
   );
 }
