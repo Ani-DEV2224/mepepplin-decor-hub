@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight, Play } from "lucide-react";
@@ -128,13 +129,22 @@ export default function ProjectVideoShowcase() {
           className="relative overflow-hidden rounded-[30px] bg-[#241b2c] shadow-[0_35px_100px_rgba(42,20,58,0.16)] md:rounded-[42px]"
         >
           <div className="relative aspect-[4/5] sm:aspect-[16/10] lg:aspect-[16/8]">
+            <Image
+              src="/images/home/hero-section-3.jpg"
+              alt="Meppeplin architectural showcase"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
             <video
               ref={videoRef}
-              src="/videos/home/project-preview.mp4"
+              src="https://media.githubusercontent.com/media/Ani-DEV2224/mepepplin-decor-hub/main/public/videos/home/project-preview.mp4"
               muted
               loop
               playsInline
               preload="metadata"
+              onError={(event) => { event.currentTarget.style.display = "none"; }}
+              onLoadedData={(event) => { event.currentTarget.style.display = ""; }}
               aria-label="Meppeplin Decor Hub design showcase"
               className="absolute inset-0 h-full w-full object-cover"
             />
