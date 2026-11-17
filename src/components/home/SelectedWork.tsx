@@ -284,11 +284,10 @@ export default function SelectedWork() {
               ref={videoRef}
               className="mdh-work-video"
               src={VIDEO_SOURCE}
-              autoPlay={!reducedMotion}
               muted
               loop
               playsInline
-              preload="auto"
+              preload="none"
               onLoadedData={() => {
                 setVideoReady(true);
               }}
