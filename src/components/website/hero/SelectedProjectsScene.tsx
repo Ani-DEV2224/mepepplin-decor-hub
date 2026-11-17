@@ -40,6 +40,13 @@ const media: MediaItem[] = [
   })),
 ];
 
+const fallbackImages = [
+  "/images/home/hero-section-image-1.jpeg",
+  "/images/home/hero-section-image-2.jpeg",
+  "/images/home/hero-section-image-3.jpeg",
+  "/images/home/hero-section-image-4.jpeg",
+];
+
 const positions = [
   { x: 3, y: 15, w: 17, h: 26, r: -5 },
   { x: 23, y: 5, w: 18, h: 23, r: 4 },
@@ -138,16 +145,27 @@ export default function SelectedProjectsScene({
               style={{ zIndex: index + 1 }}
             >
               {item.type === "video" ? (
-                <video
-                  src={item.src}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="mh-collage-media"
-                  aria-label={`Architectural showcase video ${index + 1}`}
-                />
+                <div className="relative h-full w-full">
+                  <Image
+                    src={fallbackImages[index - 5]}
+                    alt={`Meppeplin architectural showcase ${index + 1}`}
+                    fill
+                    sizes="(max-width: 700px) 45vw, 22vw"
+                    className="mh-collage-media"
+                  />
+                  <video
+                    src={item.src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    onError={(event) => { event.currentTarget.style.display = "none"; }}
+                    onLoadedData={(event) => { event.currentTarget.style.display = ""; }}
+                    className="mh-collage-media absolute inset-0 h-full w-full object-cover"
+                    aria-label={`Architectural showcase video ${index + 1}`}
+                  />
+                </div>
               ) : (
                 <Image
                   src={item.src}
