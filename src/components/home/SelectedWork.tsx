@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   motion,
@@ -18,7 +19,7 @@ import {
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const VIDEO_SOURCE = "/videos/home/project-preview.mp4";
+const VIDEO_SOURCE = "https://media.githubusercontent.com/media/Ani-DEV2224/mepepplin-decor-hub/main/public/videos/home/project-preview.mp4";
 
 export default function SelectedWork() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -279,6 +280,13 @@ export default function SelectedWork() {
           }}
           transition={{ duration: 1.15, ease }}
         >
+          <Image
+            src="/images/home/hero-section-3.jpg"
+            alt="Meppeplin architectural design showcase"
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
           {!videoUnavailable && (
             <video
               ref={videoRef}
@@ -287,7 +295,7 @@ export default function SelectedWork() {
               muted
               loop
               playsInline
-              preload="none"
+              preload="metadata"
               onLoadedData={() => {
                 setVideoReady(true);
               }}
@@ -351,7 +359,7 @@ export default function SelectedWork() {
 
               <p>
                 {videoUnavailable
-                  ? "Our studio film will appear here once a valid video has been uploaded."
+                  ? "Explore the materials, spaces and details that define our design approach."
                   : "A moving perspective on spaces, materials and the details that bring them together."}
               </p>
             </div>
