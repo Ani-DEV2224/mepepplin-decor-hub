@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import SiteHeader from "@/components/website/SiteHeader";
 import { StudioThemeProvider } from "@/components/website/StudioThemeProvider";
 import GlassBubbleCursor from "@/components/effects/GlassBubbleCursor";
+import GoogleReviewRecord from "@/components/website/GoogleReviewRecord";
 
 import "./website.css";
 import "./hero.css";
@@ -17,6 +18,7 @@ import "./our-process.css";
 import "./start-your-project.css";
 import "./site-footer.css";
 import "./homepage-fixes.css";
+import "./google-review-record.css";
 
 export default function WebsiteLayout({
   children,
@@ -34,6 +36,7 @@ export default function WebsiteLayout({
 
         {/* Global GSAP crystal-glass cursor */}
         <GlassBubbleCursor />
+        <GoogleReviewRecord />
       </div>
     </StudioThemeProvider>
   );
