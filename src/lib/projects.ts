@@ -39,6 +39,7 @@ export type ProjectMedia = {
   alt_text: string | null;
   caption: string | null;
   display_order: number;
+  phase: "general" | "before" | "after";
 };
 
 export type ProjectCategory = {
@@ -54,6 +55,7 @@ export type Project = {
   location: string | null;
   completion_date: string | null;
   cover_image_path: string | null;
+  project_type: "standard" | "before_after";
   featured: boolean;
   display_order: number;
   published_at: string | null;
@@ -70,11 +72,12 @@ const PROJECT_SELECT = [
   "location",
   "completion_date",
   "cover_image_path",
+  "project_type",
   "featured",
   "display_order",
   "published_at",
   "project_categories(category_id)",
-  "project_media(id,media_type,storage_path,alt_text,caption,display_order)",
+  "project_media(id,media_type,storage_path,alt_text,caption,display_order,phase)",
 ].join(",");
 
 function getSupabaseConfig() {
