@@ -135,6 +135,7 @@ export default function ProjectEditor({
 }: Props) {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const uploadPhaseRef = useRef<"general" | "before" | "after">("general");
 
   const [form, setForm] = useState<ProjectInput>(
     initial ?? blank
@@ -218,6 +219,7 @@ export default function ProjectEditor({
     }
 
     setMedia((current) => [...current, ...valid]);
+    setPhases(current => ({...current, ...Object.fromEntries(valid.map(item => [item.id, uploadPhaseRef.current]))}));
 
     setCoverId((currentCover) => {
       if (currentCover) return currentCover;
@@ -240,6 +242,11 @@ export default function ProjectEditor({
     setSuccess("");
   }
 
+  function chooseMedia(phase: "general" | "before" | "after") {
+    uploadPhaseRef.current = phase;
+    fileInputRef.current?.click();
+  }
+
   function handleFileChange(
     event: ChangeEvent<HTMLInputElement>
   ) {
@@ -255,6 +262,7 @@ export default function ProjectEditor({
     setDragging(false);
 
     if (!busy) {
+      uploadPhaseRef.current = "general";
       addFiles(event.dataTransfer.files);
     }
   }
@@ -847,6 +855,17 @@ export default function ProjectEditor({
               onChange={handleFileChange}
             />
 
+            {form.project_type === "before_after" && (
+              <div className="atelier-comparison-uploads" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:"1rem",marginBottom:"1.5rem"}}>
+                {(["before","after"] as const).map(phase => <section key={phase} className="atelier-panel" style={{padding:"1.25rem",border:"1px solid currentColor",borderRadius:12}}>
+                  <span className="atelier-eyebrow">{phase === "before" ? "01 / ORIGINAL CONDITION" : "02 / FINISHED RESULT"}</span>
+                  <h3 style={{fontSize:"1.5rem",margin:"0.5rem 0"}}>{phase === "before" ? "Before Project" : "After Project"}</h3>
+                  <p style={{marginBottom:"1rem",opacity:0.75}}>{phase === "before" ? "Upload images and videos showing the space before work began." : "Upload images and videos showing the completed transformation."}</p>
+                  <button type="button" className="atelier-add-media" disabled={busy} onClick={() => chooseMedia(phase)}><ImagePlus size={16}/> Add {phase === "before" ? "Before" : "After"} Media</button>
+                  <small style={{display:"block",marginTop:"0.75rem"}}>{media.filter(item => (phases[item.id] ?? "general") === phase).length} files selected</small>
+                </section>)}
+              </div>
+            )}
             <div
               className={`atelier-dropzone ${
                 dragging
@@ -889,7 +908,7 @@ export default function ProjectEditor({
               />
 
               <strong>
-                Drop your images & videos here
+                {form.project_type === "before_after" ? "Additional / cover media" : "Drop your images & videos here"}
               </strong>
 
               <span>
@@ -932,6 +951,7 @@ export default function ProjectEditor({
               </button>
             </div>
 
+            {form.project_type === "before_after" && <p style={{fontSize:13,opacity:0.75,marginBottom:12}}>Media below are grouped by stage. Use the stage selector to move any file between Before, After and General.</p>}
             {media.length === 0 ? (
               <div className="atelier-media-empty">
                 <ImagePlus
@@ -955,6 +975,7 @@ export default function ProjectEditor({
 
                   return (
                     <div
+                      style={{order: form.project_type === "before_after" ? (phases[item.id] === "before" ? 0 : phases[item.id] === "after" ? 1 : 2) : 0}}
                       className="atelier-media-card"
                       key={item.id}
                     >
