@@ -15,6 +15,7 @@ type Context = {
 const schema = z.object({
   storage_path: z.string().min(1).max(500),
   media_type: z.enum(["image", "video"]),
+  phase: z.enum(["general", "before", "after"]).default("general"),
   alt_text: z.string().max(300).default(""),
   caption: z.string().max(500).default(""),
 });
@@ -189,6 +190,7 @@ export async function PATCH(
   const parsed = z.object({
     orderedIds: z.array(z.string().uuid()).max(100),
     coverId: z.string().uuid().nullable(),
+    phases: z.record(z.string().uuid(), z.enum(["general", "before", "after"])).default({}),
   }).safeParse(await request.json().catch(() => null));
 
   if (!parsed.success) {
@@ -198,7 +200,7 @@ export async function PATCH(
     );
   }
 
-  const { orderedIds, coverId } = parsed.data;
+  const { orderedIds, coverId, phases } = parsed.data;
 
   if (new Set(orderedIds).size !== orderedIds.length) {
     return NextResponse.json(
@@ -251,7 +253,7 @@ export async function PATCH(
   for (const [index, mediaId] of orderedIds.entries()) {
     const { error } = await db
       .from("project_media")
-      .update({ display_order: index })
+      .update({ display_order: index, phase: phases[mediaId] ?? "general" })
       .eq("id", mediaId)
       .eq("project_id", id);
 
