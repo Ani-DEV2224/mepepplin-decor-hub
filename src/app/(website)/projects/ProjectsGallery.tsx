@@ -7,6 +7,7 @@ import { useMemo, useState } from "react";
 import { ArrowUpRight, ImageOff } from "lucide-react";
 
 import type { Project } from "@/lib/projects";
+import { getProjectMediaUrl } from "@/lib/projects";
 
 type Category = {
   id: string;
@@ -112,11 +113,7 @@ export default function ProjectsGallery({
         aria-live="polite"
       >
         {filteredProjects.map((project, index) => {
-          const imageUrl = project.cover_image_path
-            ? getPublicMediaUrl(
-                project.cover_image_path
-              )
-            : null;
+          const imageUrl = getProjectMediaUrl(project.cover_image_path);
 
           return (
             <Link
@@ -192,7 +189,7 @@ export default function ProjectsGallery({
   );
 }
 
-function getPublicMediaUrl(path: string) {
+function unusedGetPublicMediaUrl(path: string) {
   const url =
     process.env.NEXT_PUBLIC_SUPABASE_URL;
 
