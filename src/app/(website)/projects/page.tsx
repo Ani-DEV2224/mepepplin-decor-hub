@@ -9,6 +9,7 @@ import {
 import SiteFooter from "@/components/layout/SiteFooter";
 import {
   getPublishedProjects,
+  getProjectMediaUrl,
   PROJECT_CATEGORIES,
 } from "@/lib/projects";
 import ProjectsGallery from "./ProjectsGallery";
@@ -24,9 +25,11 @@ export const metadata: Metadata = {
 export default async function ProjectsPage() {
   const projects = await getPublishedProjects();
 
+  const regularProjects = projects.filter(project => project.project_type !== "before_after");
+  const transformations = projects.filter(project => project.project_type === "before_after");
   const activeCategories = PROJECT_CATEGORIES.filter(
     (category) =>
-      projects.some((project) =>
+      regularProjects.some((project) =>
         project.project_categories.some(
           (item) => item.category_id === category.id
         )
@@ -105,17 +108,47 @@ export default async function ProjectsPage() {
           </div>
 
           <span className="mdh-projects-count">
-            {projects.length}{" "}
-            {projects.length === 1
+            {regularProjects.length}{" "}
+            {regularProjects.length === 1
               ? "PUBLISHED PROJECT"
               : "PUBLISHED PROJECTS"}
           </span>
         </div>
 
         <ProjectsGallery
-          projects={projects}
+          projects={regularProjects}
           categories={activeCategories}
         />
+      </section>
+
+      <section id="before-after" className="mdh-projects-collection" style={{paddingTop:"4rem"}}>
+        <div className="mdh-projects-collection-heading">
+          <div>
+            <span className="mdh-projects-eyebrow">03 / BEFORE & AFTER</span>
+            <h2>Remarkable <em>transformations.</em></h2>
+            <p>Explore the spaces before our work began and the results after completion.</p>
+          </div>
+          <span className="mdh-projects-count">{transformations.length} TRANSFORMATIONS</span>
+        </div>
+        {transformations.length === 0 ? (
+          <div className="mdh-projects-empty"><h3>Transformations <em>coming soon.</em></h3><p>Before-and-after project stories will appear here once published.</p></div>
+        ) : (
+          <div className="mdh-projects-grid">
+            {transformations.map(project => {
+              const before = project.project_media.find(item => item.phase === "before" && item.media_type === "image");
+              const after = project.project_media.find(item => item.phase === "after" && item.media_type === "image");
+              return <Link key={project.id} href={`/projects/${project.slug}`} className="mdh-project-card">
+                <div className="mdh-project-card-media" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:2}}>
+                  {([before,after] as const).map((item,index) => <div key={index} style={{position:"relative",minHeight:240,overflow:"hidden",background:"#e9e5e1"}}>
+                    {item ? <img src={getProjectMediaUrl(item.storage_path) ?? ""} alt={`${index===0?"Before":"After"} — ${project.title}`} style={{width:"100%",height:"100%",objectFit:"cover",position:"absolute"}}/> : <span style={{display:"grid",placeItems:"center",height:"100%",fontSize:12}}>No {index===0?"before":"after"} photo</span>}
+                    <span style={{position:"absolute",top:12,left:12,background:"#fff",color:"#222",padding:"5px 12px",fontSize:11,fontWeight:700}}>{index===0?"BEFORE":"AFTER"}</span>
+                  </div>)}
+                </div>
+                <div className="mdh-project-card-details"><div><span className="mdh-project-card-label">{project.location || "TRANSFORMATION"}</span><h3>{project.title}</h3>{project.summary && <p>{project.summary}</p>}</div><ArrowUpRight size={19}/></div>
+              </Link>;
+            })}
+          </div>
+        )}
       </section>
 
       <section className="mdh-projects-closing">
