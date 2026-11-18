@@ -28,7 +28,7 @@ export default async function EditProjectPage({ params }: Props) {
       .eq("project_id", id),
     db
       .from("project_media")
-      .select("id,media_type,storage_path,alt_text,caption")
+      .select("id,media_type,storage_path,alt_text,caption,phase")
       .eq("project_id", id)
       .order("display_order"),
   ]);
@@ -43,6 +43,7 @@ export default async function EditProjectPage({ params }: Props) {
     location: project.location ?? "",
     completion_date: project.completion_date ?? "",
     status: project.status,
+    project_type: project.project_type ?? "standard",
     featured: project.featured,
     display_order: project.display_order,
     categories: (categories ?? []).map((x) => x.category_id),
