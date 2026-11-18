@@ -132,7 +132,30 @@ export default async function ProjectDetailPage({
           </div>
         )}
 
-        {media.length > 0 && (
+        {project.project_type === "before_after" ? (
+          <div className="mdh-transformation-detail" style={{marginTop:"3rem"}}>
+            {(["before", "after"] as const).map((phase, index) => {
+              const items = media.filter(item => item.phase === phase);
+              return <section key={phase} style={{marginBottom:"4rem"}}>
+                <span className="mdh-projects-eyebrow">{index === 0 ? "01 / THE ORIGINAL SPACE" : "02 / THE COMPLETED SPACE"}</span>
+                <h2 style={{fontSize:"clamp(2rem,5vw,4rem)",margin:"0.75rem 0 2rem"}}>{phase === "before" ? "Before the transformation." : "After the transformation."}</h2>
+                <div className="mdh-project-detail-gallery">
+                  {items.map(item => {
+                    const url = getProjectMediaUrl(item.storage_path);
+                    if (!url) return null;
+                    return <figure key={item.id}>
+                      {item.media_type === "video" ? <video src={url} controls playsInline preload="metadata" /> : <img src={url} alt={item.alt_text ?? `${phase} — ${project.title}`} loading="lazy" />}
+                      {item.caption && <figcaption>{item.caption}</figcaption>}
+                    </figure>;
+                  })}
+                  {items.length === 0 && <p>No {phase} media has been published for this project yet.</p>}
+                </div>
+              </section>;
+            })}
+            {media.some(item => item.phase === "general") && <section><h2>Additional project details</h2><div className="mdh-project-detail-gallery">{media.filter(item => item.phase === "general").map(item => {const url=getProjectMediaUrl(item.storage_path);return url ? <figure key={item.id}>{item.media_type === "video" ? <video src={url} controls playsInline preload="metadata"/> : <img src={url} alt={item.alt_text ?? project.title} loading="lazy"/>}</figure> : null;})}</div></section>}
+          </div>
+        ) : (
+          media.length > 0 && (
           <div className="mdh-project-detail-gallery">
             {media.map((item) => {
               const url = getProjectMediaUrl(
@@ -171,6 +194,8 @@ export default async function ProjectDetailPage({
               );
             })}
           </div>
+        )}
+
         )}
       </article>
 
