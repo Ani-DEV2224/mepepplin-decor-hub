@@ -18,6 +18,7 @@ export default function GoogleReviewRecord() {
   const [activeTestimonial, setActiveTestimonial] = useState<number | null>(null);
   const [testimonialError, setTestimonialError] = useState(false);
   const testimonialRef = useRef<HTMLVideoElement>(null);
+  const [playbackMessage, setPlaybackMessage] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -40,7 +41,10 @@ export default function GoogleReviewRecord() {
   useEffect(() => {
     if (activeTestimonial === null) return;
     const player = testimonialRef.current;
-    if (player) void player.play().catch(() => {});
+    if (player) {
+      player.muted = true;
+      void player.play().catch(() => setPlaybackMessage("Tap play to start this video."));
+    }
   }, [activeTestimonial]);
 
   useEffect(() => {
@@ -92,18 +96,28 @@ export default function GoogleReviewRecord() {
             </p>
           )}
         </div>
-        <section style={{marginTop:"2rem"}} aria-label="Client video testimonials">
-          <span className="mdh-review-eyebrow">CLIENT STORIES / VIDEO TESTIMONIALS</span>
-          {TESTIMONIALS.length === 0 && <p role="status" style={{margin:"0.75rem 0 1.5rem",opacity:0.8}}>Our client testimonial videos are being prepared for publication.</p>}
-        </section>
         {TESTIMONIALS.length > 0 && (
           <section style={{marginTop:"2rem"}} aria-label="Client video testimonials">
             <span className="mdh-review-eyebrow">CLIENT STORIES / VIDEO TESTIMONIALS</span>
             <h3 style={{fontSize:"clamp(1.25rem,3vw,2rem)",margin:"0.75rem 0 1.25rem"}}>Real experiences. In their own words.</h3>
             <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(145px,1fr))",gap:"0.85rem"}}>
-              {TESTIMONIALS.map((url,index) => <button type="button" key={url} onClick={() => { setTestimonialError(false); setActiveTestimonial(index); }} style={{background:"#171717",color:"#fff",padding:"1.5rem 0.75rem",border:"1px solid #777",cursor:"pointer",minHeight:120}}><Play size={24} style={{margin:"0 auto 0.8rem"}}/><span>Client testimonial {String(index+1).padStart(2,"0")}</span></button>)}
+              {TESTIMONIALS.map((url,index) => (
+                <button type="button" key={url} onClick={() => {setTestimonialError(false);setPlaybackMessage("");setActiveTestimonial(index);videoRef.current?.pause();}} style={{background:"#171717",color:"#fff",padding:0,border:"1px solid #777",cursor:"pointer",overflow:"hidden",textAlign:"left"}}>
+                  <div style={{position:"relative",aspectRatio:"9/12",background:"#111"}}>
+                    <video src={url} muted autoPlay loop playsInline preload="metadata" aria-hidden="true" style={{width:"100%",height:"100%",objectFit:"cover",pointerEvents:"none"}} onError={(event) => {event.currentTarget.style.display="none";}} />
+                    <span style={{position:"absolute",inset:0,display:"grid",placeItems:"center",pointerEvents:"none"}}><Play size={34} fill="white" /></span>
+                  </div>
+                  <span style={{display:"block",padding:"0.85rem"}}>Client testimonial {String(index+1).padStart(2,"0")}</span>
+                </button>
+              ))}
             </div>
-            {activeTestimonial !== null && <div style={{marginTop:"1rem"}}><button type="button" onClick={() => setActiveTestimonial(null)} style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}><X size={18}/> Close video</button><video key={activeTestimonial} ref={testimonialRef} src={TESTIMONIALS[activeTestimonial]} onError={() => setTestimonialError(true)} onLoadedData={() => setTestimonialError(false)} controls autoPlay playsInline preload="metadata" style={{width:"100%",maxHeight:"65vh",background:"#000"}}/></div>}
+            {activeTestimonial !== null && <div style={{marginTop:"1rem"}}>
+              <button type="button" onClick={() => setActiveTestimonial(null)} style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}><X size={18}/> Close video</button>
+              <video key={activeTestimonial} ref={testimonialRef} src={TESTIMONIALS[activeTestimonial]} controls autoPlay muted playsInline preload="auto" onError={() => setTestimonialError(true)} onLoadedData={() => setTestimonialError(false)} style={{width:"100%",maxHeight:"65vh",background:"#000"}} />
+              {testimonialError && <p role="alert">Video could not load. Please check the uploaded file and its public Supabase URL.</p>}
+              {playbackMessage && <p role="status">{playbackMessage}</p>}
+              <p style={{fontSize:12,opacity:0.75,marginTop:8}}>Video starts muted for mobile browser compatibility. Tap the speaker control to hear the testimonial.</p>
+            </div>}
           </section>
         )}
         <p className="mdh-review-footnote">
