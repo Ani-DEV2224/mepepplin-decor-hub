@@ -35,6 +35,7 @@ type StoredMedia = {
   storage_path: string;
   alt_text: string | null;
   caption: string | null;
+  phase: "general" | "before" | "after";
 };
 
 type LocalMedia = {
@@ -74,6 +75,7 @@ const blank: ProjectInput = {
   featured: false,
   display_order: 0,
   categories: [],
+  project_type: "standard",
 };
 
 const allowedTypes = new Set([
@@ -148,6 +150,7 @@ export default function ProjectEditor({
     }))
   );
 
+  const [phases, setPhases] = useState<Record<string, "general" | "before" | "after">>(() => Object.fromEntries(initialMedia.map(item => [item.id, item.phase ?? "general"])));
   const [coverId, setCoverId] = useState<string | null>(
     initialMedia.find((item) => item.media_type === "image")?.id ??
       null
@@ -370,6 +373,7 @@ export default function ProjectEditor({
             media_type: uploaded.media_type,
             alt_text: form.title,
             caption: "",
+            phase: phases[item.id] ?? "general",
           }),
         }
       );
@@ -458,6 +462,7 @@ export default function ProjectEditor({
           body: JSON.stringify({
             orderedIds,
             coverId: savedCoverId,
+            phases: Object.fromEntries(media.map(item => [item.kind === "stored" ? item.id : registeredIds.get(item.id), phases[item.id] ?? "general"])),
           }),
         }
       );
@@ -591,6 +596,15 @@ export default function ProjectEditor({
             </div>
 
             <div className="atelier-fields">
+              <label className="atelier-field">
+                <span>Portfolio Section</span>
+                <select value={form.project_type} onChange={(event) => updateField("project_type", event.target.value as "standard" | "before_after")}>
+                  <option value="standard">Regular Projects</option>
+                  <option value="before_after">Before & After Transformations</option>
+                </select>
+                <small>Before & After projects appear in a dedicated public portfolio section.</small>
+              </label>
+
               <label className="atelier-field">
                 <span>Project Title *</span>
 
@@ -980,6 +994,16 @@ export default function ProjectEditor({
                         )}
                       </div>
 
+                      {form.project_type === "before_after" && (
+                        <label className="atelier-field" style={{padding:"0.5rem"}}>
+                          <span>Transformation Stage</span>
+                          <select value={phases[item.id] ?? "general"} onChange={(event) => setPhases(current => ({...current, [item.id]: event.target.value as "general" | "before" | "after"}))} disabled={busy}>
+                            <option value="general">General / Cover</option>
+                            <option value="before">Before</option>
+                            <option value="after">After</option>
+                          </select>
+                        </label>
+                      )}
                       <div className="atelier-media-controls">
                         {type === "image" && (
                           <button
