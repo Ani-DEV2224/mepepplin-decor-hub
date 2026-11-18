@@ -135,12 +135,12 @@ export default async function ProjectsPage() {
         ) : (
           <div className="mdh-projects-grid">
             {transformations.map(project => {
-              const before = project.project_media.find(item => item.phase === "before" && item.media_type === "image");
-              const after = project.project_media.find(item => item.phase === "after" && item.media_type === "image");
+              const before = project.project_media.find(item => item.phase === "before");
+              const after = project.project_media.find(item => item.phase === "after");
               return <Link key={project.id} href={`/projects/${project.slug}`} className="mdh-project-card">
                 <div className="mdh-project-card-media" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:2}}>
                   {([before,after] as const).map((item,index) => <div key={index} style={{position:"relative",minHeight:240,overflow:"hidden",background:"#e9e5e1"}}>
-                    {item ? <img src={getProjectMediaUrl(item.storage_path) ?? ""} alt={`${index===0?"Before":"After"} — ${project.title}`} style={{width:"100%",height:"100%",objectFit:"cover",position:"absolute"}}/> : <span style={{display:"grid",placeItems:"center",height:"100%",fontSize:12}}>No {index===0?"before":"after"} photo</span>}
+                    {item ? (item.media_type === "video" ? <video src={getProjectMediaUrl(item.storage_path) ?? ""} muted playsInline preload="metadata" style={{width:"100%",height:"100%",objectFit:"cover",position:"absolute"}}/> : <img src={getProjectMediaUrl(item.storage_path) ?? ""} alt={`${index===0?"Before":"After"} — ${project.title}`} style={{width:"100%",height:"100%",objectFit:"cover",position:"absolute"}}/>) : <span style={{display:"grid",placeItems:"center",height:"100%",fontSize:12}}>No {index===0?"before":"after"} photo</span>}
                     <span style={{position:"absolute",top:12,left:12,background:"#fff",color:"#222",padding:"5px 12px",fontSize:11,fontWeight:700}}>{index===0?"BEFORE":"AFTER"}</span>
                   </div>)}
                 </div>
