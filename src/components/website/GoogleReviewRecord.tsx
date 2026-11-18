@@ -90,6 +90,10 @@ export default function GoogleReviewRecord() {
             </p>
           )}
         </div>
+        <section style={{marginTop:"2rem"}} aria-label="Client video testimonials">
+          <span className="mdh-review-eyebrow">CLIENT STORIES / VIDEO TESTIMONIALS</span>
+          {TESTIMONIALS.length === 0 && <p role="status" style={{margin:"0.75rem 0 1.5rem",opacity:0.8}}>Our client testimonial videos are being prepared for publication.</p>}
+        </section>
         {TESTIMONIALS.length > 0 && (
           <section style={{marginTop:"2rem"}} aria-label="Client video testimonials">
             <span className="mdh-review-eyebrow">CLIENT STORIES / VIDEO TESTIMONIALS</span>
