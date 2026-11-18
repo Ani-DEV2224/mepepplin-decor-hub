@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Play, X } from "lucide-react";
 
+const STORAGE_BASE = `${process.env.NEXT_PUBLIC_SUPABASE_URL ?? "https://casgljuedpcafffwdpgi.supabase.co"}/storage/v1/object/public/meppeplin-projects/testimonials`;
 const TESTIMONIALS = [
-  process.env.NEXT_PUBLIC_TESTIMONIAL_VIDEO_1,
-  process.env.NEXT_PUBLIC_TESTIMONIAL_VIDEO_2,
-  process.env.NEXT_PUBLIC_TESTIMONIAL_VIDEO_3,
-].filter((url): url is string => Boolean(url));
+  `${STORAGE_BASE}/testimonial-01.mp4`,
+  `${STORAGE_BASE}/testimonial-02.mp4`,
+  `${STORAGE_BASE}/testimonial-03.mp4`,
+];
 
 const VIDEO_SRC = "https://media.githubusercontent.com/media/Ani-DEV2224/mepepplin-decor-hub/main/public/videos/Mepepplin-review-record.mp4";
 
@@ -15,6 +16,7 @@ export default function GoogleReviewRecord() {
   const [open, setOpen] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState<number | null>(null);
+  const [testimonialError, setTestimonialError] = useState(false);
   const testimonialRef = useRef<HTMLVideoElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -99,9 +101,9 @@ export default function GoogleReviewRecord() {
             <span className="mdh-review-eyebrow">CLIENT STORIES / VIDEO TESTIMONIALS</span>
             <h3 style={{fontSize:"clamp(1.25rem,3vw,2rem)",margin:"0.75rem 0 1.25rem"}}>Real experiences. In their own words.</h3>
             <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(145px,1fr))",gap:"0.85rem"}}>
-              {TESTIMONIALS.map((url,index) => <button type="button" key={url} onClick={() => setActiveTestimonial(index)} style={{background:"#171717",color:"#fff",padding:"1.5rem 0.75rem",border:"1px solid #777",cursor:"pointer",minHeight:120}}><Play size={24} style={{margin:"0 auto 0.8rem"}}/><span>Client testimonial {String(index+1).padStart(2,"0")}</span></button>)}
+              {TESTIMONIALS.map((url,index) => <button type="button" key={url} onClick={() => { setTestimonialError(false); setActiveTestimonial(index); }} style={{background:"#171717",color:"#fff",padding:"1.5rem 0.75rem",border:"1px solid #777",cursor:"pointer",minHeight:120}}><Play size={24} style={{margin:"0 auto 0.8rem"}}/><span>Client testimonial {String(index+1).padStart(2,"0")}</span></button>)}
             </div>
-            {activeTestimonial !== null && <div style={{marginTop:"1rem"}}><button type="button" onClick={() => setActiveTestimonial(null)} style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}><X size={18}/> Close video</button><video key={activeTestimonial} ref={testimonialRef} src={TESTIMONIALS[activeTestimonial]} controls autoPlay playsInline preload="metadata" style={{width:"100%",maxHeight:"65vh",background:"#000"}}/></div>}
+            {activeTestimonial !== null && <div style={{marginTop:"1rem"}}><button type="button" onClick={() => setActiveTestimonial(null)} style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}><X size={18}/> Close video</button><video key={activeTestimonial} ref={testimonialRef} src={TESTIMONIALS[activeTestimonial]} onError={() => setTestimonialError(true)} onLoadedData={() => setTestimonialError(false)} controls autoPlay playsInline preload="metadata" style={{width:"100%",maxHeight:"65vh",background:"#000"}}/></div>}
           </section>
         )}
         <p className="mdh-review-footnote">
