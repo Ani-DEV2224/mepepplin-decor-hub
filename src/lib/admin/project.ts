@@ -10,6 +10,7 @@ export const projectSchema = z.object({
     .union([z.string().regex(/^\d{4}-\d{2}-\d{2}$/), z.literal("")])
     .default(""),
   status: z.enum(["draft", "published"]),
+  project_type: z.enum(["standard", "before_after"]).default("standard"),
   featured: z.boolean().default(false),
   display_order: z.number().int().min(0).max(100000).default(0),
   categories: z.array(z.string().trim().min(1).max(80)).max(15).default([]),
