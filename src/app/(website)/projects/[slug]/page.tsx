@@ -60,6 +60,7 @@ export default async function ProjectDetailPage({
       alt_text: project.title,
       caption: null,
       display_order: -1,
+      phase: "general",
     });
   }
 
@@ -142,6 +143,7 @@ export default async function ProjectDetailPage({
 
               return (
                 <figure key={item.id}>
+                  {project.project_type === "before_after" && item.phase !== "general" && <figcaption style={{fontWeight:700,letterSpacing:"0.12em",padding:"0.75rem"}}>{item.phase.toUpperCase()}</figcaption>}
                   {item.media_type === "video" ? (
                     <video
                       src={url}
