@@ -19,7 +19,7 @@ import SelectedProjectsScene from "./SelectedProjectsScene";
 import ServicesScene from "./ServicesScene";
 import HeroControls from "./HeroControls";
 
-const SCENE_DURATION = 7000;
+const SCENE_DURATION = 8000;
 const TRANSITION_SECONDS = 0.85;
 const SCENE_COUNT = 3;
 
