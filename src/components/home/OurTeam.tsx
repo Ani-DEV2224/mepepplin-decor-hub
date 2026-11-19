@@ -4,14 +4,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import {
-  AnimatePresence,
   motion,
   useReducedMotion,
 } from "framer-motion";
 import {
   ArrowUpRight,
-  ArrowRight,
-  ArrowLeft,
 } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -72,14 +69,11 @@ const workforce = [
 ];
 
 export default function OurTeam() {
-  const [selected, setSelected] = useState(0);
-
   const [imageErrors, setImageErrors] = useState<
     Record<string, boolean>
   >({});
 
   const reduced = useReducedMotion() === true;
-  const active = members[selected];
 
   const reveal = reduced
     ? {}
@@ -95,14 +89,6 @@ export default function OurTeam() {
           ease,
         },
       };
-
-  const change = (direction: number) => {
-    setSelected(
-      (current) =>
-        (current + direction + members.length) %
-        members.length
-    );
-  };
 
   const portrait = (
     person: TeamMember,
@@ -257,115 +243,24 @@ export default function OurTeam() {
           </p>
         </motion.div>
 
-        <div className="mdh-people-directory">
-
-          {/* INTERACTIVE TEAM LIST */}
-
-          <div className="mdh-people-list">
-            {members.map((member, index) => (
-              <button
-                key={member.number}
-                type="button"
-                className={`mdh-people-list-item ${
-                  selected === index
-                    ? "is-active"
-                    : ""
-                }`}
-                onClick={() => setSelected(index)}
-                aria-pressed={selected === index}
-              >
-                <span className="mdh-people-list-number">
-                  {member.number}
-                </span>
-
-                <span className="mdh-people-list-content">
-                  <strong>{member.name}</strong>
-                  <small>{member.role}</small>
-                </span>
-
-                <ArrowUpRight
-                  size={21}
-                  strokeWidth={1.4}
-                />
-              </button>
-            ))}
-          </div>
-
-          {/* FEATURED MEMBER */}
-
-          <div className="mdh-people-feature">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.number}
-                className="mdh-people-feature-inner"
-                initial={
-                  reduced
-                    ? { opacity: 1 }
-                    : { opacity: 0, y: 22 }
-                }
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  y: -15,
-                }}
-                transition={{
-                  duration: reduced ? 0 : 0.35,
-                  ease,
-                }}
-              >
-                <div className="mdh-people-feature-top">
-                  <span>
-                    THE COLLECTIVE / {active.number}
-                  </span>
-
-                  <span>
-                    {selected + 1} OF {members.length}
-                  </span>
-                </div>
-
-                {portrait(
-                  active,
-                  "mdh-people-feature-portrait"
-                )}
-
-                <div className="mdh-people-feature-info">
-                  <span>MEET THE TEAM</span>
-                  <h4>{active.name}</h4>
-                  <p>{active.role}</p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="mdh-people-feature-controls">
-              <button
-                type="button"
-                onClick={() => change(-1)}
-                aria-label="Previous team member"
-              >
-                <ArrowLeft size={20} />
-              </button>
-
-              <span>
-                {String(selected + 1).padStart(2, "0")}
-                {" / "}
-                {String(members.length).padStart(
-                  2,
-                  "0"
-                )}
-              </span>
-
-              <button
-                type="button"
-                onClick={() => change(1)}
-                aria-label="Next team member"
-              >
-                <ArrowRight size={20} />
-              </button>
-            </div>
-          </div>
+        <div className="mdh-people-team-grid" aria-label="Meet all our team members">
+          {members.map((member, index) => (
+            <motion.article
+              key={member.number}
+              className="mdh-people-team-card"
+              {...reveal}
+            >
+              <div className="mdh-people-team-card-image">
+                {portrait(member, "mdh-people-team-portrait")}
+                <span className="mdh-people-team-card-number">{member.number}</span>
+              </div>
+              <div className="mdh-people-team-card-info">
+                <span>MEPPEPLIN / TEAM MEMBER {String(index + 1).padStart(2, "0")}</span>
+                <h4>{member.name}</h4>
+                <p>{member.role}</p>
+              </div>
+            </motion.article>
+          ))}
         </div>
 
         {/* WORKFORCE */}
