@@ -1,0 +1,15 @@
+/* Fixed Meppeplin identity: electric yellow / ivory / violet / black */
+.studio-theme-root, .studio-theme-root[data-studio-theme] {--studio-paper:#FFFFF0;--studio-ink:#111111;--studio-muted:#474149;--studio-line:rgba(17,17,17,.18);--studio-accent:#5B2488;--studio-surface:#F6F2E6;--studio-surface-raised:#FFFFF0;--studio-accent-soft:#F8F517;--studio-contact-bg:#111111;--studio-contact-ink:#FFFFF0;--mdh-home-bg:#FFFFF0;--mdh-home-panel:#F6F2E6;--mdh-home-field:#FFFFF0;--mdh-home-ink:#111111;--mdh-home-muted:#474149;--mdh-home-accent:#5B2488;--mdh-home-accent-ink:#FFFFF0;--mdh-home-line:rgba(17,17,17,.18);font-family:Futura,"Century Gothic","Avenir Next",Arial,sans-serif;background:#FFFFF0;color:#111111;}
+.studio-theme-root .studio-site {font-family:Futura,"Century Gothic","Avenir Next",Arial,sans-serif;}
+.studio-theme-root h1,.studio-theme-root h2,.studio-theme-root h3,.studio-theme-root h4,.studio-theme-root .mdh-expertise-title,.studio-theme-root .mdh-expertise-row-name,.studio-theme-root .mdh-expertise-panel-content h3 {font-family:Futura,"Century Gothic","Avenir Next",Arial,sans-serif;font-weight:600;letter-spacing:-.045em;}
+.studio-theme-root .mdh-expertise-title{font-size:clamp(3.4rem,8vw,8rem);line-height:1.03;}
+.studio-theme-root .mdh-expertise-row-name{font-size:clamp(1.45rem,2.6vw,2.8rem);}
+.studio-theme-root .mdh-expertise-panel-content h3{font-size:clamp(2.5rem,4.4vw,4.9rem);line-height:1.06;}
+.studio-theme-root .mdh-expertise-includes li{font-size:clamp(.88rem,1.15vw,1.03rem);line-height:1.6;}
+.studio-theme-root .mdh-expertise-row.is-active{background:#F8F517;color:#111111;}
+.studio-theme-root .mdh-expertise-row:hover{background:#F8F517;color:#111111;}
+.studio-theme-root .mdh-expertise-panel{background:#F6F2E6;border-color:rgba(91,36,136,.25);}
+.studio-theme-root .mdh-expertise-kicker,.studio-theme-root .mdh-expertise-panel-index,.studio-theme-root .mdh-expertise-row-number,.studio-theme-root .mdh-expertise-includes-heading{color:#5B2488;}
+.studio-theme-root .mdh-expertise-rule{background:#F8F517;height:3px;}
+.studio-theme-root a:focus-visible,.studio-theme-root button:focus-visible{outline:3px solid #5B2488;outline-offset:3px;}
+@media(max-width:700px){.studio-theme-root .mdh-expertise-title{font-size:clamp(3rem,12vw,5rem)}.studio-theme-root .mdh-expertise-row-name{font-size:clamp(1.3rem,6vw,2rem)}}
