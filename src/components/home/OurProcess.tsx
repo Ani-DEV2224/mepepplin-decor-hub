@@ -1,15 +1,13 @@
 
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AnimatePresence,
   motion,
   useReducedMotion,
 } from "framer-motion";
 import {
-  ArrowLeft,
-  ArrowRight,
   ArrowUpRight,
 } from "lucide-react";
 import Link from "next/link";
@@ -93,6 +91,14 @@ export default function OurProcess() {
 
   const reducedMotion = useReducedMotion() === true;
   const active = stages[activeIndex];
+
+  useEffect(() => {
+    if (reducedMotion) return;
+    const timer = window.setInterval(() => {
+      if (!document.hidden) setActiveIndex(current => (current + 1) % stages.length);
+    }, 8000);
+    return () => window.clearInterval(timer);
+  }, [reducedMotion]);
 
   const goTo = (index: number) => {
     setActiveIndex(
@@ -349,33 +355,6 @@ export default function OurProcess() {
                 <span>04</span>
               </div>
 
-              <div className="mdh-process-control-buttons">
-                <button
-                  type="button"
-                  onClick={() => goTo(activeIndex - 1)}
-                  disabled={activeIndex === 0}
-                  aria-label="Previous process stage"
-                >
-                  <ArrowLeft
-                    size={21}
-                    strokeWidth={1.4}
-                  />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => goTo(activeIndex + 1)}
-                  disabled={
-                    activeIndex === stages.length - 1
-                  }
-                  aria-label="Next process stage"
-                >
-                  <ArrowRight
-                    size={21}
-                    strokeWidth={1.4}
-                  />
-                </button>
-              </div>
             </div>
           </div>
         </div>
