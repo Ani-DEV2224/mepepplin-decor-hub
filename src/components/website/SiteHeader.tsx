@@ -21,7 +21,7 @@ import {
   useState,
 } from "react";
 
-import StudioThemeSwitcher from "./StudioThemeSwitcher";
+import { serviceCategories } from "@/lib/site-navigation";
 
 const mainLinks = [
   { label: "Home", href: "/" },
