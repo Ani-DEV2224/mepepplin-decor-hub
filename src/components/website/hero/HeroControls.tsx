@@ -2,8 +2,6 @@
 "use client";
 
 import {
-  ArrowLeft,
-  ArrowRight,
   Pause,
   Play,
 } from "lucide-react";
@@ -71,22 +69,6 @@ export default function HeroControls({
       </div>
 
       <div className="mh-control-actions">
-        <button
-          type="button"
-          onClick={onPrevious}
-          aria-label="Previous scene"
-        >
-          <ArrowLeft size={18} />
-        </button>
-
-        <button
-          type="button"
-          onClick={onNext}
-          aria-label="Next scene"
-        >
-          <ArrowRight size={18} />
-        </button>
-
         {!reducedMotion && (
           <button
             type="button"
