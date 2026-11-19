@@ -19,15 +19,6 @@ import { gsap, useGSAP } from "@/lib/gsap";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const categoryDescriptions = [
-  "Refining everyday spaces through considered décor, fittings, finishes and practical home enhancements.",
-  "Architectural detailing and construction finishes that bring strength, structure and character to a space.",
-  "Transforming exterior areas into considered environments for relaxation, gathering and everyday living.",
-  "Purposeful water environments designed to add atmosphere, movement and distinction to a property.",
-  "Technical systems, supply and installation solutions integrated carefully into the wider environment.",
-  "Supporting properties and projects through supervision, management, maintenance and property services.",
-];
-
 const pad = (value: number) => String(value).padStart(2, "0");
 
 export default function ServicesExplorer() {
@@ -357,7 +348,7 @@ export default function ServicesExplorer() {
                   <h3>{activeCategory.title}</h3>
 
                   <p>
-                    {categoryDescriptions[activeIndex] ??
+                    {activeCategory.description ??
                       "Explore the services available in this category."}
                   </p>
 
