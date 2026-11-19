@@ -30,7 +30,7 @@ const stages: ProcessStage[] = [
     accent: "Consultation.",
     description:
       "Every remarkable space begins with a conversation. We take the time to understand your vision, the character of your space, your priorities, and what you want to achieve.",
-    image: "/images/process/discovery.jpg",
+    image: "/images/process/discovery.png",
     details: [
       "Client consultation",
       "Project requirements",
