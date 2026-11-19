@@ -31,85 +31,7 @@ const mainLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-const expertiseGroups = [
-  {
-    id: "property-maintenance",
-    title: "Property Improvements & Maintenance",
-    services: [
-      "Property Improvements",
-      "General Property Maintenance",
-      "Fungus Treatment",
-      "Damp Treatment",
-      "Building Restoration",
-      "Property Renovations",
-    ],
-  },
-  {
-    id: "property-transactions",
-    title: "Property Lease, Buying & Selling",
-    services: [
-      "Property Leasing",
-      "Property Buying",
-      "Property Selling",
-    ],
-  },
-  {
-    id: "procurement-installation",
-    title: "Procurement & Installation Services",
-    services: [
-      "Materials Procurement",
-      "Building Materials Supply",
-      "Fixtures Procurement",
-      "Equipment Installation",
-      "Fittings Installation",
-    ],
-  },
-  {
-    id: "interior-decor",
-    title: "Interior Décor & Enhancements",
-    services: [
-      "Interior Decoration",
-      "Wallpaper Installation",
-      "Creative Wall Painting",
-      "3D Wall Panels",
-      "Curtains & Blinds",
-      "Cabinetry & Woodwork",
-      "Epoxy Finishes",
-    ],
-  },
-  {
-    id: "construction-finishes",
-    title: "Construction & Architectural Finishes",
-    services: [
-      "Construction Works",
-      "POP Ceiling Installation",
-      "Tiling Works",
-      "HDF & Customized Doors",
-      "Stone & Brick Finishes",
-      "Stamped Concrete",
-      "Interlocking Paving",
-    ],
-  },
-  {
-    id: "outdoor-landscaping",
-    title: "Outdoor Living & Landscaping",
-    services: [
-      "Landscaping",
-      "Horticulture",
-      "Pergolas",
-      "Thatch Huts",
-      "Barbecue Installations",
-    ],
-  },
-  {
-    id: "pools-water-features",
-    title: "Pools & Water Features",
-    services: [
-      "Swimming Pools",
-      "Fountains",
-    ],
-  },
-] as const;
+const expertiseGroups = serviceCategories;
 
 const totalServices = expertiseGroups.reduce(
   (total, group) => total + group.services.length,
@@ -281,14 +203,7 @@ export default function SiteHeader() {
           </Link>
 
           <div className="mdh-header-right">
-            <div className="mdh-header-theme">
-              <StudioThemeSwitcher />
-            </div>
 
-            <span
-              className="mdh-header-divider"
-              aria-hidden="true"
-            />
 
             <button
               ref={triggerRef}
