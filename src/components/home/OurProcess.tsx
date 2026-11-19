@@ -72,7 +72,7 @@ const stages: ProcessStage[] = [
     accent: "Handover.",
     description:
       "The final details come together. We focus on finishing, reviewing the completed work, and preparing the space for its next chapter.",
-    image: "/images/process/completion.jpg",
+    image: "/images/process/completion.png",
     details: [
       "Finishing details",
       "Final inspection",
