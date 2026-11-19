@@ -47,6 +47,12 @@ const fallbackImages = [
   "/images/home/hero-section-image-4.jpeg",
 ];
 
+const mobilePositions = [
+  { x: 5, y: 8, r: -4 }, { x: 37, y: 8, r: 3 }, { x: 69, y: 8, r: -2 },
+  { x: 5, y: 36, r: 2 }, { x: 37, y: 36, r: -3 }, { x: 69, y: 36, r: 4 },
+  { x: 5, y: 64, r: -2 }, { x: 37, y: 64, r: 3 }, { x: 69, y: 64, r: -3 },
+];
+
 const positions = [
   { x: 3, y: 15, w: 17, h: 26, r: -5 },
   { x: 23, y: 5, w: 18, h: 23, r: 4 },
@@ -84,6 +90,15 @@ export default function SelectedProjectsScene({
     media.map((_, index) => index)
   );
   const [paused, setPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 700px)");
+    const update = () => setIsMobile(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     if (!active || paused || reducedMotion) return;
@@ -125,6 +140,7 @@ export default function SelectedProjectsScene({
       <div className="mh-collage-canvas">
         {media.map((item, index) => {
           const position = positions[arrangement[index]];
+          const mobilePosition = mobilePositions[arrangement[index]];
 
           return (
             <motion.div
@@ -132,11 +148,11 @@ export default function SelectedProjectsScene({
               className="mh-collage-tile"
               initial={false}
               animate={{
-                left: `${position.x}%`,
-                top: `${position.y}%`,
-                width: `${position.w}%`,
-                height: `${position.h}%`,
-                rotate: position.r,
+                left: `${isMobile ? mobilePosition.x : position.x}%`,
+                top: `${isMobile ? mobilePosition.y : position.y}%`,
+                width: isMobile ? "27vw" : `${position.w}%`,
+                height: isMobile ? "27vw" : `${position.h}%`,
+                rotate: isMobile ? mobilePosition.r : position.r,
               }}
               transition={{
                 duration: reducedMotion ? 0 : 1.15,
