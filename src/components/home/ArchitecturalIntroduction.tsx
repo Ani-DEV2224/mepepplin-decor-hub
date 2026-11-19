@@ -168,7 +168,10 @@ export default function ArchitecturalIntroduction() {
             className="mdh-intro-section-label"
             initial={reducedMotion ? false : { opacity: 0, x: -20 }}
             animate={inView ? { opacity: 1, x: 0 } : undefined}
-            transition={{ duration: reducedMotion ? 0 : 0.8, ease }}
+            transition={{
+              duration: reducedMotion ? 0 : 0.8,
+              ease,
+            }}
           >
             <span className="mdh-intro-label-line" />
             <span>01 / OUR PHILOSOPHY</span>
@@ -185,7 +188,10 @@ export default function ArchitecturalIntroduction() {
               className="mdh-intro-overline"
               initial={reducedMotion ? false : { opacity: 0, y: 18 }}
               animate={inView ? { opacity: 1, y: 0 } : undefined}
-              transition={{ duration: reducedMotion ? 0 : 0.8, delay: 0.1 }}
+              transition={{
+                duration: reducedMotion ? 0 : 0.8,
+                delay: 0.1,
+              }}
             >
               AN APPROACH ROOTED IN PURPOSE
             </motion.p>
@@ -254,9 +260,15 @@ export default function ArchitecturalIntroduction() {
             initial={reducedMotion ? false : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: reducedMotion ? 0 : 0.9, ease }}
+            transition={{
+              duration: reducedMotion ? 0 : 0.9,
+              ease,
+            }}
           >
-            <span className="mdh-intro-small-index">THE MEPPEPLIN PERSPECTIVE</span>
+            <span className="mdh-intro-small-index">
+              THE MEPPEPLIN PERSPECTIVE
+            </span>
+
             <p>
               We believe exceptional spaces are not simply seen.
               They are experienced, remembered, and lived in.
@@ -270,7 +282,10 @@ export default function ArchitecturalIntroduction() {
               ref={mainImageRef}
               className="mdh-intro-main-image"
               initial={false}
-              style={{ opacity: 1, clipPath: "inset(0 0 0 0)" }}
+              style={{
+                opacity: 1,
+                clipPath: "inset(0 0 0 0)",
+              }}
             >
               <div
                 ref={mainImageInnerRef}
@@ -278,7 +293,7 @@ export default function ArchitecturalIntroduction() {
               >
                 {!mainImageFailed ? (
                   <Image
-                    src="/images/introduction/introduction-main.jpg"
+                    src="/images/introduction/introduction-main.png"
                     alt="Contemporary interior with refined architectural design"
                     fill
                     sizes="(max-width: 900px) 100vw, 55vw"
@@ -302,7 +317,10 @@ export default function ArchitecturalIntroduction() {
               </div>
             </motion.div>
 
-            <div ref={detailImageRef} className="mdh-intro-detail-position">
+            <div
+              ref={detailImageRef}
+              className="mdh-intro-detail-position"
+            >
               <motion.div
                 className="mdh-intro-detail-image"
                 initial={
@@ -325,6 +343,7 @@ export default function ArchitecturalIntroduction() {
                   className="mdh-intro-image"
                 />
               </motion.div>
+
               <span className="mdh-intro-detail-caption">
                 BEAUTY IN THE DETAILS
               </span>
@@ -368,9 +387,17 @@ export default function ArchitecturalIntroduction() {
               </p>
 
               <Magnetic strength={0.15}>
-                <Link href="/about" className="mdh-intro-story-link">
-                  <span data-magnetic-inner>DISCOVER OUR STUDIO</span>
-                  <ArrowUpRight size={18} strokeWidth={1.4} />
+                <Link
+                  href="/about"
+                  className="mdh-intro-story-link"
+                >
+                  <span data-magnetic-inner>
+                    DISCOVER OUR STUDIO
+                  </span>
+                  <ArrowUpRight
+                    size={18}
+                    strokeWidth={1.4}
+                  />
                 </Link>
               </Magnetic>
             </motion.div>
@@ -404,6 +431,7 @@ export default function ArchitecturalIntroduction() {
             <span className="mdh-intro-small-index">
               OUR DESIGN PRINCIPLES
             </span>
+
             <p>Considered in every detail.</p>
           </div>
 
@@ -412,7 +440,11 @@ export default function ArchitecturalIntroduction() {
               <motion.div
                 key={principle.number}
                 className="mdh-intro-principle"
-                initial={reducedMotion ? false : { opacity: 0, y: 25 }}
+                initial={
+                  reducedMotion
+                    ? false
+                    : { opacity: 0, y: 25 }
+                }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{
@@ -424,6 +456,7 @@ export default function ArchitecturalIntroduction() {
                 <span className="mdh-intro-principle-number">
                   {principle.number}
                 </span>
+
                 <h4>{principle.title}</h4>
                 <p>{principle.text}</p>
               </motion.div>
@@ -431,11 +464,18 @@ export default function ArchitecturalIntroduction() {
           </div>
         </div>
 
-        <div ref={closingRef} className="mdh-intro-closing">
+        <div
+          ref={closingRef}
+          className="mdh-intro-closing"
+        >
           <span>PHILOSOPHY INTO PRACTICE</span>
+
           <a href="#services-explorer">
             02 / EXPLORE OUR EXPERTISE
-            <ArrowDownRight size={16} strokeWidth={1.4} />
+            <ArrowDownRight
+              size={16}
+              strokeWidth={1.4}
+            />
           </a>
         </div>
       </div>
