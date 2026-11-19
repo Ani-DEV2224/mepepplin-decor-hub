@@ -291,7 +291,7 @@ export default function ArchitecturalIntroduction() {
                     className="absolute inset-0 flex items-center justify-center bg-[var(--studio-surface,#eae3d8)] px-6 text-center text-sm text-[var(--studio-ink,#332b27)]"
                   >
                     Main photograph unavailable. Check
-                    public/images/introduction/introduction-main.jpg
+                    public/images/introduction/introduction-main.png
                   </div>
                 )}
               </div>
