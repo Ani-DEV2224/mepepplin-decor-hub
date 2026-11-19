@@ -6,14 +6,24 @@
 .studio-theme-root .mdh-expertise-row-name{font-size:clamp(1.45rem,2.6vw,2.8rem);}
 .studio-theme-root .mdh-expertise-panel-content h3{font-size:clamp(2.5rem,4.4vw,4.9rem);line-height:1.06;}
 .studio-theme-root .mdh-expertise-includes li{font-size:clamp(.88rem,1.15vw,1.03rem);line-height:1.6;}
-.studio-theme-root .mdh-expertise-row.is-active{background:#F8F517;color:#111111;}
-.studio-theme-root .mdh-expertise-row:hover{background:#F8F517;color:#111111;}
+.studio-theme-root .mdh-expertise-row.is-active{background:#F1EBF5;color:#111111;border-left:3px solid #5B2488;}
+.studio-theme-root .mdh-expertise-row:hover{background:#F6F2E6;color:#111111;}
 .studio-theme-root .mdh-expertise-panel{background:#F6F2E6;border-color:rgba(91,36,136,.25);}
 .studio-theme-root .mdh-expertise-kicker,.studio-theme-root .mdh-expertise-panel-index,.studio-theme-root .mdh-expertise-row-number,.studio-theme-root .mdh-expertise-includes-heading{color:#5B2488;}
-.studio-theme-root .mdh-expertise-rule{background:#F8F517;height:3px;}
+.studio-theme-root .mdh-expertise-rule{background:#5B2488;height:2px;}
 .studio-theme-root a:focus-visible,.studio-theme-root button:focus-visible{outline:3px solid #5B2488;outline-offset:3px;}
 @media(max-width:700px){.studio-theme-root .mdh-expertise-title{font-size:clamp(3rem,12vw,5rem)}.studio-theme-root .mdh-expertise-row-name{font-size:clamp(1.3rem,6vw,2rem)}}
 
 /* Futura is the sole requested font family across the public website. */
 .studio-theme-root,.studio-theme-root *,.studio-theme-root *::before,.studio-theme-root *::after {font-family:Futura !important;}
 @media(max-width:700px){.studio-theme-root .mh-collage-tile{aspect-ratio:1 / 1;}.studio-theme-root .mh-collage-heading{top:39%;}.studio-theme-root .mh-collage-heading h2{font-size:clamp(2.2rem,9vw,3.8rem);}}
+
+/* Refined yellow placement: restrained editorial accents, not large interactive surfaces. */
+.studio-theme-root .mdh-people-team-card-number{background:#FFFFF0;color:#5B2488;border:1px solid rgba(91,36,136,.35);}
+.studio-theme-root .mdh-people-team-card{border-color:rgba(17,17,17,.12);}
+.studio-theme-root .mdh-people-team-card:hover{border-color:#5B2488;}
+.studio-theme-root .mdh-people-eyebrow .mdh-people-line{background:#5B2488;}
+.studio-theme-root .mdh-people-contact:hover{color:#5B2488;}
+/* Electric yellow works best as a small signature accent on dark surfaces. */
+.studio-theme-root .mdh-people-workforce-symbol{color:#F8F517;}
+.studio-theme-root .mdh-people-workforce-list li>span{color:#F8F517;}
