@@ -24,69 +24,12 @@ const ThemeContext =
 
 const STORAGE_KEY = "mepepplin-studio-theme";
 
-const palette: Record<
-  StudioTheme,
-  Record<string, string>
-> = {
+const palette: Record<StudioTheme, Record<string,string>> = {
   ivory: {
-    "--studio-paper": "#F4F0E8",
-    "--studio-ink": "#332B27",
-    "--studio-muted": "#786E64",
-    "--studio-line": "rgba(51,43,39,.18)",
-    "--studio-accent": "#A78C69",
-    "--studio-surface": "#EAE3D8",
-    "--studio-surface-raised": "#FAF7F1",
-    "--studio-accent-soft": "#D9CCB8",
-
-    "--mdh-home-bg": "#F0E9DF",
-    "--mdh-home-panel": "#E7DED1",
-    "--mdh-home-field": "#FAF6EF",
-    "--mdh-home-ink": "#292722",
-    "--mdh-home-muted": "#68645D",
-    "--mdh-home-accent": "#967A55",
-    "--mdh-home-accent-ink": "#FFFFFF",
-    "--mdh-home-line": "rgba(41,39,34,.20)",
+    "--studio-paper":"#FFFFF0", "--studio-ink":"#111111", "--studio-muted":"#474149", "--studio-line":"rgba(17,17,17,.18)", "--studio-accent":"#5B2488", "--studio-surface":"#F6F2E6", "--studio-surface-raised":"#FFFFF0", "--studio-accent-soft":"#F8F517",
+    "--mdh-home-bg":"#FFFFF0", "--mdh-home-panel":"#F6F2E6", "--mdh-home-field":"#FFFFF0", "--mdh-home-ink":"#111111", "--mdh-home-muted":"#474149", "--mdh-home-accent":"#5B2488", "--mdh-home-accent-ink":"#FFFFF0", "--mdh-home-line":"rgba(17,17,17,.18)"
   },
-
-  stone: {
-    "--studio-paper": "#D9CEBE",
-    "--studio-ink": "#352B24",
-    "--studio-muted": "#6E6054",
-    "--studio-line": "rgba(53,43,36,.20)",
-    "--studio-accent": "#A98D71",
-    "--studio-surface": "#CFC0AD",
-    "--studio-surface-raised": "#F0E8DC",
-    "--studio-accent-soft": "#BCA58C",
-
-    "--mdh-home-bg": "#D9CEBE",
-    "--mdh-home-panel": "#CFC0AD",
-    "--mdh-home-field": "#F0E8DC",
-    "--mdh-home-ink": "#352B24",
-    "--mdh-home-muted": "#6E6054",
-    "--mdh-home-accent": "#927354",
-    "--mdh-home-accent-ink": "#FFFFFF",
-    "--mdh-home-line": "rgba(53,43,36,.22)",
-  },
-
-  night: {
-    "--studio-paper": "#141414",
-    "--studio-ink": "#EDE7DE",
-    "--studio-muted": "#AFA79B",
-    "--studio-line": "rgba(237,231,222,.20)",
-    "--studio-accent": "#C2A77D",
-    "--studio-surface": "#262523",
-    "--studio-surface-raised": "#302E2A",
-    "--studio-accent-soft": "#665744",
-
-    "--mdh-home-bg": "#191C19",
-    "--mdh-home-panel": "#262B26",
-    "--mdh-home-field": "#1D231E",
-    "--mdh-home-ink": "#F5F1E9",
-    "--mdh-home-muted": "#B9BCB2",
-    "--mdh-home-accent": "#C9B99B",
-    "--mdh-home-accent-ink": "#191C19",
-    "--mdh-home-line": "rgba(255,255,255,.17)",
-  },
+  stone: {}, night: {}
 };
 
 function isTheme(
@@ -104,58 +47,8 @@ export function StudioThemeProvider({
 }: {
   children: ReactNode;
 }) {
-  const [theme, updateTheme] =
-    useState<StudioTheme>("ivory");
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-
-      if (isTheme(stored)) {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        updateTheme(stored);
-        return;
-      }
-    } catch {
-      // Local storage may be unavailable.
-    }
-
-    if (
-      window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches
-    ) {
-      updateTheme("night");
-    }
-  }, []);
-
-  useEffect(() => {
-    // Compatibility with older CSS using
-    // :root[data-theme="light" | "dark"].
-    document.documentElement.dataset.theme =
-      theme === "night" ? "dark" : "light";
-
-    document.documentElement.dataset.studioTheme =
-      theme;
-
-    return () => {
-      delete document.documentElement.dataset.theme;
-      delete document.documentElement.dataset.studioTheme;
-    };
-  }, [theme]);
-
-  const setTheme = useCallback(
-    (next: StudioTheme) => {
-      updateTheme(next);
-
-      try {
-        localStorage.setItem(STORAGE_KEY, next);
-      } catch {
-        // Theme remains active in React state.
-      }
-    },
-    []
-  );
+  const theme: StudioTheme = "ivory";
+  const setTheme = useCallback((_next: StudioTheme) => {}, []);
 
   const value = useMemo(
     () => ({ theme, setTheme }),
