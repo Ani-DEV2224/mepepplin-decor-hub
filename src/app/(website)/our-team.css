@@ -755,3 +755,18 @@
     transition: none !important;
   }
 }
+
+/* All team members visible at once: no carousel or navigation arrows. */
+.mdh-people-team-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.2vw,32px);padding:30px 0 45px;border-top:1px solid var(--people-line);border-bottom:1px solid var(--people-line)}
+.mdh-people-team-card{min-width:0;overflow:hidden;background:var(--people-paper);border:1px solid var(--people-line);transition:transform .3s ease,box-shadow .3s ease}
+.mdh-people-team-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(17,17,17,.09)}
+.mdh-people-team-card-image{position:relative;aspect-ratio:4/5;background:#ece7de;overflow:hidden}
+.mdh-people-team-portrait,.mdh-people-team-portrait img{display:block;width:100%;height:100%}
+.mdh-people-team-portrait img{object-fit:contain;object-position:center bottom}
+.mdh-people-team-card-number{position:absolute;top:16px;left:16px;z-index:1;padding:8px 11px;background:#F8F517;color:#111;font-size:12px;font-weight:700}
+.mdh-people-team-card-info{padding:clamp(18px,2.2vw,30px);min-height:155px}
+.mdh-people-team-card-info>span{font-size:10px;letter-spacing:.12em;color:#5B2488}
+.mdh-people-team-card-info h4{font-family:Futura;font-size:clamp(24px,2.5vw,37px);font-weight:600;letter-spacing:-.04em;line-height:1.1;margin:16px 0 10px}
+.mdh-people-team-card-info p{font-size:clamp(12px,1.1vw,15px);line-height:1.5;color:var(--people-muted);margin:0}
+@media(max-width:900px){.mdh-people-team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.mdh-people-team-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:18px 0 28px}.mdh-people-team-card-info{padding:13px;min-height:145px}.mdh-people-team-card-info h4{font-size:clamp(18px,5vw,25px);margin:10px 0 7px}.mdh-people-team-card-info>span{font-size:8px}.mdh-people-team-card-info p{font-size:11px}.mdh-people-team-card-number{top:9px;left:9px;padding:5px 8px;font-size:10px}}
