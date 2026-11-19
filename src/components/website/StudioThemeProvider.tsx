@@ -64,7 +64,7 @@ export function StudioThemeProvider({
           {
             ...palette[theme],
             colorScheme:
-              theme === "night" ? "dark" : "light",
+              "light",
           } as CSSProperties
         }
       >
