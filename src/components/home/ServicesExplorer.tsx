@@ -1,428 +1,125 @@
-
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-} from "framer-motion";
-import {
-  ArrowUpRight,
-} from "lucide-react";
-
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight, MoveUpRight } from "lucide-react";
 import { serviceCategories } from "@/lib/site-navigation";
-import { gsap, useGSAP } from "@/lib/gsap";
 
-const ease = [0.22, 1, 0.36, 1] as const;
+const imagery: Record<string, string> = {
+  "property-maintenance": "/images/expertise/property-maintenance.jpg",
+  "property-transactions": "/images/expertise/property-real-estate.jpg",
+  "procurement-installation": "/images/expertise/procurement-installation.png",
+  "interior-decor": "/images/expertise/interior-decor.jpg",
+  "construction-finishes": "/images/expertise/construction-finishes.jpg",
+  "outdoor-landscaping": "/images/expertise/outdoor-landscaping.jpg",
+  "pools-water-features": "/images/expertise/pools-water-features.jpg",
+};
 
-const pad = (value: number) => String(value).padStart(2, "0");
+const number = (value: number) => String(value).padStart(2, "0");
 
 export default function ServicesExplorer() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const visualRef = useRef<HTMLDivElement>(null);
-
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const reducedMotion = Boolean(useReducedMotion());
-
-  const count = serviceCategories.length;
-  const activeCategory = serviceCategories[activeIndex];
+  const selected = serviceCategories[active];
 
   useEffect(() => {
-    if (reducedMotion || count < 2) return;
+    if (reducedMotion || paused || serviceCategories.length < 2) return;
     const timer = window.setInterval(() => {
-      if (!document.hidden) {
-        setDirection(1);
-        setActiveIndex(current => (current + 1) % count);
-      }
+      if (!document.hidden) setActive((current) => (current + 1) % serviceCategories.length);
     }, 8000);
     return () => window.clearInterval(timer);
-  }, [count, reducedMotion]);
-
-  const selectCategory = useCallback(
-    (index: number) => {
-      if (
-        index === activeIndex ||
-        index < 0 ||
-        index >= count
-      ) {
-        return;
-      }
-
-      setDirection(index > activeIndex ? 1 : -1);
-      setActiveIndex(index);
-    },
-    [activeIndex, count]
-  );
-
-  const navigate = useCallback(
-    (step: number) => {
-      if (!count) return;
-
-      setDirection(step);
-
-      setActiveIndex(
-        (current) => (current + step + count) % count
-      );
-    },
-    [count]
-  );
-
-  // Preserve the existing subtle parallax effect
-  // on the selected service detail panel.
-  useGSAP(
-    () => {
-      if (
-        reducedMotion ||
-        !sectionRef.current ||
-        !visualRef.current
-      ) {
-        return;
-      }
-
-      gsap.fromTo(
-        visualRef.current,
-        { y: 36 },
-        {
-          y: -28,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        }
-      );
-    },
-    {
-      scope: sectionRef,
-      dependencies: [reducedMotion],
-      revertOnUpdate: true,
-    }
-  );
-
-  if (!count || !activeCategory) {
-    return null;
-  }
+  }, [reducedMotion, paused]);
 
   return (
-    <section
-      ref={sectionRef}
-      id="services-explorer"
-      className="mdh-expertise"
-      aria-labelledby="mdh-expertise-title"
-    >
-      <div className="mdh-expertise-container">
-        {/* SECTION LABEL */}
-
-        <div className="mdh-expertise-eyebrow">
-          <span className="mdh-expertise-eyebrow-left">
-            <span
-              className="mdh-expertise-rule"
-              aria-hidden="true"
-            />
-            02 / WHAT WE DO
-          </span>
-
-          <span className="mdh-expertise-eyebrow-right">
-            MEPPEPLIN / EXPERTISE
-          </span>
+    <section id="services-explorer" className="mdh-showcase" aria-labelledby="mdh-showcase-heading">
+      <div className="mdh-showcase-shell">
+        <div className="mdh-showcase-topline">
+          <span><i aria-hidden="true" /> 02 / WHAT WE DO</span>
+          <span>MEPPEPLIN DECOR HUB — EXPERTISE</span>
         </div>
 
-        {/* INTRODUCTION */}
-
-        <div className="mdh-expertise-intro">
+        <div className="mdh-showcase-heading">
           <div>
-            <motion.p
-              className="mdh-expertise-kicker"
-              initial={
-                reducedMotion
-                  ? false
-                  : { opacity: 0, y: 18 }
-              }
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-                amount: 0.4,
-              }}
-              transition={{
-                duration: reducedMotion ? 0 : 0.65,
-                ease,
-              }}
-            >
-              ONE STUDIO. MULTIPLE DISCIPLINES.
-            </motion.p>
-
-            {/*
-              FIXED HEADING
-
-              The previous version animated both heading
-              lines from y: "105%" inside overflow-hidden
-              masks.
-
-              That could leave the text clipped or invisible
-              when the reveal animation did not complete.
-
-              The new heading is always visible, while the
-              remaining section animations are preserved.
-            */}
-
-            <h2
-              id="mdh-expertise-title"
-              className="mdh-expertise-title"
-            >
-              <span className="mdh-expertise-title-line">
-                What we do,
-              </span>
-
-              <span
-                className="
-                  mdh-expertise-title-line
-                  mdh-expertise-title-indent
-                "
-              >
-                <em>beautifully.</em>
-              </span>
-            </h2>
+            <p className="mdh-showcase-kicker">DESIGNED WITH INTENTION. BUILT TO LAST.</p>
+            <h2 id="mdh-showcase-heading">Spaces, <em>reimagined.</em></h2>
           </div>
-
-          <motion.p
-            className="mdh-expertise-intro-copy"
-            initial={
-              reducedMotion
-                ? false
-                : { opacity: 0, y: 24 }
-            }
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.3,
-            }}
-            transition={{
-              duration: reducedMotion ? 0 : 0.8,
-              delay: reducedMotion ? 0 : 0.2,
-              ease,
-            }}
-          >
-            From interiors and architectural finishes to
-            outdoor environments, technical installations
-            and property solutions — explore the disciplines
-            that shape our approach.
-          </motion.p>
+          <p>From thoughtful interiors to complete property solutions, we bring every element of a space together with purpose and precision.</p>
         </div>
 
-        {/* INTERACTIVE SERVICE EXPLORER */}
-
-        <div className="mdh-expertise-body">
-          {/* SERVICE CATEGORY LIST */}
-
-          <div
-            className="mdh-expertise-list"
-            aria-label="Service categories"
-          >
-            {serviceCategories.map((category, index) => {
-              const selected = index === activeIndex;
-
-              return (
-                <motion.button
-                  key={category.id}
-                  type="button"
-                  className={`mdh-expertise-row${
-                    selected ? " is-active" : ""
-                  }`}
-                  onClick={() => selectCategory(index)}
-                  aria-pressed={selected}
-                  aria-controls="mdh-expertise-detail"
-                  initial={
-                    reducedMotion
-                      ? false
-                      : { opacity: 0, y: 20 }
-                  }
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                    amount: 0.3,
-                  }}
-                  transition={{
-                    duration: reducedMotion ? 0 : 0.65,
-                    delay: reducedMotion
-                      ? 0
-                      : index * 0.055,
-                    ease,
-                  }}
-                >
-                  <span className="mdh-expertise-row-number">
-                    {pad(index + 1)}
-                  </span>
-
-                  <span className="mdh-expertise-row-name">
-                    {category.title}
-                  </span>
-
-                  <span
-                    className="mdh-expertise-row-icon"
-                    aria-hidden="true"
-                  >
-                    <ArrowUpRight
-                      size={21}
-                      strokeWidth={1.3}
-                    />
-                  </span>
-                </motion.button>
-              );
-            })}
+        <div className="mdh-showcase-layout" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
+          <div className="mdh-showcase-categories" aria-label="Explore our service categories">
+            <div className="mdh-showcase-category-label">OUR DISCIPLINES <span>{number(serviceCategories.length)} CATEGORIES</span></div>
+            {serviceCategories.map((category, index) => (
+              <button
+                key={category.id}
+                type="button"
+                onClick={() => setActive(index)}
+                aria-pressed={index === active}
+                aria-controls="mdh-showcase-feature"
+                className={`mdh-showcase-category ${index === active ? "is-selected" : ""}`}
+              >
+                <span className="mdh-showcase-category-number">{number(index + 1)}</span>
+                <span className="mdh-showcase-category-title">{category.title}</span>
+                <span className="mdh-showcase-category-arrow"><ArrowUpRight size={19} strokeWidth={1.5} /></span>
+              </button>
+            ))}
+            <Link href="/expertise" className="mdh-showcase-all-link">VIEW ALL OUR SERVICES <ArrowUpRight size={18} /></Link>
           </div>
 
-          {/* SELECTED SERVICE DETAILS */}
-
-          <div
-            className="mdh-expertise-panel-wrap"
-            ref={visualRef}
-          >
-            <div
-              className="mdh-expertise-panel"
-              id="mdh-expertise-detail"
-              aria-live="polite"
-              aria-atomic="true"
-            >
-              {/* PANEL HEADER */}
-
-              <div className="mdh-expertise-panel-top">
-                <span>SELECTED DISCIPLINE</span>
-
-                <span>
-                  {pad(activeIndex + 1)} / {pad(count)}
-                </span>
-              </div>
-
-              {/* DECORATIVE MONOGRAM */}
-
-              <div
-                className="mdh-expertise-panel-monogram"
-                aria-hidden="true"
-              >
-                M
-              </div>
-
-              {/* ANIMATED CATEGORY CONTENT */}
-
-              <AnimatePresence
-                mode="wait"
-                custom={direction}
-              >
+          <div className="mdh-showcase-feature" id="mdh-showcase-feature">
+            <div className="mdh-showcase-photo">
+              <AnimatePresence mode="wait">
                 <motion.div
-                  key={activeCategory.id}
-                  custom={direction}
-                  className="mdh-expertise-panel-content"
-                  initial={
-                    reducedMotion
-                      ? false
-                      : {
-                          opacity: 0,
-                          x: direction * 28,
-                        }
-                  }
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    x: reducedMotion
-                      ? 0
-                      : -direction * 20,
-                  }}
-                  transition={{
-                    duration: reducedMotion ? 0 : 0.42,
-                    ease,
-                  }}
+                  key={selected.id}
+                  className="mdh-showcase-photo-frame"
+                  initial={reducedMotion ? false : { opacity: 0, scale: 1.055 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.65 }}
                 >
-                  <span className="mdh-expertise-panel-index">
-                    DISCIPLINE {pad(activeIndex + 1)}
-                  </span>
+                  <Image
+                    src={imagery[selected.id]}
+                    alt={selected.title}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 55vw"
+                    className="mdh-showcase-image"
+                  />
+                </motion.div>
+              </AnimatePresence>
+              <div className="mdh-showcase-photo-top"><span>FEATURED DISCIPLINE</span><span>{number(active + 1)} / {number(serviceCategories.length)}</span></div>
+              <div className="mdh-showcase-photo-bottom"><span>MEPPEPLIN / CRAFT & SPACE</span><MoveUpRight size={22} strokeWidth={1.2} /></div>
+            </div>
 
-                  <h3>{activeCategory.title}</h3>
-
-                  <p>
-                    {activeCategory.description ??
-                      "Explore the services available in this category."}
-                  </p>
-
-                  {/* INCLUDED SERVICES */}
-
-                  <div className="mdh-expertise-includes">
-                    <span className="mdh-expertise-includes-heading">
-                      SERVICES INCLUDED
-                    </span>
-
-                    <ul>
-                      {activeCategory.services.map(
-                        (service) => (
-                          <li key={service}>
-                            {service}
-                          </li>
-                        )
-                      )}
-                    </ul>
+            <div className="mdh-showcase-detail" aria-live="polite">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selected.id}
+                  initial={reducedMotion ? false : { opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.3 }}
+                >
+                  <div className="mdh-showcase-detail-head">
+                    <span>THE DISCIPLINE / {number(active + 1)}</span>
+                    <span>WHAT WE DELIVER</span>
                   </div>
-
-                  {/* EXPLORE LINK */}
-
-                  <Link
-                    className="mdh-expertise-panel-link"
-                    href={`/expertise#${activeCategory.id}`}
-                  >
-                    EXPLORE THIS DISCIPLINE
-
-                    <ArrowUpRight
-                      size={18}
-                      strokeWidth={1.4}
-                    />
+                  <h3>{selected.title}</h3>
+                  <p className="mdh-showcase-description">{selected.description}</p>
+                  <div className="mdh-showcase-services">
+                    {selected.services.map((service) => <span key={service}>{service}</span>)}
+                  </div>
+                  <Link className="mdh-showcase-detail-link" href={`/expertise#${selected.id}`}>
+                    EXPLORE THIS DISCIPLINE <ArrowUpRight size={18} />
                   </Link>
                 </motion.div>
               </AnimatePresence>
-
-              {/* PANEL FOOTER */}
-
-              <div className="mdh-expertise-panel-bottom">
-                <span>
-                  DESIGN / BUILD / ENHANCE
-                </span>
-
-              </div>
             </div>
           </div>
         </div>
-
-        {/* SECTION FOOTER */}
-
-        <div className="mdh-expertise-footer">
-          <span>
-            CONSIDERED FROM CONCEPT TO COMPLETION
-          </span>
-
-          <Link href="/expertise">
-            VIEW ALL EXPERTISE
-
-            <ArrowUpRight
-              size={17}
-              strokeWidth={1.4}
-            />
-          </Link>
-        </div>
+        <div className="mdh-showcase-footer"><span>FORM. FUNCTION. FINISH.</span><span>CONSIDERED FROM CONCEPT TO COMPLETION.</span></div>
       </div>
     </section>
   );
