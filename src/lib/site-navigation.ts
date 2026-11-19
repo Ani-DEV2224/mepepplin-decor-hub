@@ -1,70 +1,99 @@
-
 export const serviceCategories = [
   {
-    id: "interior-decor",
-    title: "Interior Décor & Home Enhancements",
-    description: "Details that bring comfort and character.",
-    services: [
-      "Home accessories and crafts",
-      "Curtains and blinds",
-      "Bathroom fittings",
-      "White slab designs",
-      "Home repairs and maintenance",
-    ],
+    "id": "property-maintenance",
+    "title": "Property Improvements & Maintenance",
+    "description": "Property upkeep, moisture control and dependable repairs.",
+    "services": [
+      "Property Improvements / Maintenance",
+      "Fungus & Damp Treatment / Moisture Control Services",
+      "Regular Home Repairs & Maintenance Services",
+      "Building Restoration",
+      "Property Renovations"
+    ]
   },
   {
-    id: "architectural-finishes",
-    title: "Architectural Finishes & Construction",
-    description: "Distinctive structural details and finishes.",
-    services: [
-      "Stainless steel and wrought iron gates",
-      "Fences, stair rails and protectors",
-      "Cut stone installation",
-      "Machine brick supply and installation",
-      "Chippings supply",
-    ],
+    "id": "property-transactions",
+    "title": "Property Lease, Buying & Selling",
+    "description": "Property leasing, buying and selling.",
+    "services": [
+      "Property Leasing",
+      "Property Buying",
+      "Property Selling"
+    ]
   },
   {
-    id: "outdoor-living",
-    title: "Outdoor Living & Landscaping",
-    description: "Beautiful environments beyond the walls.",
-    services: [
-      "Balcony designs",
-      "Barbecue spot designs",
-      "Horticulture and gardens",
-      "Green landscape decoration",
-    ],
+    "id": "procurement-installation",
+    "title": "Procurement & Installation Services",
+    "description": "Materials, cooling systems and professional digital installations.",
+    "services": [
+      "Materials Procurement",
+      "Building Materials Supply",
+      "Fixtures Procurement",
+      "Equipment & Fittings Installation",
+      "Cooling Systems / AC Installation Services",
+      "P4 Indoor & Outdoor Screens / Digital Display Installation Services"
+    ]
   },
   {
-    id: "water-features",
-    title: "Pools & Water Features",
-    description: "Water-inspired outdoor experiences.",
-    services: [
-      "Swimming pools",
-      "Lakes and fountains",
-    ],
+    "id": "interior-decor",
+    "title": "Interior Décor & Enhancements",
+    "description": "Bespoke furnishings, cabinetry, interior fittings and finishing details.",
+    "services": [
+      "Interior Decoration",
+      "Furniture Production, Installation & Furnishing",
+      "Cabinetry & Woodwork",
+      "HDF & Customized Doors",
+      "POP / Ceiling Installation",
+      "Tiling Works",
+      "Wallpaper Installation",
+      "Creative Wall Painting",
+      "3D Wall Panels",
+      "Curtains & Blinds"
+    ]
   },
   {
-    id: "technical-installations",
-    title: "Technical Installations & Procurement",
-    description: "Practical systems and dependable installations.",
-    services: [
-      "Cooling systems and air-conditioning installation",
-      "General supply and installation",
-      "Procurement and installation services",
-    ],
+    "id": "construction-finishes",
+    "title": "Construction & Architectural Finishes",
+    "description": "Planning, design, construction, engineering and project oversight.",
+    "services": [
+      "Architectural Planning / Drawings & Blueprints",
+      "3D Concepts / Drawings & Fit-Out",
+      "Space Planning & Design",
+      "Construction Works",
+      "Mechanical & Electrical Works",
+      "Project Management / Site Supervision & Quality Control",
+      "Budget & Cost Control",
+      "Stone & Brick Finishes"
+    ]
   },
   {
-    id: "property-projects",
-    title: "Property & Project Services",
-    description: "Supporting properties from planning to upkeep.",
-    services: [
-      "Site supervision",
-      "Project management",
-      "Property maintenance",
-      "Property buying and selling",
-    ],
+    "id": "outdoor-landscaping",
+    "title": "Outdoor Living & Landscaping",
+    "description": "Outdoor surfaces, hardscaping, planting and leisure spaces.",
+    "services": [
+      "Landscaping",
+      "Concrete Stamped Floor",
+      "Brick Interlocking Floor",
+      "White & Black Slab Flooring",
+      "Cut Stone Installation",
+      "Industrial & Granite Epoxy Flooring Installation Services",
+      "Pergolas / Thatch Huts",
+      "Horticulture / Gardening & Landscaping",
+      "Barbecue Spots & Balcony Designing",
+      "Green Artificial Grass & Plants Landscaping"
+    ]
   },
+  {
+    "id": "pools-water-features",
+    "title": "Pools & Water Features",
+    "description": "Swimming pools, water features and water treatment.",
+    "services": [
+      "Swimming Pools",
+      "Lakes",
+      "Fountains",
+      "Water Treatment Services"
+    ]
+  }
 ] as const;
 
 export const navigation = [
