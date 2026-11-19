@@ -2,15 +2,13 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
   useReducedMotion,
 } from "framer-motion";
 import {
-  ArrowLeft,
-  ArrowRight,
   ArrowUpRight,
 } from "lucide-react";
 
@@ -32,6 +30,17 @@ export default function ServicesExplorer() {
 
   const count = serviceCategories.length;
   const activeCategory = serviceCategories[activeIndex];
+
+  useEffect(() => {
+    if (reducedMotion || count < 2) return;
+    const timer = window.setInterval(() => {
+      if (!document.hidden) {
+        setDirection(1);
+        setActiveIndex(current => (current + 1) % count);
+      }
+    }, 8000);
+    return () => window.clearInterval(timer);
+  }, [count, reducedMotion]);
 
   const selectCategory = useCallback(
     (index: number) => {
@@ -393,29 +402,6 @@ export default function ServicesExplorer() {
                   DESIGN / BUILD / ENHANCE
                 </span>
 
-                <div className="mdh-expertise-controls">
-                  <button
-                    type="button"
-                    onClick={() => navigate(-1)}
-                    aria-label="Previous service category"
-                  >
-                    <ArrowLeft
-                      size={19}
-                      strokeWidth={1.4}
-                    />
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => navigate(1)}
-                    aria-label="Next service category"
-                  >
-                    <ArrowRight
-                      size={19}
-                      strokeWidth={1.4}
-                    />
-                  </button>
-                </div>
               </div>
             </div>
           </div>
