@@ -11,6 +11,7 @@ import {
   Check,
 } from "lucide-react";
 import "./expertise.css";
+import { serviceCategories } from "@/lib/site-navigation";
 
 export const metadata: Metadata = {
   title: "Our Expertise | Meppeplin Decor Hub",
