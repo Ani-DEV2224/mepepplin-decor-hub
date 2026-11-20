@@ -12,8 +12,8 @@ const imagery: Record<string, string> = {
   "property-transactions": "/images/expertise/property-real-estate.jpg",
   "procurement-installation": "/images/expertise/procurement-installation.png",
   "interior-decor": "/images/expertise/interior-decor.jpg",
-  "construction-finishes": "/images/expertise/construction-finishes.jpg",
-  "outdoor-landscaping": "/images/expertise/outdoor-landscaping.jpg",
+  "construction-finishes": "/images/expertise/construction-finishes.png",
+  "outdoor-landscaping": "/images/expertise/outdoor-landscaping.png",
   "pools-water-features": "/images/expertise/pools-water-features.jpg",
 };
 

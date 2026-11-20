@@ -54,7 +54,7 @@ const members: TeamMember[] = [
   },
   {
     name: "Clinton",
-    role: "Plumber",
+    role: "Chief Lead Plumber",
     image: "/images/team/team-01.png",
     number: "06",
   },
