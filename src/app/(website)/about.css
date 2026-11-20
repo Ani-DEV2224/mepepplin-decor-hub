@@ -120,7 +120,7 @@
   inset: 0;
   z-index: -2;
   background:
-    url("/images/about/about-hero.jpg")
+    url("/images/about/about-hero.png")
     center / cover no-repeat;
 }
 
