@@ -24,6 +24,10 @@ export const metadata: Metadata = {
     default: "Meppeplin Decor Hub",
     template: "%s | Meppeplin Decor Hub",
   },
+  icons: {
+    icon: { url: "/images/brand/mepepplin-logo.png", type: "image/png" },
+    apple: "/images/brand/mepepplin-logo.png",
+  },
   description:
     "Interior décor, architectural finishes, landscaping, installations, property solutions and project management.",
 };
