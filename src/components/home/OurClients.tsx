@@ -23,10 +23,6 @@ const clients: Client[] = [
     logo: "/images/clients/rivers-state-government.png",
   },
   {
-    name: "Agip",
-    logo: "/images/clients/agip.png",
-  },
-  {
     name: "Suncity Gardens Estate",
     logo: "/images/clients/suncity-gardens-estate.png",
   },
