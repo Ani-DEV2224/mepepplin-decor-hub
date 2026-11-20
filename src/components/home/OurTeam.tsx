@@ -42,7 +42,7 @@ const members: TeamMember[] = [
   },
   {
     name: "Isaac",
-    role: "Chief Lead Work/Furniture",
+    role: "Chief Lead Wood Work/Furniture",
     image: "/images/team/team-03.png",
     number: "04",
   },
