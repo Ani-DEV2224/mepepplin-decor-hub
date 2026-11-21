@@ -13,8 +13,6 @@ import {
   ArrowUpRight,
   Pause,
   Play,
-  Volume2,
-  VolumeX,
 } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -30,7 +28,6 @@ export default function SelectedWork() {
   const reducedMotion = useReducedMotion() === true;
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
   const [videoReady, setVideoReady] = useState(false);
   const [videoUnavailable, setVideoUnavailable] =
     useState(false);
@@ -40,6 +37,7 @@ export default function SelectedWork() {
     if (!video) return;
 
     try {
+      video.muted = true;
       await video.play();
     } catch (error) {
       console.warn("Video playback was blocked:", error);
@@ -118,14 +116,6 @@ export default function SelectedWork() {
       manuallyPausedRef.current = true;
       video.pause();
     }
-  };
-
-  const toggleMute = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.muted = !video.muted;
-    setIsMuted(video.muted);
   };
 
   const handleVideoError = () => {
@@ -285,7 +275,7 @@ export default function SelectedWork() {
             alt="Meppeplin architectural design showcase"
             fill
             sizes="100vw"
-            className="object-cover"
+            className="mdh-work-poster object-cover"
           />
           {!videoUnavailable && (
             <video
@@ -304,9 +294,7 @@ export default function SelectedWork() {
               }}
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
-              onVolumeChange={(event) => {
-                setIsMuted(event.currentTarget.muted);
-              }}
+              onVolumeChange={(event) => { event.currentTarget.muted = true; }}
               onError={handleVideoError}
               aria-label="Meppeplin design film"
               style={{
@@ -410,35 +398,7 @@ export default function SelectedWork() {
                 )}
               </button>
 
-              <button
-                type="button"
-                className="mdh-work-sound-button"
-                onClick={toggleMute}
-                disabled={videoUnavailable}
-                aria-label={
-                  isMuted
-                    ? "Unmute film"
-                    : "Mute film"
-                }
-                aria-pressed={!isMuted}
-                title={
-                  isMuted
-                    ? "Unmute film"
-                    : "Mute film"
-                }
-                style={{
-                  position: "relative",
-                  zIndex: 31,
-                  pointerEvents: "auto",
-                  cursor: "pointer",
-                }}
-              >
-                {isMuted ? (
-                  <VolumeX size={19} />
-                ) : (
-                  <Volume2 size={19} />
-                )}
-              </button>
+
             </div>
           </div>
 
