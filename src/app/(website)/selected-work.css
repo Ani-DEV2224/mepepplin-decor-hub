@@ -566,3 +566,21 @@
     transition: none !important;
   }
 }
+
+/* High-contrast cinematic text using Meppeplin brand colours. */
+.mdh-work-film-frame .mdh-work-poster { z-index: -3; }
+.studio-theme-root .mdh-work-film-frame .mdh-work-film-shade {
+  background: linear-gradient(180deg, rgba(0,0,0,.66), transparent 35%, rgba(0,0,0,.78)), linear-gradient(90deg, rgba(0,0,0,.45), transparent 85%);
+}
+.studio-theme-root .mdh-work-film-frame .mdh-work-film-top,
+.studio-theme-root .mdh-work-film-frame .mdh-work-film-top span,
+.studio-theme-root .mdh-work-film-frame .mdh-work-film-content h3,
+.studio-theme-root .mdh-work-film-frame .mdh-work-film-content p {
+  color: #FFFFF0 !important;
+  text-shadow: 0 2px 12px rgba(0,0,0,.75);
+}
+.studio-theme-root .mdh-work-film-frame .mdh-work-film-content h3 em,
+.studio-theme-root .mdh-work-film-frame .mdh-work-film-eyebrow {
+  color: #F8F517 !important;
+  text-shadow: 0 2px 12px rgba(0,0,0,.75);
+}
