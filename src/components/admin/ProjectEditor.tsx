@@ -655,13 +655,13 @@ export default function ProjectEditor({
               </label>
 
               <label className="atelier-field">
-                <span>Short Description</span>
+                <span>Project Description</span>
 
                 <textarea
                   rows={3}
                   maxLength={600}
                   value={form.summary}
-                  placeholder="Write a brief overview..."
+                  placeholder="Describe the project..."
                   onChange={(event) =>
                     updateField(
                       "summary",
@@ -673,23 +673,6 @@ export default function ProjectEditor({
                 <small>
                   {form.summary.length}/600 characters
                 </small>
-              </label>
-
-              <label className="atelier-field">
-                <span>Full Project Description</span>
-
-                <textarea
-                  rows={8}
-                  maxLength={15000}
-                  value={form.description}
-                  placeholder="Describe the concept, materials, approach and final outcome..."
-                  onChange={(event) =>
-                    updateField(
-                      "description",
-                      event.target.value
-                    )
-                  }
-                />
               </label>
 
               <div className="atelier-field-row">
