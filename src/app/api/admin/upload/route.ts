@@ -24,12 +24,12 @@ export async function POST(request: Request) {
     );
   }
 
-  const form = await request.formData().catch(() => null);
-  const file = form?.get("file");
-  const projectId = form?.get("projectId");
+  const body = await request.json().catch(() => null);
+  const projectId = body?.projectId;
+  const file = body?.file;
 
   if (
-    !(file instanceof File) ||
+    !file || typeof file.type !== "string" || typeof file.size !== "number" ||
     typeof projectId !== "string" ||
     !/^[0-9a-f-]{36}$/i.test(projectId)
   ) {
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
   if (
     !ext ||
     file.size > 50 * 1024 * 1024 ||
-    file.size === 0
+    !Number.isFinite(file.size) || file.size <= 0
   ) {
     return NextResponse.json(
       {
@@ -73,22 +73,20 @@ export async function POST(request: Request) {
   const storage_path =
     `${projectId}/${crypto.randomUUID()}.${ext}`;
 
-  const { error } = await db.storage
+  const { data: signed, error } = await db.storage
     .from(BUCKET)
-    .upload(storage_path, file, {
-      contentType: file.type,
-      upsert: false,
-    });
+    .createSignedUploadUrl(storage_path);
 
-  if (error) {
+  if (error || !signed) {
     return NextResponse.json(
-      { error: error.message },
+      { error: error?.message ?? "Could not authorize upload" },
       { status: 400 }
     );
   }
 
   return NextResponse.json({
     storage_path,
+    token: signed.token,
     media_type: file.type.startsWith("video/")
       ? "video"
       : "image",
