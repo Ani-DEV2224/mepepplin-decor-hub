@@ -113,7 +113,10 @@ export default function ProjectsGallery({
         aria-live="polite"
       >
         {filteredProjects.map((project, index) => {
-          const imageUrl = getProjectMediaUrl(project.cover_image_path);
+          const firstImage = project.project_media.find(item => item.media_type === "image");
+          const firstVideo = project.project_media.find(item => item.media_type === "video");
+          const imageUrl = getProjectMediaUrl(project.cover_image_path || firstImage?.storage_path);
+          const videoUrl = getProjectMediaUrl(firstVideo?.storage_path);
 
           return (
             <Link
@@ -136,6 +139,8 @@ export default function ProjectsGallery({
                     loading="lazy"
                     unoptimized
                   />
+                ) : videoUrl ? (
+                  <video src={videoUrl} muted playsInline preload="metadata" style={{width:"100%",height:"100%",objectFit:"cover"}} aria-label={`Video preview of ${project.title}`} />
                 ) : (
                   <div className="mdh-project-card-no-image">
                     <ImageOff
@@ -143,7 +148,7 @@ export default function ProjectsGallery({
                       strokeWidth={1}
                     />
                     <span>
-                      PROJECT IMAGE NOT AVAILABLE
+                      PROJECT MEDIA NOT AVAILABLE
                     </span>
                   </div>
                 )}
