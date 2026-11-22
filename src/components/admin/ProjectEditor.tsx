@@ -27,6 +27,8 @@ import {
   FolderOpen,
 } from "lucide-react";
 import type { ProjectInput } from "@/lib/admin/project";
+import { createClient } from "@/lib/supabase/client";
+import { BUCKET } from "@/lib/admin/project";
 import ProjectCategorySelect from "./ProjectCategorySelect";
 
 type StoredMedia = {
@@ -360,14 +362,13 @@ export default function ProjectEditor({
         `Uploading media ${index + 1} of ${pending.length}...`
       );
 
-      const body = new FormData();
-      body.append("projectId", savedProjectId);
-      body.append("file", item.media.file);
-
       const uploaded = await requestJson("/api/admin/upload", {
         method: "POST",
-        body,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ projectId: savedProjectId, file: { type: item.media.file.type, size: item.media.file.size } }),
       });
+      const { error: uploadError } = await createClient().storage.from(BUCKET).uploadToSignedUrl(uploaded.storage_path, uploaded.token, item.media.file, { contentType: item.media.file.type });
+      if (uploadError) throw new Error(`Upload failed for ${item.media.file.name}: ${uploadError.message}`);
 
       const registered = await requestJson(
         `/api/admin/projects/${savedProjectId}/media`,
@@ -410,7 +411,7 @@ export default function ProjectEditor({
     try {
       const payload = {
         ...form,
-        status,
+        status: projectId ? form.status : "draft",
         categories: form.categories,
       };
 
@@ -475,6 +476,11 @@ export default function ProjectEditor({
         }
       );
 
+      await requestJson(`/api/admin/projects/${savedProjectId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, status }),
+      });
       setProgress("Project saved successfully.");
 
       setSuccess(
