@@ -4990,3 +4990,8 @@ textarea {
     will-change: auto;
   }
 }
+
+/* Match the loader typography to the website brand. */
+.prelude, .prelude * {
+  font-family: Futura !important;
+}
