@@ -63,8 +63,7 @@ export default function MeetOurCEO() {
               <span>IN HER OWN WORDS</span>
 
               <p>
-                CEO statement or personal quote to be
-                added after confirmation.
+                MepepplinDecorHub&apos;s portfolio ranges from mixed-use to residential, retail, hospitality, commercial, industrial and private developments. Our design practice presents a refined and custom approach to design and development. We create interiors that impress, inspire and excite. We combine Timeless built design details with hand-finished artisan elements, all styled and matched with custom pieces of furniture locally made and imported, fabrics, artworks, accessories and lighting. Our bespoke designs brew inspiration into spaces made for connection and comfort. At MepepplinDecorHub, it&apos;s not just design we do... we create spaces that reflect your personality!
               </p>
             </div>
           </Reveal>
